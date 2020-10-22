@@ -1,0 +1,11 @@
+.screen-shot-pic {
+  flex: 1;
+  max-height: 400px;
+  max-width: 220px;
+}
+
+.download-buttons {
+  flex: 1;
+  font-size: large;
+  font-weight: bold;
+}

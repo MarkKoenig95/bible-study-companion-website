@@ -1,0 +1,39 @@
+.ordinal-section {
+  margin: 3px;
+}
+
+.special-case {
+  align-items: center;
+  background-color: var(--light-blue);
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 2px;
+  color: var(--dark-gray);
+  display: inline-flex;
+  flex-direction: row;
+  font-size: small;
+  padding: 5px;
+  margin: 5px;
+}
+
+.special-case button {
+  border-radius: 50%;
+  padding: 5px;
+  margin: 5px;
+  margin-right: 0px;
+}
+
+.special-case button i {
+  font-size: smaller;
+  padding: 2px;
+  margin: 2px;
+}
+
+.text-fragment {
+  display: inline-block;
+}
+
+.tiny-input {
+  width: 20px;
+  border: none;
+}

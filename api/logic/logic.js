@@ -3,13 +3,35 @@ const fs = require("fs");
 const nodemailer = require("nodemailer");
 
 /**
+ * Itterates through an object and finds the values for every key creating an array of key strings
+ * i.e. if obj is {key1: {key2: {key3: value}}} it will return an array of 1 key string 'key1.key2.key3'
+ * @param {object} obj The object you would like to generate an array of key strings for
+ * @param {string} prevKey Optional: Typically will not need to use this value
+ */
+const parseObjKeys = (obj, prevKey) => {
+  const entries = Object.entries(obj);
+  const result = [];
+
+  for (const [key, value] of entries) {
+    let newKey = prevKey ? prevKey + "." + key : key;
+    if (typeof value === "object") {
+      result.push(...parseObjKeys(value, newKey));
+    } else {
+      result.push(newKey);
+    }
+  }
+
+  return result;
+};
+
+/**
  * A function for updating an object or accessing an object's value based on a string of keys
  * @param {object} obj The object you will be updating or accessing
  * @param {string} key The key string you will use i.e 'key1.key2.key3'
- * @param {*} value Optional: The value you would like to update the key location to. If left blank, will rerutn the value at the key location.
+ * @param {*} value Optional: The value you would like to update the key location to. If left blank, will return the value at the key location.
  */
 
-const keyParser = (obj, key, value) => {
+const keyStringParser = (obj, key, value) => {
   let keys = key.split(".");
   let objectLevels = [{ ...obj }];
 
@@ -54,12 +76,12 @@ async function sendFile(file, fileName, destEmail) {
 
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true, // true for 465, false for other ports
+    host: "smtp-relay.sendinblue.com",
+    port: 587,
+    secure: false,
     auth: {
-      user: myEmail, // generated ethereal user
-      pass: process.env.GMAIL_PASSWORD, // generated ethereal password
+      user: myEmail,
+      pass: process.env.SENDINBLUE_PASSWORD,
     },
   });
 
@@ -87,7 +109,6 @@ async function sendFile(file, fileName, destEmail) {
 const compareStrings = (string1, string2) => {
   let chars1 = string1.split("");
   let chars2 = string2.split("");
-  console.log("chars1", chars1, "chars2", chars2);
 
   if (chars1.length <= 0 && chars2.length <= 0) {
     console.log("No more characters to compare");
@@ -95,7 +116,7 @@ const compareStrings = (string1, string2) => {
   }
 
   if (chars1[0] === chars2[0]) {
-    console.log("characters equal");
+    // console.log("characters equal");
     chars1.shift();
     chars2.shift();
 
@@ -113,6 +134,71 @@ const compareStrings = (string1, string2) => {
   }
 };
 
-module.exports.keyParser = keyParser;
+/**
+ * A function for turning a translation object into an array of its values
+ *
+ * @param {object} translation The translation object to be parsed
+ * @param {array} keyStrings Optional: An array of key strings for the translation to be parsed
+ * @returns {object} {keys: [array], values: [array]}
+ */
+
+const parseTranslation = (translation, keyStrings) => {
+  let values = [];
+  keyStrings = keyStrings || parseObjKeys(translation);
+  keyStrings.forEach((key) => {
+    values.push(keyStringParser(translation, key));
+  });
+
+  return { keys: keyStrings, values: values };
+};
+
+function translationVariableParser(translation) {
+  if (typeof translation !== "string") {
+    return;
+  }
+
+  let found = [...translation.matchAll(/\{\{(\w+)\}\}/g)];
+  return found;
+}
+
+//Below are temporary things
+// Perhaps will be used in the future to update the variables value in the template, but for now I just used it once in the template edit page to set the values initially
+
+// const getTemplateVariables = () => {
+//   let temp = [...template];
+
+//   temp.forEach((t) => {
+//     let vars = translationVariableParser(t.value);
+//     if (typeof vars === "object" && vars.length > 0) {
+//       console.log("vars", vars);
+//       vars.forEach((v) => {
+//         let key = v[1];
+//         let keyExists = variables._keys.filter((k) => k === key).length > 0;
+
+//         if (!keyExists) {
+//           variables[key] = [];
+//           variables._keys.push(key);
+//           console.log(variables);
+//         }
+//       });
+//     }
+//   });
+
+//   postVariables();
+// };
+
+// const postVariables = () => {
+//   Axios.post("/api/template/variables", {
+//     variables: variables,
+//     template: template,
+//   });
+// };
+
+//above are temporary things
+
+module.exports.keyStringParser = keyStringParser;
 module.exports.sendFile = sendFile;
 module.exports.compareStrings = compareStrings;
+module.exports.parseTranslation = parseTranslation;
+module.exports.parseObjKeys = parseObjKeys;
+module.exports.translationVariableParser = translationVariableParser;

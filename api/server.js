@@ -3,6 +3,8 @@ const app = express();
 const path = require("path");
 const routes = require("./routes");
 const template = require("./routes/template");
+const translation = require("./routes/translation");
+const logic = require("./routes/logic");
 const port = process.env.PORT || 5000;
 
 app.use(express.json());
@@ -13,6 +15,9 @@ if (process.env.PRODUCTION) {
 }
 
 app.use("/api/template", template);
+app.use("/api/translation", translation);
+app.use("/api/logic", logic);
+
 app.use("*", routes);
 
 app.listen(port, () => {

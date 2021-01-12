@@ -8,4 +8,9 @@
   flex: 1;
   font-size: large;
   font-weight: bold;
+  min-width: 200px;
+}
+
+.download-buttons i {
+  font-size: xx-large;
 }

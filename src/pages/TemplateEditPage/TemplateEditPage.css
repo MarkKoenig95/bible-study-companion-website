@@ -4,3 +4,19 @@
   padding: 20px;
   margin: 20px;
 }
+
+.template-section input {
+  width: 95%;
+}
+
+.order-input input {
+  width: 50px;
+}
+
+.order-input button {
+  background-color: var(--light-blue);
+  border-radius: 50%;
+  display: inline;
+  height: 30px;
+  width: 30px;
+}

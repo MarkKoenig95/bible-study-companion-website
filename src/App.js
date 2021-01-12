@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./App.css";
-import TranslationPage from "./pages/TranslationPage";
+import TranslationPage from "./pages/TranslationPage/TranslationPage";
 import Page from "./pages/Page/Page";
 import HomePage from "./pages/HomePage/HomePage";
 import TemplateEditPage from "./pages/TemplateEditPage/TemplateEditPage";

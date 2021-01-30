@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./LanguageSelect.css";
 
 export default function LanguageSelect(props) {
   const { languageList, onSelect } = props;
@@ -11,7 +12,7 @@ export default function LanguageSelect(props) {
   };
 
   return (
-    <div>
+    <div className="language-select">
       <label>Please select the language you would like to translate into</label>
       <select
         value={languageID}

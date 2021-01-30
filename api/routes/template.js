@@ -6,9 +6,9 @@ const formidable = require("formidable");
 const {
   compareStrings,
   keyStringParser,
-  sendFile,
   parseObjKeys,
   parseTranslation,
+  saveFile,
 } = require("../logic/logic");
 
 var template = require("../localizations/template.json");
@@ -18,6 +18,7 @@ let parsedTemplate = [];
 
 const templateUpdater = () => {
   let templateKeys = parseObjKeys(template);
+  let tempTemplate = { ...template };
 
   const templateInnerKeys = [
     "key",
@@ -43,13 +44,6 @@ const templateUpdater = () => {
   expandedBaseKeys.sort();
   templateKeys.sort();
 
-  console.log(
-    "templateKeys",
-    templateKeys,
-    "expandedBaseKeys",
-    expandedBaseKeys
-  );
-
   //Maximum length possible. This way we won't end our loop early, but we also won't have an infinite loop
   let maxLength = expandedBaseKeys.length + templateKeys.length;
 
@@ -59,6 +53,7 @@ const templateUpdater = () => {
   for (let i = 0; i < maxLength; i++) {
     let baseKey;
     let isOutOfBaseBounds = false;
+
     if (baseKeysIndex < expandedBaseKeys.length) {
       baseKey = expandedBaseKeys[baseKeysIndex];
     } else {
@@ -71,7 +66,7 @@ const templateUpdater = () => {
         break;
       } else {
         //We need to add this to the template
-        template = { ...keyStringParser(template, baseKey, "") };
+        tempTemplate = { ...keyStringParser(tempTemplate, baseKey, "") };
         baseKeysIndex++;
         continue;
       }
@@ -83,29 +78,52 @@ const templateUpdater = () => {
         // Then, the key already exists in our template
         // Update the correct value to show that it's not updated
         // We can break this inner loop and continue with the outer loop
+
         baseKeysIndex++;
         templateKeysIndex = j + 1;
         break;
       } else {
         // Check if current base key is less than the currently checked template key
-        if (!compareStrings(baseKey, templateKey) && baseKey !== undefined) {
+        if (
+          typeof baseKey !== "undefined" &&
+          !compareStrings(baseKey, templateKey)
+        ) {
           //Then we need to add this to the template
-          template = { ...keyStringParser(template, baseKey, "") };
+          let keyParts = baseKey.split(".");
+          let val = "";
+
+          switch (keyParts[keyParts.length - 1]) {
+            case "key":
+              keyParts.pop();
+              val = keyParts.join(".");
+              break;
+            case "updateDate":
+              let today = new Date();
+              val = today.toLocaleDateString();
+              break;
+            case "order":
+              val = parseInt(i / templateInnerKeys.length, 10);
+              break;
+            default:
+              break;
+          }
+
+          console.log("adding", val, "to template at key", baseKey);
+
+          tempTemplate = { ...keyStringParser(tempTemplate, baseKey, val) };
           // Then we break to continue with the next keys
           baseKeysIndex++;
           templateKeysIndex = j;
           break;
         } else {
-          if (baseKey !== undefined) {
+          if (typeof baseKey !== "undefined") {
             // Then this current key in the template has been deleted from the original file
             // Update flag accordingly
             templateKeysIndex = j;
             console.log("Key '", templateKey, "' has been deleted");
           } else {
             console.error(
-              "baseKey",
-              baseKey,
-              "is undefined where templateKey is",
+              "baseKey is undefined where templateKey is",
               templateKey
             );
             templateKeysIndex = j + 1;
@@ -114,6 +132,8 @@ const templateUpdater = () => {
       }
     }
   }
+
+  return { ...tempTemplate };
 };
 
 router
@@ -131,22 +151,15 @@ router
   .post((req, res) => {
     let newTemplate = {};
     req.body.forEach((item) => {
-      newTemplate = { ...keyStringParser(newTemplate, item.key, item) };
+      if (item.key) {
+        newTemplate = { ...keyStringParser(newTemplate, item.key, item) };
+      }
     });
 
     // write JSON string to a file
-    fs.writeFileSync(
-      path.join(__dirname, "..", "template.json"),
-      JSON.stringify(newTemplate)
-    );
-    console.log("Template Saved");
-
-    let file = fs.readFileSync(
-      path.join(__dirname, "..", "template.json"),
-      "utf8"
-    );
-
-    sendFile(file, "template.json").catch(console.error);
+    let file = JSON.stringify(newTemplate);
+    fs.writeFileSync(path.join(__dirname, "..", "template.json"), file, "utf8");
+    //saveFile(file, "template.json").catch(console.error);
   });
 
 router
@@ -164,12 +177,21 @@ router
         next(err);
         return;
       }
+      let file = fs.readFileSync(files.filetoupload.path, "utf8");
 
-      base = JSON.parse(fs.readFileSync(files.filetoupload.path, "utf8"));
+      saveFile(file, "en.json");
+
+      base = JSON.parse(file);
 
       baseKeys = parseObjKeys(base);
 
-      templateUpdater();
+      template = templateUpdater();
+
+      fs.writeFileSync(
+        path.join(__dirname, "..", "template.json"),
+        JSON.stringify(template),
+        "utf8"
+      );
 
       baseKeys.forEach((key) => {
         let curVal = keyStringParser(base, key);

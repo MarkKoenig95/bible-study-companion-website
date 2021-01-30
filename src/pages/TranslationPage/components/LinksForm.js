@@ -81,7 +81,7 @@ function linkFormatter(links, wwwOrwol, original) {
 }
 
 function LinkParsingForm(props) {
-  const { links, mainLink, onChange, wwwOrwol } = props;
+  const { links, mainLink, onChange, showLoadingPopup, wwwOrwol } = props;
   const [link, setLink] = useState("");
 
   const _handleLinkInputChange = async ({ target }) => {
@@ -95,15 +95,16 @@ function LinkParsingForm(props) {
 
       if (finderLocale === "E" && wwwOrwol === "www") {
         //Then it hasn't changed yet and we need to scrape a webpage to get the value
+        showLoadingPopup(true);
         await instance
           .get("https://cors-anywhere.herokuapp.com/" + newLink)
           .then(({ data }) => {
             let found = data.match(/wtlocale=(?<locale>[A-Z]*)./);
-
             updatedValues.push({
               index: links.finderLocale.index,
               value: found.groups.locale,
             });
+            showLoadingPopup(false);
           })
           .catch((e) => {
             console.error(e);
@@ -147,7 +148,7 @@ function LinkParsingForm(props) {
 }
 
 export default function LinksForm(props) {
-  const { onChange, links } = props;
+  const { onChange, links, showLoadingPopup } = props;
   const [linksObj, setLinksObj] = useState({});
   let finderLocale = linksObj.finderLocale ? linksObj.finderLocale.value : "E";
   let hasStudyBible = linksObj.hasStudyBible
@@ -210,18 +211,21 @@ export default function LinksForm(props) {
           links={linksObj}
           onChange={onChange}
           mainLink="https://www.jw.org/en/library/bible/nwt/introduction/how-to-read-the-bible/"
+          showLoadingPopup={showLoadingPopup}
           wwwOrwol="www"
         />
         <LinkParsingForm
           links={linksObj}
           onChange={onChange}
           mainLink="https://www.jw.org/en/library/bible/nwt/books/genesis/1/"
+          showLoadingPopup={showLoadingPopup}
           wwwOrwol="www"
         />
         <LinkParsingForm
           links={linksObj}
           onChange={onChange}
           mainLink="https://wol.jw.org/en/wol/b/r1/lp-e/nwt/1/1#study=discover"
+          showLoadingPopup={showLoadingPopup}
           wwwOrwol="wol"
         />
         <p>Please test the extracted link elements with all of these links</p>

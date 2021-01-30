@@ -5,6 +5,61 @@ import "./TranslationForm.css";
 
 const INPUT_TYPES = { VARIABLE: 0, INPUT: 1 };
 
+function cycleVariables(inputs, setInputs, variables) {
+  let tempInputs = [...inputs];
+  let specialFlag = 0;
+
+  const checkSpecialVars = (flag, matchIndex, matchVal) => {
+    let display = "";
+
+    if (!flag) {
+      flag = Math.floor(Math.random() * 3) + 1;
+    }
+
+    if (flag === matchIndex) {
+      display = matchVal;
+    }
+
+    return { display, flag };
+  };
+
+  inputs.forEach((input, i) => {
+    if (input.type === INPUT_TYPES.VARIABLE) {
+      let varArray = variables[input.value];
+      let displayVal;
+
+      //There is a special case where only one variable will be used at a time. For that we
+      //need some special logic
+      switch (input.value) {
+        case "about":
+          let a = checkSpecialVars(specialFlag, 1, varArray[1]);
+          displayVal = a.display;
+          specialFlag = a.flag;
+          break;
+        case "after":
+          let b = checkSpecialVars(specialFlag, 2, varArray[1]);
+          displayVal = b.display;
+          specialFlag = b.flag;
+          break;
+        case "before":
+          let c = checkSpecialVars(specialFlag, 3, varArray[1]);
+          displayVal = c.display;
+          specialFlag = c.flag;
+          break;
+        default:
+          if (varArray) {
+            let randomIndex = Math.floor(Math.random() * varArray.length);
+            displayVal = varArray[randomIndex];
+          }
+          break;
+      }
+
+      tempInputs[i].displayVal = displayVal;
+    }
+  });
+  setInputs(tempInputs);
+}
+
 function createVariableInputs(translation) {
   let newInputs = [];
   let vars = translationVariableParser(translation);
@@ -53,7 +108,7 @@ function AdjInput(props) {
   };
 
   const checkInputDims = (value) => {
-    let newWidth = (value.length + 1) * 7;
+    let newWidth = (value.length + 1) * 13;
     let maxWidth = window.innerWidth / 3;
     if (newWidth > maxWidth) {
       let rowNum = newWidth / maxWidth;
@@ -115,7 +170,7 @@ function VariableDisplay(props) {
 }
 
 function TranslationInput(props) {
-  const { index, onBlur, trans, variables } = props;
+  const { index, onBlur, trans, variables, variablesPaused } = props;
   const [inputs, setInputs] = useState([]);
   const [text, setText] = useState([]);
 
@@ -218,61 +273,14 @@ function TranslationInput(props) {
 
   useEffect(() => {
     let interval = setInterval(() => {
-      let tempInputs = [...inputs];
-      let specialFlag = 0;
-
-      const checkSpecialVars = (flag, matchIndex, matchVal) => {
-        let display = "";
-
-        if (!flag) {
-          flag = Math.floor(Math.random() * 3) + 1;
-        }
-
-        if (flag === matchIndex) {
-          display = matchVal;
-        }
-
-        return { display, flag };
-      };
-
-      inputs.forEach((input, i) => {
-        if (input.type === INPUT_TYPES.VARIABLE) {
-          let varArray = variables[input.value];
-          let displayVal;
-
-          //There is a special case where only one variable will be used at a time. For that we
-          //need some special logic
-          switch (input.value) {
-            case "about":
-              let a = checkSpecialVars(specialFlag, 1, varArray[1]);
-              displayVal = a.display;
-              specialFlag = a.flag;
-              break;
-            case "after":
-              let b = checkSpecialVars(specialFlag, 2, varArray[1]);
-              displayVal = b.display;
-              specialFlag = b.flag;
-              break;
-            case "before":
-              let c = checkSpecialVars(specialFlag, 3, varArray[1]);
-              displayVal = c.display;
-              specialFlag = c.flag;
-              break;
-            default:
-              let randomIndex = Math.floor(Math.random() * varArray.length);
-              displayVal = varArray[randomIndex];
-              break;
-          }
-
-          tempInputs[i].displayVal = displayVal;
-        }
-      });
-      setInputs(tempInputs);
+      if (!variablesPaused) {
+        cycleVariables(inputs, setInputs, variables);
+      }
     }, 3000);
     return () => {
       clearInterval(interval);
     };
-  }, [inputs, variables]);
+  }, [inputs, variables, variablesPaused]);
 
   useEffect(() => {
     let items = [];
@@ -327,30 +335,54 @@ function TranslationInput(props) {
 export default function TranslationForm(props) {
   const {
     description,
+    completedHidden,
     index,
     isEdited,
+    isSameAsOriginal,
     language,
     link,
     original,
     onChange,
     translation,
     variables,
+    variablesPaused,
   } = props;
 
   const [trans, setTrans] = useState(translation);
   const [edited, setEdited] = useState(isEdited);
+  const [sameAsOriginal, setSameAsOriginal] = useState(isSameAsOriginal);
+  const [borderColor, setBorderColor] = useState("gray");
+  const [display, setDisplay] = useState("flex");
+
+  useEffect(() => {
+    if (completedHidden) {
+      if (isEdited || !isSameAsOriginal) {
+        setDisplay("none");
+      }
+    }
+
+    if (edited) {
+      setBorderColor("orange");
+    } else if (sameAsOriginal) {
+      setBorderColor("red");
+    } else {
+      setBorderColor("green");
+    }
+  }, [completedHidden, edited, isEdited, isSameAsOriginal, sameAsOriginal]);
 
   const _onTextChange = ({ target }) => {
     setTrans(target.value);
     setEdited(true);
+    setSameAsOriginal(target.value === original);
   };
 
   const _onBlur = (val) => {
     onChange(val);
   };
+
   return (
     <div
-      style={{ borderColor: !edited ? "gray" : "orange" }}
+      style={{ borderColor: borderColor, display: display }}
       className="translation-form"
     >
       <div className="form-sections">
@@ -371,6 +403,7 @@ export default function TranslationForm(props) {
             onChange={_onTextChange}
             onBlur={_onBlur}
             index={index}
+            variablesPaused={variablesPaused}
           />
         </div>
       </div>

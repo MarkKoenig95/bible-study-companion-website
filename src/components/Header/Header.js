@@ -25,7 +25,6 @@ export default function Header() {
       <div className={"link-section" + className}>
         <a href="/translation">Translation</a>
         <a href="mailto:humanappmaker@gmail.com">Contact</a>
-        <a href="/faq">FAQ</a>
       </div>
     </header>
   );

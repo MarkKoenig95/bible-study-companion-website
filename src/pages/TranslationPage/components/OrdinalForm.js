@@ -203,6 +203,7 @@ export default function OrdinalForm(props) {
   useEffect(() => {
     let typs = [];
     let temp = ordinals.slice(11);
+    specials = {};
 
     lastSpecialIndex = ordinals[11].index;
 

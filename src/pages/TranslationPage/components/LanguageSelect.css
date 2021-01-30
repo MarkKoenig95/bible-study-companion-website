@@ -1,0 +1,7 @@
+.language-select {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  max-width: 15rem;
+  margin: 0.5rem;
+}

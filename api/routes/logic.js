@@ -1,12 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {
-  compareStrings,
-  keyStringParser,
-  sendFile,
-  parseObjKeys,
-  parseTranslation,
-} = require("../logic/logic");
+const { keyStringParser } = require("../logic/logic");
 
 router.route("/key-string-parser").post((req, res) => {
   // Recieves an array of objects containing key and optionally value attributes

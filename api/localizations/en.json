@@ -418,6 +418,7 @@
   },
   "readingSchedules": "Reading Schedules",
   "reminders": {
+    "completeReminderMessage": "Are you sure you want to mark reminder \"{{reminderName}}\" complete?",
     "dailyReading": "Daily Reading",
     "dailyText": "Daily Text",
     "midweekMeetingStudy": "Midweek Meeting Study",
@@ -430,6 +431,7 @@
   },
   "remindersPage": {
     "completed": "Completed {{desc}}",
+    "deleteReminderMessage": "Are you sure you want to delete \"{{reminderName}}\" reminder?",
     "every": "Every: ",
     "name": "Name: ",
     "reminderPopupTitle": "Create New Reminder",
@@ -456,8 +458,11 @@
     "customDescription": "Create a custom schedule for a publication"
   },
   "settingsPage": {
-    "weeklyReadingResetDay": "Day to reset weekly reading:",
-    "title": "Settings"
+    "about": "About",
+    "contact": "Contact",
+    "title": "Settings",
+    "version": "Version",
+    "weeklyReadingResetDay": "Day to reset weekly reading:"
   },
   "thisMonth": "This Month",
   "thisWeek": "This Week",

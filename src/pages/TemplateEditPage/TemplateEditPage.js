@@ -8,6 +8,7 @@ function setTemplateItemValues(obj, index) {
   let desc;
   let link;
   let order;
+  let updateDate;
   let variable;
 
   if (obj) {
@@ -26,10 +27,16 @@ function setTemplateItemValues(obj, index) {
     } else {
       link = "";
     }
-    if (typeof obj.order !== "undefined") {
+    if (typeof obj.order !== "undefined" || obj.order === "") {
       order = obj.order;
     } else {
       order = index;
+    }
+    if (typeof obj.updateDate !== "undefined") {
+      updateDate = obj.updateDate;
+    } else {
+      let today = new Date();
+      updateDate = today.toLocaleDateString();
     }
     if (typeof obj.variable !== "undefined") {
       variable = obj.variable;
@@ -38,7 +45,7 @@ function setTemplateItemValues(obj, index) {
     }
   }
 
-  return { obj, value, desc, link, order, variable };
+  return { obj, value, desc, link, order, updateDate, variable };
 }
 
 async function getData() {
@@ -121,6 +128,7 @@ const TemplateSeciton = (props) => {
     onChange,
     onVariablesChange,
     order,
+    updateDate,
     updateOrder,
     value,
     variable,
@@ -165,6 +173,9 @@ const TemplateSeciton = (props) => {
         variable={variable}
         variables={variables}
       />
+
+      <h5>Update Date:</h5>
+      <p>{updateDate}</p>
 
       <h5>Hide:</h5>
       <input type="checkbox" checked={isHidden} onChange={setIsHidden} />
@@ -237,10 +248,14 @@ export default function TemplateEditPage() {
 
       {template.map((item, index) => {
         let obj = item;
-        const { value, desc, link, order, variable } = setTemplateItemValues(
-          obj,
-          index
-        );
+        const {
+          value,
+          desc,
+          link,
+          order,
+          updateDate,
+          variable,
+        } = setTemplateItemValues(obj, index);
 
         return (
           <TemplateSeciton
@@ -252,6 +267,7 @@ export default function TemplateEditPage() {
             onChange={onChange}
             onVariablesChange={onVariablesChange}
             order={order}
+            updateDate={updateDate}
             updateOrder={updateOrder}
             value={value}
             variable={variable}

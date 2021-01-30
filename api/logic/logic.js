@@ -1,6 +1,8 @@
 require("dotenv").config();
 const fs = require("fs");
+const path = require("path");
 const nodemailer = require("nodemailer");
+const { uploadFile, downloadFile } = require("../storage/storage");
 
 /**
  * Itterates through an object and finds the values for every key creating an array of key strings
@@ -64,7 +66,7 @@ const keyStringParser = (obj, key, value) => {
   }
 };
 
-async function sendFile(file, fileName, destEmail) {
+async function sendEmail(destEmail) {
   const myEmail = "humanappmaker@gmail.com";
   const sendEmails = [myEmail];
 
@@ -89,15 +91,42 @@ async function sendFile(file, fileName, destEmail) {
   let info = await transporter.sendMail({
     from: `"Hugh Mann" <${myEmail}>`,
     to: sendEmails,
-    subject: "Bible Study Companion Translation File",
+    subject: "Bible Study Companion Translation",
     html: `<h2>Thank you for your contribution!</h2>
            <br/>
-           <p>Attatched is the translation file you created for the app Bible Study Companion.</p>
-           <p>You can save it for continued use in editing later.</p>`,
-    attachments: [{ filename: fileName, content: file }],
+           <p>Thank you for signing up to be notified of future additions to translation.</p>
+           <p>I hope you enjoy the app!</p>`,
   });
 
   console.log("Message sent: %s", info.messageId);
+}
+
+/**
+ * A function for retrieving a file from Google Cloud Storage
+ * @param {*} fileName
+ * @returns the contents of the recieved file
+ */
+async function getFile(fileName) {
+  let newFilePath = path.join(__dirname, "..", "..", "..", "tmp", fileName);
+  await downloadFile(fileName, newFilePath);
+
+  let file = JSON.parse(fs.readFileSync(newFilePath, "utf8"));
+
+  return file;
+}
+
+/**
+ * A function for saving a file to Google Cloud Storage
+ * @param {*} file typically a json file to be uploaded
+ * @param {string} fileName
+ */
+
+async function saveFile(file, fileName) {
+  let newFilePath = path.join(__dirname, "..", "..", "..", "tmp", fileName);
+
+  fs.writeFileSync(newFilePath, JSON.stringify(file));
+
+  await uploadFile(newFilePath);
 }
 
 /**
@@ -111,7 +140,6 @@ const compareStrings = (string1, string2) => {
   let chars2 = string2.split("");
 
   if (chars1.length <= 0 && chars2.length <= 0) {
-    console.log("No more characters to compare");
     return false;
   }
 
@@ -126,10 +154,8 @@ const compareStrings = (string1, string2) => {
       return false;
     }
   } else if (chars1[0] > chars2[0]) {
-    console.log("char1 greater than char2");
     return true;
   } else {
-    console.log("char1 less than char2");
     return false;
   }
 };
@@ -197,7 +223,9 @@ function translationVariableParser(translation) {
 //above are temporary things
 
 module.exports.keyStringParser = keyStringParser;
-module.exports.sendFile = sendFile;
+module.exports.sendEmail = sendEmail;
+module.exports.saveFile = saveFile;
+module.exports.getFile = getFile;
 module.exports.compareStrings = compareStrings;
 module.exports.parseTranslation = parseTranslation;
 module.exports.parseObjKeys = parseObjKeys;

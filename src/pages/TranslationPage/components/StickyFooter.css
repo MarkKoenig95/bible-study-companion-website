@@ -1,10 +1,27 @@
 .sticky-footer {
+  align-items: center;
   background-color: var(--light-gray);
   bottom: 0px;
+  color: var(--smoke);
   left: 0px;
   display: flex;
+  flex: 1;
   flex-direction: row;
-  justify-content: flex-end;
+  flex-wrap: wrap;
   position: fixed;
+  justify-content: space-around;
   width: 100%;
+}
+
+.hide-completed {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin: 0.5rem;
+}
+
+.translation-action-buttons {
+  display: flex;
+  flex-direction: row;
+  margin: 0.5rem;
 }

@@ -8,29 +8,29 @@ var base = require("../localizations/en.json");
 const {
   keyStringParser,
   parseTranslation,
-  sendFile,
+  sendEmail,
+  saveFile,
+  getFile,
 } = require("../logic/logic");
-const fs = require("fs");
 
-const saveLanguageFile = (languageKey, translationItems) => {
+const getLanguageFile = async (languageKey, translationItems) => {
   let key = languageKey;
   let fileName = key + ".json";
-  let filePath = path.join(__dirname, "..", "localizations", key + ".json");
   let file;
 
-  try {
-    file = require(filePath, "utf8");
-  } catch (err) {
-    console.error(err);
+  await getFile(fileName)
+    .then((res) => {
+      file = res;
+    })
+    .catch(console.error);
+
+  if (typeof translationItems === "object") {
+    translationItems.forEach((item) => {
+      if (item.isEdited) {
+        file = { ...keyStringParser(file, item.key, item.translation) };
+      }
+    });
   }
-
-  translationItems.forEach((item) => {
-    if (item.isEdited) {
-      file = { ...keyStringParser(file, item.key, item.translation) };
-    }
-  });
-
-  fs.writeFileSync(filePath, JSON.stringify(file));
 
   return { file, fileName };
 };
@@ -39,54 +39,51 @@ router.route("/language-list").get((req, res) => {
   res.send(languages);
 });
 
+router.route("/email").post((req, res) => {
+  let email = req.query.email;
+  sendEmail(email).then(() => {
+    res.end();
+  });
+});
+
 router
   .route("/:languageKey")
-  .get((req, res) => {
+  .get(async (req, res) => {
     let key = req.params.languageKey;
-    let filePath = path.join(__dirname, "..", "localizations", key + ".json");
+    let fileName = key + ".json";
     let file;
 
-    try {
-      file = require(filePath, "utf8");
-    } catch (err) {
-      console.error(err);
-    }
+    await getLanguageFile(key).then((res) => {
+      file = res.file;
+    });
 
     if (!file) {
       let frags = key.split("-");
       if (frags.length > 1) {
         console.log("now trying key", frags[0] + ".json");
-        try {
-          file = require(path.join(
-            "..",
-            "localizations",
-            frags[0] + ".json"
-          ), "utf8");
-          fs.writeFileSync(filePath, JSON.stringify(file));
-        } catch (err) {
-          console.error(err);
-        }
+        await getLanguageFile(key).then((res) => {
+          file = res.file;
+        });
       }
     }
 
     if (!file) {
       file = base;
-      fs.writeFileSync(filePath, JSON.stringify(file));
+      saveFile(file, fileName);
     }
 
     res.send(parseTranslation(file));
   })
-  .post((req, res) => {
-    const { file, fileName } = saveLanguageFile(
-      req.params.languageKey,
-      req.body
-    );
+  .put(async (req, res) => {
+    let file, fileName;
 
-    sendFile(file, fileName).catch(console.error);
-    res.end();
-  })
-  .put((req, res) => {
-    saveLanguageFile(req.params.languageKey, req.body);
+    await getLanguageFile(req.params.languageKey, req.body).then((res) => {
+      file = res.file;
+      fileName = res.fileName;
+    });
+
+    await saveFile(file, fileName).catch(console.error);
+
     res.end();
   });
 

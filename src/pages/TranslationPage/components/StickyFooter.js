@@ -1,22 +1,38 @@
-import Axios from "axios";
 import React from "react";
+import LanguageSelect from "./LanguageSelect";
 import "./StickyFooter.css";
 
 export default function StickyFooter(props) {
-  const { language, translation } = props;
-
-  const _handleSave = () => {
-    Axios.put(`api/translation/${language.key}`, translation);
-  };
-
-  const _handleSend = () => {
-    Axios.post(`api/translation/${language.key}`, translation);
-  };
+  const {
+    completedHidden,
+    languageList,
+    onSave,
+    onSelectLanguage,
+    toggleHidden,
+    toggleVariablesPaused,
+    variablesPaused,
+  } = props;
 
   return (
     <div className="sticky-footer">
-      <button onClick={_handleSave}>Save</button>
-      <button onClick={_handleSend}>Send</button>
+      <div className="hide-completed">
+        <p>Hide Completed:</p>
+        <input
+          type="checkbox"
+          value={completedHidden}
+          onChange={toggleHidden}
+        />
+      </div>
+      <div className="hide-completed">
+        <p>Pause Variables:</p>
+        <input
+          type="checkbox"
+          value={variablesPaused}
+          onChange={toggleVariablesPaused}
+        />
+      </div>
+      <LanguageSelect languageList={languageList} onSelect={onSelectLanguage} />
+      <button onClick={onSave}>Save</button>
     </div>
   );
 }

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Page from "../Page/Page";
 import TranslationList from "./components/TranslationList";
-import LanguageSelect from "./components/LanguageSelect";
 import StickyFooter from "./components/StickyFooter";
 import Axios from "axios";
+import "./TranslationPage.css";
+import TranslationReminders from "./components/TranslationReminders";
 
 var baseVariables = {};
 
@@ -13,6 +14,9 @@ export default function TranslationPage() {
   const [translationItems, setTranslationItems] = useState([]);
   const [template, setTemplate] = useState([]);
   const [variables, setVariables] = useState({});
+  const [variablesPaused, setVariablesPaused] = useState(false);
+  const [completedHidden, setCompletedHidden] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     Axios.get("api/translation/language-list").then(({ data }) => {
@@ -41,20 +45,50 @@ export default function TranslationPage() {
     });
   }, []);
 
+  const _handleSave = () => {
+    //Update the translation file to the appropriate values
+    setIsLoading(true);
+    Axios.put(`api/translation/${language.key}`, translationItems).then(() => {
+      setIsLoading(false);
+      alert(
+        "Language file has been saved. \nThank you for your contribution. \nIf you haven't yet please sign up to receive email notifications when there are changes to the translation so that your target language can stay up to date with future updates"
+      );
+    });
+
+    //Set all translation items to not have been edited and update the isSameAsOriginal flag
+    let tempTransItems = translationItems.map((item) => {
+      let isSameAsOriginal = item.isSameAsOriginal;
+      if (isSameAsOriginal) {
+        isSameAsOriginal = item.translation === item.original;
+      }
+      return { ...item, isEdited: false, isSameAsOriginal: isSameAsOriginal };
+    });
+    setTranslationItems(tempTransItems);
+  };
+
+  const toggleHidden = () => {
+    setCompletedHidden(!completedHidden);
+  };
+
+  const toggleVariablesPaused = () => {
+    setVariablesPaused(!variablesPaused);
+  };
+
   const _handleSelectLanguage = (language) => {
     let indexAdj = 0;
+    setIsLoading(true);
     Axios.get("api/translation/" + language.key).then((res) => {
-      let { values } = res.data;
+      let { values, keys } = res.data;
 
       let tempVars = { ...baseVariables };
 
       let tempItems = values.map((v, index) => {
         //Check for the count of special ordinals and adjust index accordingly
-        if (template[index].key === "ordinal.special.0") {
+        if (template[index] && template[index].key === "ordinal.special.0") {
           indexAdj = template[index].value - v;
         }
 
-        if (template[index].variable) {
+        if (template[index] && template[index].variable) {
           tempVars = {
             ..._handleVariablesChange(
               v,
@@ -68,14 +102,27 @@ export default function TranslationPage() {
 
         let i = index + indexAdj;
         let translation = typeof v !== "undefined" ? v : template[i].value;
+        let original = template[i].value;
+        let isSameAsOriginal = translation === original;
+        let key = template[i].key;
+        let order = template[i].order;
+
+        if (keys[index] !== key) {
+          key = keys[index];
+        }
+
+        if (indexAdj < 0) {
+          order += 0 - indexAdj;
+        }
 
         return {
-          key: template[i].key,
-          original: template[i].value,
+          key: key,
+          original: original,
           description: template[i].description,
           link: template[i].link,
-          order: template[i].order,
+          order: order,
           isEdited: false,
+          isSameAsOriginal: isSameAsOriginal,
           translation: translation,
           variable: template[i].variable,
         };
@@ -97,8 +144,9 @@ export default function TranslationPage() {
 
       setVariables(tempVars);
       setTranslationItems(tempItems);
+      setLanguage(language);
+      setIsLoading(false);
     });
-    setLanguage(language);
   };
 
   const checkSpecialVariables = (variable, vars, prevValue) => {
@@ -355,37 +403,37 @@ export default function TranslationPage() {
     setTranslationItems(tempItems);
   };
 
+  const showLoadingPopup = (val) => {
+    setIsLoading(val);
+  };
+
+  const languageIsSet = language ? true : false;
+
   return (
-    <Page>
-      <h3>[Some instructions on how to go about translating... ]</h3>
-      <h3>
-        [A place where you can browse for a file you already started translating
-        in the past]
-      </h3>
-      <h3>[A checkbox for hiding completed translations]</h3>
-      <p>
-        [This should have colors for things that haven't been translated yet,
-        things that have been edited but not submitted, and green for things
-        that have been translated and submitted]
-      </p>
-      <p>
-        [on submit, if the language selected for translation has a hyphen in it
-        and there is no base translation for this language, then we will save
-        this as the base translation]
-      </p>
-      <LanguageSelect
-        languageList={languageList}
-        onSelect={_handleSelectLanguage}
-      />
-      {language && (
+    <Page className="translation-page" isLoading={isLoading}>
+      <TranslationReminders />
+
+      {languageIsSet && (
         <TranslationList
+          completedHidden={completedHidden}
           listItems={translationItems}
           language={language.name}
           onChange={_handleTranslationChange}
+          showLoadingPopup={showLoadingPopup}
           variables={variables}
+          variablesPaused={variablesPaused}
         />
       )}
-      <StickyFooter language={language} translation={translationItems} />
+
+      <StickyFooter
+        completedHidden={completedHidden}
+        languageList={languageList}
+        onSave={_handleSave}
+        onSelectLanguage={_handleSelectLanguage}
+        toggleHidden={toggleHidden}
+        toggleVariablesPaused={toggleVariablesPaused}
+        variablesPaused={variablesPaused}
+      />
     </Page>
   );
 }

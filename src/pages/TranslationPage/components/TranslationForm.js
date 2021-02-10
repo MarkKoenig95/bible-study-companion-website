@@ -1,9 +1,11 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { translationVariableParser } from "../../../logic/logic";
 import Link from "./Link";
 import "./TranslationForm.css";
 
 const INPUT_TYPES = { VARIABLE: 0, INPUT: 1 };
+
+let isOnComposition = false;
 
 function cycleVariables(inputs, setInputs, variables) {
   let tempInputs = [...inputs];
@@ -89,6 +91,10 @@ function createVariableInputs(translation) {
     //Input has no variables, just return the one input
     let tempInput = { type: INPUT_TYPES.INPUT, value: trans };
     newInputs.push(tempInput);
+  } else if (newInputs.length < 1) {
+    //Input has no variables, just return the one input
+    let tempInput = { type: INPUT_TYPES.INPUT, value: "" };
+    newInputs.push(tempInput);
   }
 
   return newInputs;
@@ -98,13 +104,28 @@ function AdjInput(props) {
   const { index, onBlur, onChange, value } = props;
   const [width, setWidth] = useState((value.length + 1) * 7);
   const [height, setHeight] = useState(0);
+  const val = useRef(value);
+
+  const _handleComposition = (e) => {
+    console.log("type", e.type);
+    if (e.type === "compositionend") {
+      isOnComposition = false;
+      if (!isOnComposition) {
+        _handleChange(e);
+      }
+    } else {
+      isOnComposition = true;
+    }
+  };
 
   const _handleChange = ({ target }) => {
-    let { value } = target;
+    if (!isOnComposition) {
+      let { value } = target;
 
-    checkInputDims(value);
+      checkInputDims(value);
 
-    onChange(value, index);
+      onChange(value, index);
+    }
   };
 
   const checkInputDims = (value) => {
@@ -131,10 +152,15 @@ function AdjInput(props) {
     />
   ) : (
     <input
+      ref={val}
+      type="text"
       style={{ width: width + "px" }}
       onChange={_handleChange}
+      onCompositionStart={_handleComposition}
+      onCompositionUpdate={_handleComposition}
+      onCompositionEnd={_handleComposition}
       onBlur={onBlur}
-      value={value}
+      defaultValue={value}
     />
   );
 
@@ -359,6 +385,8 @@ export default function TranslationForm(props) {
       if (isEdited || !isSameAsOriginal) {
         setDisplay("none");
       }
+    } else if (display === "none") {
+      setDisplay("flex");
     }
 
     if (edited) {
@@ -368,7 +396,14 @@ export default function TranslationForm(props) {
     } else {
       setBorderColor("green");
     }
-  }, [completedHidden, edited, isEdited, isSameAsOriginal, sameAsOriginal]);
+  }, [
+    completedHidden,
+    display,
+    edited,
+    isEdited,
+    isSameAsOriginal,
+    sameAsOriginal,
+  ]);
 
   const _onTextChange = ({ target }) => {
     setTrans(target.value);

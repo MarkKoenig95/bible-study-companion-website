@@ -4,6 +4,8 @@ import "./App.css";
 import TranslationPage from "./pages/TranslationPage/TranslationPage";
 import Page from "./pages/Page/Page";
 import HomePage from "./pages/HomePage/HomePage";
+import PrivacyPage from "./pages/PrivacyPage/PrivacyPage";
+import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
 import TemplateEditPage from "./pages/TemplateEditPage/TemplateEditPage";
 
 function App() {
@@ -16,6 +18,12 @@ function App() {
           </Route>
           <Route path="/translation">
             <TranslationPage />
+          </Route>
+          <Route path="/privacy">
+            <PrivacyPage />
+          </Route>
+          <Route path="/terms-and-conditions">
+            <TermsAndConditions />
           </Route>
           <Route path="/template-edit">
             <TemplateEditPage />

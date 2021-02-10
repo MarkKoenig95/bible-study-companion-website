@@ -1,0 +1,8 @@
+footer {
+  background-color: var(--light-gray);
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  justify-content: space-around;
+  align-items: center;
+}

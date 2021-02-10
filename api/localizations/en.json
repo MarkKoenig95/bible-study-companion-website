@@ -288,7 +288,7 @@
     "portionsPerDayPhld": "How many {{portionDesc}}s to read each day",
     "scheduleName": "Schedule Name",
     "scheduleDuration": "Schedule Duration",
-    "scheduleDurPhld": "How many years?",
+    "scheduleDurPhld": "How many years the schedule should last from start to finish?",
     "shouldTrack": "Track reading dates?",
     "startingPortion": "Starting {{portionDesc}}",
     "startingPortionPhld": "{{portionDesc}} you would like to start from",

@@ -7,8 +7,9 @@ export default function Page(props) {
   const { children, className, isLoading } = props;
   let loadingModalClass = "modal";
   loadingModalClass += !isLoading ? "" : " loading";
+  let classN = className ? "page " + className : "page";
   return (
-    <div className={className}>
+    <div className={classN}>
       <Header />
       <main>{children}</main>
       <Footer />

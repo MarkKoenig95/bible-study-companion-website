@@ -7,7 +7,7 @@ export default function Footer() {
     <footer>
       <a href="/privacy">Privacy Policy</a>
       <a href="/terms-and-conditions">Terms and Conditions</a>
-      <p>Copywrite {year}</p>
+      <p>© {year}</p>
     </footer>
   );
 }

@@ -1,3 +1,10 @@
+.page {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 main {
   align-content: center;
   display: flex;
@@ -16,14 +23,12 @@ main {
   margin: 10px;
 }
 
-.row-content {
-  align-content: center;
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin: 10px;
+.indented {
+  margin-left: 1rem;
+}
+
+.loading {
+  display: block;
 }
 
 .modal {
@@ -39,12 +44,24 @@ main {
     50% 50% no-repeat;
 }
 
-.loading {
-  display: block;
+.row-content {
+  align-content: center;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 10px;
 }
 
 @media (max-width: 660px) {
   .row-content {
     justify-content: center;
+  }
+}
+
+@media (max-width: 510px) {
+  main {
+    margin: auto;
   }
 }

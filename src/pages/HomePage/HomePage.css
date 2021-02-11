@@ -9,8 +9,39 @@
   font-size: large;
   font-weight: bold;
   min-width: 200px;
+  padding: 0.5rem;
 }
 
+/* Fake the link to look like a button */
+a.download-buttons {
+  align-items: center;
+  background-color: var(--smoke);
+  border-radius: 6px;
+  border: none;
+  color: var(--dark-gray);
+  display: flex;
+  justify-content: space-around;
+  min-height: 30px;
+  margin: 10px;
+  padding: 5px;
+  text-align: center;
+}
+a.download-buttons:hover {
+  text-decoration: none;
+}
+/* End link button fake */
+
 .download-buttons i {
+  flex: 1;
   font-size: xx-large;
+}
+
+.download-buttons div {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+}
+
+.small-text {
+  font-size: small;
 }

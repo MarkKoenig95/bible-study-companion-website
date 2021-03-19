@@ -139,7 +139,8 @@ function OrdinalSection(props) {
 
   useEffect(() => {
     let other = [];
-    for (let i = 1; i < 6; i++) {
+    other.push(number);
+    for (let i = 1; i < 10; i++) {
       let num = i * 10 + number;
       other.push(num);
     }

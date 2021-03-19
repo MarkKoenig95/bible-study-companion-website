@@ -45,7 +45,9 @@ export default function TranslationList(props) {
       if (ordinals.length > 0) {
         //Get a count of the number of special ordinals
         let newCount = ordinals.length - 12;
-        let count = ordinals.filter((o) => o.key === "ordinal.special.0")[0];
+        let count = ordinals.filter(
+          (o) => o.key === "ordinal.special.count"
+        )[0];
         //compare with the previous count and adjust if necessary
         if (newCount !== count.translation) {
           onChange(count.index, newCount);
@@ -58,6 +60,7 @@ export default function TranslationList(props) {
             onChange={onChange}
           />
         );
+
         ordinals = [];
       }
 

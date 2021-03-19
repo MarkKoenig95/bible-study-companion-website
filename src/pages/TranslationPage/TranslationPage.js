@@ -5,6 +5,7 @@ import StickyFooter from "./components/StickyFooter";
 import Axios from "axios";
 import "./TranslationPage.css";
 import TranslationReminders from "./components/TranslationReminders";
+import { binarySearch } from "../../logic/logic";
 
 var baseVariables = {};
 
@@ -75,17 +76,29 @@ export default function TranslationPage() {
   };
 
   const _handleSelectLanguage = (language) => {
-    let indexAdj = 0;
     setIsLoading(true);
+    // Will have to doccument better later, this function assumes that the template and
+    // translation both have the same keys and that they are sorted arrays
+    // (both of these requirements are handled by the server)
     Axios.get("api/translation/" + language.key).then((res) => {
       let { values, keys } = res.data;
-
       let tempVars = { ...baseVariables };
+      let indexAdj = 0;
+      let isOrdinalKey = false;
+
+      let ordinalCountIndex = binarySearch(keys, "ordinal.special.count");
+      let ordinalStartIndex = ordinalCountIndex - values[ordinalCountIndex];
+
+      // Subtract 3 from the value because there are 3 in the template from english
+      let ordinalCount = values[ordinalCountIndex] - 3;
+
+      let ordinalStartOrder = template[ordinalStartIndex + 3].order;
 
       let tempItems = values.map((v, index) => {
         //Check for the count of special ordinals and adjust index accordingly
-        if (template[index] && template[index].key === "ordinal.special.0") {
-          indexAdj = template[index].value - v;
+        if (index === ordinalStartIndex) {
+          isOrdinalKey = true;
+          indexAdj++;
         }
 
         if (template[index] && template[index].variable) {
@@ -107,8 +120,20 @@ export default function TranslationPage() {
         let key = template[i].key;
         let order = template[i].order;
 
+        if (order > ordinalStartOrder) {
+          order += ordinalCount;
+        }
+
         if (keys[index] !== key) {
           key = keys[index];
+        }
+
+        if (isOrdinalKey && ordinalCount > 0) {
+          ordinalCount--;
+          indexAdj--;
+          order = ordinalStartOrder;
+        } else {
+          isOrdinalKey = false;
         }
 
         if (indexAdj < 0) {

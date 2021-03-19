@@ -25,6 +25,7 @@ const getLanguageFile = async (languageKey, translationItems) => {
     .catch(console.error);
 
   if (typeof translationItems === "object") {
+    file.ordinal.special = {};
     translationItems.forEach((item) => {
       if (item.isEdited) {
         file = { ...keyStringParser(file, item.key, item.translation) };

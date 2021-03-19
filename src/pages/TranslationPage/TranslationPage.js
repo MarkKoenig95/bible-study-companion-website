@@ -98,7 +98,6 @@ export default function TranslationPage() {
         //Check for the count of special ordinals and adjust index accordingly
         if (index === ordinalStartIndex) {
           isOrdinalKey = true;
-          indexAdj++;
         }
 
         if (template[index] && template[index].variable) {
@@ -138,6 +137,18 @@ export default function TranslationPage() {
 
         if (indexAdj < 0) {
           order += 0 - indexAdj;
+
+          console.log({
+            key: key,
+            original: original,
+            description: template[i].description,
+            link: template[i].link,
+            order: order,
+            isEdited: false,
+            isSameAsOriginal: isSameAsOriginal,
+            translation: translation,
+            variable: template[i].variable,
+          });
         }
 
         return {

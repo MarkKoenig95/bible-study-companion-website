@@ -28,7 +28,7 @@ main {
 }
 
 .loading {
-  display: block;
+  display: block !important;
 }
 
 .modal {

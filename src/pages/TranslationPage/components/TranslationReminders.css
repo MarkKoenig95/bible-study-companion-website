@@ -1,0 +1,14 @@
+.red-row th {
+  color: red;
+  text-align: left;
+}
+
+.orange-row th {
+  color: orange;
+  text-align: left;
+}
+
+.green-row th {
+  color: green;
+  text-align: left;
+}

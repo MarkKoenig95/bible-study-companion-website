@@ -1,5 +1,6 @@
 import React from "react";
 import EmailForm from "./EmailForm";
+import "./TranslationReminders.css";
 
 export default function TranslationReminders() {
   return (
@@ -27,17 +28,20 @@ export default function TranslationReminders() {
       <h3>The translation input has different color indicators:</h3>
       <table>
         <tbody>
-          <tr>
-            <td>Red:</td>
-            <td>The translation has not been edited yet</td>
+          <tr className="red-row">
+            <th>Red:</th>
+            <td>
+              The translation has not been edited yet. (It still matches the
+              English text)
+            </td>
           </tr>
-          <tr>
-            <td>Orange:</td>
-            <td>The translation has been edited but has not yet been saved</td>
+          <tr className="orange-row">
+            <th>Orange:</th>
+            <td>The translation has been edited but has not yet been saved.</td>
           </tr>
-          <tr>
-            <td>Green:</td>
-            <td>The translation has been edited and saved</td>
+          <tr className="green-row">
+            <th>Green:</th>
+            <td>The translation has been edited and saved.</td>
           </tr>
         </tbody>
       </table>

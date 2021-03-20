@@ -358,6 +358,14 @@ function TranslationInput(props) {
   );
 }
 
+function makeOriginalDisplayText(original) {
+  function convert(str, variable) {
+    return `[${variable}]`;
+  }
+
+  return original.replace(/\{\{(\w+)\}\}/g, convert);
+}
+
 export default function TranslationForm(props) {
   const {
     description,
@@ -379,6 +387,7 @@ export default function TranslationForm(props) {
   const [sameAsOriginal, setSameAsOriginal] = useState(isSameAsOriginal);
   const [borderColor, setBorderColor] = useState("gray");
   const [display, setDisplay] = useState("flex");
+  const [originalDisplayText, setOriginalDisplayText] = useState("");
 
   useEffect(() => {
     if (completedHidden) {
@@ -396,12 +405,15 @@ export default function TranslationForm(props) {
     } else {
       setBorderColor("green");
     }
+
+    setOriginalDisplayText(makeOriginalDisplayText(original));
   }, [
     completedHidden,
     display,
     edited,
     isEdited,
     isSameAsOriginal,
+    original,
     sameAsOriginal,
   ]);
 
@@ -423,7 +435,7 @@ export default function TranslationForm(props) {
       <div className="form-sections">
         <div className="form-section-1">
           <h3>Original Text</h3>
-          <h5>{original}</h5>
+          <h5>{originalDisplayText}</h5>
           <hr />
           <h3>Description</h3>
           <h5>{description}</h5>

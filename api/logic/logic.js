@@ -66,6 +66,10 @@ const keyStringParser = (obj, key, value) => {
   }
 };
 
+function checkItemKey(key, checkValue) {
+  return key.split(".")[0] === checkValue;
+}
+
 async function sendEmail(destEmail) {
   const myEmail = "humanappmaker@gmail.com";
   const sendEmails = [myEmail];
@@ -120,7 +124,6 @@ async function getFile(fileName) {
  * @param {*} file typically a json file to be uploaded
  * @param {string} fileName
  */
-
 async function saveFile(file, fileName) {
   let newFilePath = path.join(__dirname, "..", "..", "..", "tmp", fileName);
 
@@ -134,7 +137,6 @@ async function saveFile(file, fileName) {
  * @param {string} string1
  * @param {string} string2
  */
-
 const compareStrings = (string1, string2) => {
   let chars1 = string1.split("");
   let chars2 = string2.split("");
@@ -167,7 +169,6 @@ const compareStrings = (string1, string2) => {
  * @param {array} keyStrings Optional: An array of key strings for the translation to be parsed
  * @returns {object} {keys: [array], values: [array]}
  */
-
 const parseTranslation = (translation, keyStrings) => {
   let values = [];
   keyStrings = keyStrings || parseObjKeys(translation);
@@ -187,46 +188,12 @@ function translationVariableParser(translation) {
   return found;
 }
 
-//Below are temporary things
-// Perhaps will be used in the future to update the variables value in the template, but for now I just used it once in the template edit page to set the values initially
-
-// const getTemplateVariables = () => {
-//   let temp = [...template];
-
-//   temp.forEach((t) => {
-//     let vars = translationVariableParser(t.value);
-//     if (typeof vars === "object" && vars.length > 0) {
-//       console.log("vars", vars);
-//       vars.forEach((v) => {
-//         let key = v[1];
-//         let keyExists = variables._keys.filter((k) => k === key).length > 0;
-
-//         if (!keyExists) {
-//           variables[key] = [];
-//           variables._keys.push(key);
-//           console.log(variables);
-//         }
-//       });
-//     }
-//   });
-
-//   postVariables();
-// };
-
-// const postVariables = () => {
-//   Axios.post("/api/template/variables", {
-//     variables: variables,
-//     template: template,
-//   });
-// };
-
-//above are temporary things
-
 module.exports.keyStringParser = keyStringParser;
 module.exports.sendEmail = sendEmail;
 module.exports.saveFile = saveFile;
 module.exports.getFile = getFile;
 module.exports.compareStrings = compareStrings;
+module.exports.checkItemKey = checkItemKey;
 module.exports.parseTranslation = parseTranslation;
 module.exports.parseObjKeys = parseObjKeys;
 module.exports.translationVariableParser = translationVariableParser;

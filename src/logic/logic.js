@@ -5,6 +5,10 @@ export function translationVariableParser(translation) {
   return found;
 }
 
+export function checkItemKey(key, checkValue) {
+  return key.split(".")[0] === checkValue;
+}
+
 /*
  * Given a sorted array and a testing value returns the index of the first element found in the array that satisfies the provided testing value
  * @requires - array is sorted

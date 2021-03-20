@@ -11,6 +11,7 @@ const {
   sendEmail,
   saveFile,
   getFile,
+  checkItemKey,
 } = require("../logic/logic");
 
 const getLanguageFile = async (languageKey, translationItems) => {
@@ -27,7 +28,8 @@ const getLanguageFile = async (languageKey, translationItems) => {
   if (typeof translationItems === "object") {
     file.ordinal.special = {};
     translationItems.forEach((item) => {
-      if (item.isEdited) {
+      let isOrdinal = checkItemKey(item.key, "ordinal");
+      if (item.isEdited || isOrdinal) {
         file = { ...keyStringParser(file, item.key, item.translation) };
       }
     });

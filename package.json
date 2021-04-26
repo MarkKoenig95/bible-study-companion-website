@@ -2,7 +2,7 @@
   "name": "bible-study-companion-website",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://www.biblesc.com",
+  "homepage": "https://www.biblesc.com",
   "dependencies": {
     "@google-cloud/storage": "^5.7.2",
     "@testing-library/jest-dom": "^4.2.4",
@@ -24,7 +24,7 @@
     "dev": "react-scripts start",
     "deploy": "react-scripts build && gcloud app deploy",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -45,6 +45,8 @@
   "proxy": "http://localhost:5000",
   "secure": false,
   "devDependencies": {
-    "@babel/preset-env": "^7.13.10"
+    "@babel/preset-env": "^7.13.10",
+    "jest": "^26.6.3",
+    "supertest": "^6.1.3"
   }
 }

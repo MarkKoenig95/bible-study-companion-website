@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const path = require("path");
 
 var languages = require("../localizations/languageKeys.js");
 var base = require("../localizations/en.json");
@@ -14,9 +13,13 @@ const {
   checkItemKey,
 } = require("../logic/logic");
 
-const getLanguageFile = async (languageKey, translationItems) => {
-  let key = languageKey;
-  let fileName = key + ".json";
+/**
+ * Given a language key retrieves the appropriate language file and returns the appropriate fileName corresponding to it
+ * @param {string} languageKey - In the form en, en-us, etc.
+ * @returns {object} With keys file and fileName
+ */
+const getLanguageFile = async (languageKey) => {
+  let fileName = languageKey + ".json";
   let file;
 
   await getFile(fileName)
@@ -25,17 +28,28 @@ const getLanguageFile = async (languageKey, translationItems) => {
     })
     .catch(console.error);
 
-  if (typeof translationItems === "object") {
+  return { file, fileName };
+};
+
+/**
+ * Given a language key and a set of translation items updates the value of the language file at the source
+ * @param {string} languageKey - In the form en, en-us, etc.
+ * @param {any[]} translationItems
+ */
+const setLanguageFile = async (languageKey, translationItems) => {
+  let { fileName, file } = await getLanguageFile(languageKey);
+
+  if (translationItems && typeof translationItems === "object") {
     file.ordinal.special = {};
-    translationItems.forEach((item) => {
-      let isOrdinal = checkItemKey(item.key, "ordinal");
-      if (item.isEdited || isOrdinal) {
-        file = { ...keyStringParser(file, item.key, item.translation) };
+    translationItems.forEach(({ key, translation, isEdited }) => {
+      let isOrdinal = checkItemKey(key, "ordinal");
+      if (isEdited || isOrdinal) {
+        file = { ...keyStringParser(file, key, translation) };
       }
     });
   }
 
-  return { file, fileName };
+  await saveFile(file, fileName).catch(console.error);
 };
 
 router.route("/language-list").get((req, res) => {
@@ -53,18 +67,13 @@ router
   .route("/:languageKey")
   .get(async (req, res) => {
     let key = req.params.languageKey;
-    let fileName = key + ".json";
-    let file;
-
-    await getLanguageFile(key).then((res) => {
-      file = res.file;
-    });
+    let { file, fileName } = await getLanguageFile(key);
 
     if (!file) {
       let frags = key.split("-");
       if (frags.length > 1) {
-        console.log("now trying key", frags[0] + ".json");
-        await getLanguageFile(key).then((res) => {
+        console.log("now trying key", frags[0]);
+        await getLanguageFile(frags[0]).then((res) => {
           file = res.file;
         });
       }
@@ -78,14 +87,9 @@ router
     res.send(parseTranslation(file));
   })
   .put(async (req, res) => {
-    let file, fileName;
-
-    await getLanguageFile(req.params.languageKey, req.body).then((res) => {
-      file = res.file;
-      fileName = res.fileName;
-    });
-
-    await saveFile(file, fileName).catch(console.error);
+    let { languageKey } = req.params;
+    let translationItems = req.body;
+    await setLanguageFile(languageKey, translationItems);
 
     res.end();
   });

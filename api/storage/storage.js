@@ -6,6 +6,10 @@ const storage = new Storage();
 
 const bucketName = "bsc-translations";
 
+/**
+ * Uploads a file from a given file path to the cloud
+ * @param {string} filePath
+ */
 async function uploadFile(filePath) {
   // Uploads a local file to the bucket
   await storage.bucket(bucketName).upload(filePath, {
@@ -24,6 +28,11 @@ async function uploadFile(filePath) {
   console.log(`${filePath} uploaded to ${bucketName}.`);
 }
 
+/**
+ * Given a fileName downloads the file matching that name from the cloud and saves it to the given destination file path
+ * @param {string} srcFileName
+ * @param {string} destFilePath
+ */
 async function downloadFile(srcFileName, destFilePath) {
   const options = {
     // The path to which the file should be downloaded, e.g. "../../tmp/en.json"

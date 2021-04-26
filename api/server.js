@@ -10,16 +10,19 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-if (process.env.PRODUCTION) {
-  app.use(express.static(path.join(__dirname, "..", "build")));
-}
-
 app.use("/api/template", template);
 app.use("/api/translation", translation);
 app.use("/api/logic", logic);
 
+if (process.env.PRODUCTION) {
+  app.use(express.static(path.join(__dirname, "..", "build")));
+}
+
 app.use("*", routes);
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
+
+module.exports = app;
+module.exports.server = server;

@@ -31,6 +31,15 @@ const handleSave = (languageKey, showLoadingPopup, translationItems) => {
   return tempTransItems;
 };
 
+/**
+ * Given the keys and values for a translation file as well as the template file's values, returns an array of objects to be used for providing translators with the neccessary information needed to translate the file
+ * @param {function} _handleVariablesChange
+ * @param {string[]} keys - The keys from the current translation file
+ * @param {object[]} template - The values from the template file for translation
+ * @param {object} transVars -
+ * @param {string[]} values - The values from the current translation file
+ * @returns {object} An object with key 'transItems' containing an array of translation objects and key 'transVars' the revised variables object
+ */
 export const createTranslationInfo = (
   _handleVariablesChange,
   keys,
@@ -115,6 +124,15 @@ export const createTranslationInfo = (
   return { transItems, transVars };
 };
 
+/**
+ *
+ * @requires That the template and translation both have the same keys and that they are sorted arrays (both of these requirements are handled by the server)
+ * @param {function} _handleVariablesChange
+ * @param {object} baseVariables
+ * @param {string} languageKey - The key for the language to be used for translation (i.e. 'en', 'en-US', 'zh')
+ * @param {object[]} template - The values from the template file for translation
+ * @returns {object} An object with key 'transItems' containing an array of translation objects and key 'transVars' the revised variables object
+ */
 const handleSelectLanguage = async (
   _handleVariablesChange,
   baseVariables,
@@ -123,9 +141,6 @@ const handleSelectLanguage = async (
 ) => {
   let tempVars = { ...baseVariables };
   let tempItems = [];
-  // Will have to doccument better later, this function assumes that the template and
-  // translation both have the same keys and that they are sorted arrays
-  // (both of these requirements are handled by the server)
   await Axios.get("api/translation/" + languageKey).then((res) => {
     let { values, keys } = res.data;
 

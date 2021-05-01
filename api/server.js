@@ -21,7 +21,7 @@ if (process.env.PRODUCTION) {
 app.use("*", routes);
 
 const server = app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Listening at http://localhost:${port}`);
 });
 
 module.exports = app;

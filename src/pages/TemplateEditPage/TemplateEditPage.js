@@ -244,7 +244,7 @@ export default function TemplateEditPage() {
         <input type="file" name="filetoupload" />
         <input type="submit" />
       </form>
-      <button onClick={sendTemplate}>Send Template</button>
+      <button onClick={sendTemplate}>Update Template</button>
 
       {template.map((item, index) => {
         let obj = item;

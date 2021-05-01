@@ -363,7 +363,11 @@ function makeOriginalDisplayText(original) {
     return `[${variable}]`;
   }
 
-  return original.replace(/\{\{(\w+)\}\}/g, convert);
+  if (typeof original === "string") {
+    return original.replace(/\{\{(\w+)\}\}/g, convert);
+  }
+
+  return original;
 }
 
 export default function TranslationForm(props) {

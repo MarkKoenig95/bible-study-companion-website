@@ -1,9 +1,7 @@
 import Axios from "axios";
 import { useState, useEffect, useCallback } from "react";
 
-var baseVariables = {};
-
-const setSpecialDates = (vars, variable, values = []) => {
+export const setSpecialDates = (vars, variable, values = []) => {
   let newDate = vars.startDate[1];
   let date1 = vars.date[2];
   let date2 = vars.date[3];
@@ -58,7 +56,7 @@ const setSpecialDates = (vars, variable, values = []) => {
   return values;
 };
 
-const checkSpecialVariables = (_handleVariablesChange, variable, vars) => {
+export const checkSpecialVariables = (variable, vars) => {
   let values = [];
 
   switch (variable) {
@@ -154,7 +152,7 @@ const checkSpecialVariables = (_handleVariablesChange, variable, vars) => {
   return vars;
 };
 
-const setSpecialVariables = (vars, variable) => {
+export const setSpecialVariables = (vars, variable) => {
   if (
     !variable ||
     variable === "before" ||
@@ -175,7 +173,7 @@ const setSpecialVariables = (vars, variable) => {
   return vars;
 };
 
-const handleVariablesChange = (
+export const handleVariablesChange = (
   newVal,
   variable,
   prevVal,
@@ -211,6 +209,7 @@ const handleVariablesChange = (
 
 export const useVariables = () => {
   const [variables, setVariables] = useState({});
+  const [baseVariables, setBaseVariables] = useState({});
 
   useEffect(() => {
     Axios.get("api/template/variables").then(({ data }) => {
@@ -224,7 +223,7 @@ export const useVariables = () => {
         }
       });
 
-      baseVariables = { ...vars };
+      setBaseVariables({ ...vars });
 
       setVariables(vars);
     });

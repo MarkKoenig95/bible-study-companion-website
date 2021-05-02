@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 var languages = require("../localizations/languageKeys.js");
-var base = require("../localizations/en.json");
+var base;
 
 const {
   keyStringParser,
@@ -12,6 +12,12 @@ const {
   getFile,
   checkItemKey,
 } = require("../logic/logic");
+
+const getBase = async () => {
+  if (!base) {
+    base = await getFile("en.json");
+  }
+};
 
 /**
  * Given a language key retrieves the appropriate language file and returns the appropriate fileName corresponding to it
@@ -80,6 +86,7 @@ router
     }
 
     if (!file) {
+      await getBase();
       file = base;
       saveFile(file, fileName);
     }

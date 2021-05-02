@@ -1665,7 +1665,7 @@
       "key": "createSchedulePopup.scheduleDurPhld",
       "link": "",
       "status": "",
-      "value": "How many years?",
+      "value": "How many years the schedule should last from start to finish?",
       "order": 152,
       "updateDate": "1/29/2021",
       "variable": ""

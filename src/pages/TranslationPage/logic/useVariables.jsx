@@ -180,10 +180,11 @@ export const handleVariablesChange = (
   vars,
   isFirstRun = true
 ) => {
-  if (!variable) return;
-
   let insertIndex;
   let newVars = { ...vars };
+
+  if (!variable) return newVars;
+
   let prevVarArray = newVars[variable];
   let newVarArray = prevVarArray.map((prevVar, index) => {
     if (prevVar !== prevVal) {
@@ -256,8 +257,6 @@ export const useVariables = () => {
   return {
     _handleVariablesChange,
     baseVariables,
-    checkSpecialVariables,
-    setSpecialVariables,
     setVariables,
     variables,
   };

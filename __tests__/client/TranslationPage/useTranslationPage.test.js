@@ -2867,7 +2867,7 @@ let testTranslation = [
     isSameAsOriginal: false,
     translation:
       'Are you sure you want to mark reminder "{{reminderName}}" complete?',
-    variable: undefined,
+    variable: "",
   },
   {
     key: "reminders.dailyReading",
@@ -3022,7 +3022,7 @@ let testTranslation = [
     isEdited: false,
     isSameAsOriginal: false,
     translation: 'Are you sure you want to delete "{{reminderName}}" reminder?',
-    variable: undefined,
+    variable: "",
   },
   {
     key: "remindersPage.every",
@@ -3265,7 +3265,7 @@ let testTranslation = [
     isEdited: false,
     isSameAsOriginal: false,
     translation: "About",
-    variable: undefined,
+    variable: "",
   },
   {
     key: "settingsPage.contact",
@@ -3277,7 +3277,7 @@ let testTranslation = [
     isEdited: false,
     isSameAsOriginal: false,
     translation: "Contact",
-    variable: undefined,
+    variable: "",
   },
   {
     key: "settingsPage.title",
@@ -3300,7 +3300,7 @@ let testTranslation = [
     isEdited: false,
     isSameAsOriginal: false,
     translation: "Version",
-    variable: undefined,
+    variable: "",
   },
   {
     key: "today",

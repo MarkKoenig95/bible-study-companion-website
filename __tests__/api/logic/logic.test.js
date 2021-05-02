@@ -4,7 +4,10 @@ const {
   parseObjKeys,
   keyStringParser,
   parseTranslation,
+  templateUpdater,
 } = require("../../../api/logic/logic");
+const english = require("../../../__temp__/__base__/en.json");
+const template = require("../../../__temp__/__base__/template.json");
 
 test("parseObjKeys", () => {
   const obj = {
@@ -84,4 +87,31 @@ test("parseTranslation", () => {
 
   expect(keys).toStrictEqual(keyStrings);
   expect(values).toStrictEqual([{}, null, false, 0, [0, 1, 2, 3]]);
+});
+
+describe("templateUpdater tests", () => {
+  test("nothing to change", () => {
+    let baseKeys = parseObjKeys(english);
+    let newTemplate = templateUpdater(english, baseKeys, template);
+
+    expect(newTemplate).toStrictEqual(template);
+  });
+
+  test("item added", () => {
+    let today = new Date();
+    let newEnglish = { ...english };
+    newEnglish.newItem = "NEW ITEM";
+    newEnglish.bibleBooks[67] = "New Scrolls";
+    let baseKeys = parseObjKeys(newEnglish);
+    let newTemplate = templateUpdater(newEnglish, baseKeys, template);
+
+    //Check a basic item
+    expect(newTemplate.newItem.key).toBe("newItem");
+    expect(newTemplate.newItem.order).toBeGreaterThan(0);
+    expect(newTemplate.newItem.updateDate).toBe(today.toLocaleDateString());
+    //Check a nested item
+    expect(newTemplate.bibleBooks[67].value).toBe("New Scrolls");
+    //Check that it maintained all other values that were it's neighbors
+    expect(newTemplate.bibleBooks[1].name.value).toBe("Genesis");
+  });
 });

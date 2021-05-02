@@ -52,8 +52,8 @@ async function getData() {
   let template;
   let variables;
 
-  await Axios.get("/api/template").then((res) => {
-    template = res.data.values;
+  await Axios.get("/api/template").then(({ data }) => {
+    template = data.values;
     template.sort((a, b) => {
       return a.order - b.order;
     });
@@ -216,6 +216,7 @@ export default function TemplateEditPage() {
 
     setTemplate(temp);
   };
+
   const onVariablesChange = (index, variable) => {
     let vars = { ...variables };
     vars[variable].push(template[index].key);

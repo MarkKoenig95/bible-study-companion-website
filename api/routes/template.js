@@ -15,7 +15,6 @@ const {
 var template;
 var base;
 var baseKeys = [];
-let parsedTemplate = [];
 
 const getData = async (force = false) => {
   if (!base || force) {
@@ -27,16 +26,16 @@ const getData = async (force = false) => {
   if (!template || force) {
     template = await getFile("template.json");
   }
+  return { base, baseKeys, template };
 };
 
 router
   .route("/")
   .get(async (req, res) => {
-    await getData(true);
+    let { baseKeys, template } = await getData(true);
 
-    if (parsedTemplate.length < 1) {
-      parsedTemplate = parseTranslation(template, baseKeys);
-    }
+    let parsedTemplate = parseTranslation(template, baseKeys);
+
     res.send(parsedTemplate);
   })
   .post((req, res) => {
@@ -47,21 +46,21 @@ router
       }
     });
 
-    // write JSON string to a file
-    let file = JSON.stringify(newTemplate);
-    saveFile(file, "template.json").catch(console.error);
+    saveFile(newTemplate, "template.json").catch(console.error);
   });
 
 router
   .route("/keys")
   .get(async (req, res) => {
-    await getData();
+    let { baseKeys } = await getData();
 
     res.send(baseKeys);
   })
   .post(async (req, res, next) => {
-    await getData();
+    let { base, baseKeys, template } = await getData();
+
     var form = formidable({ multiples: true });
+
     form.parse(req, (err, fields, files) => {
       if (err) {
         next(err);
@@ -70,9 +69,9 @@ router
 
       let file = fs.readFileSync(files.filetoupload.path, "utf8");
 
-      saveFile(file, "en.json");
-
       base = JSON.parse(file);
+
+      saveFile(base, "en.json");
 
       baseKeys = parseObjKeys(base);
 
@@ -110,7 +109,7 @@ router
 router
   .route("/variables")
   .get(async (req, res) => {
-    await getData();
+    let { template } = await getData();
     let variables = template._variables;
     res.send(variables);
   })

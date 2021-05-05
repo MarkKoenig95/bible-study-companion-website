@@ -105,10 +105,14 @@ describe("templateUpdater tests", () => {
     let baseKeys = parseObjKeys(newEnglish);
     let newTemplate = templateUpdater(newEnglish, baseKeys, template);
 
+    let updateDate = new Date(newTemplate.newItem.updateDate);
+    updateDate.setSeconds(0, 0);
+    today.setSeconds(0, 0);
+
     //Check a basic item
     expect(newTemplate.newItem.key).toBe("newItem");
     expect(newTemplate.newItem.order).toBeGreaterThan(0);
-    expect(newTemplate.newItem.updateDate).toBe(today.toLocaleDateString());
+    expect(updateDate.getTime()).toBe(today.getTime());
     //Check a nested item
     expect(newTemplate.bibleBooks[67].value).toBe("New Scrolls");
     //Check that it maintained all other values that were it's neighbors

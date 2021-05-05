@@ -78,11 +78,12 @@ const keyStringParser = (obj, key, value) => {
 };
 module.exports.keyStringParser = keyStringParser;
 
-module.exports.checkItemKey = (key, checkValue) => {
+const checkItemKey = (key, checkValue) => {
   return key.split(".")[0] === checkValue;
 };
+module.exports.checkItemKey = checkItemKey;
 
-module.exports.sendEmail = async (destEmail) => {
+const sendEmail = async (destEmail) => {
   const myEmail = "humanappmaker@gmail.com";
   const sendEmails = [myEmail];
 
@@ -116,13 +117,14 @@ module.exports.sendEmail = async (destEmail) => {
 
   console.log("Message sent: %s", info.messageId);
 };
+module.exports.sendEmail = sendEmail;
 
 /**
  * A function for retrieving a file from Google Cloud Storage
  * @param {string} fileName
  * @returns the contents of the recieved file
  */
-module.exports.getFile = async (fileName) => {
+const getFile = async (fileName) => {
   let newFilePath = path.join(localDir, fileName);
   await downloadFile(fileName, newFilePath);
 
@@ -130,19 +132,21 @@ module.exports.getFile = async (fileName) => {
 
   return file;
 };
+module.exports.getFile = getFile;
 
 /**
  * A function for saving a file to Google Cloud Storage
  * @param {*} file typically a json file to be uploaded
  * @param {string} fileName
  */
-module.exports.saveFile = async (file, fileName) => {
+const saveFile = async (file, fileName) => {
   let newFilePath = path.join(localDir, fileName);
 
   fs.writeFileSync(newFilePath, JSON.stringify(file));
 
   await uploadFile(newFilePath);
 };
+module.exports.saveFile = saveFile;
 
 /**
  * A function for comparing if a string (string1) is greater than another string (string2)
@@ -192,7 +196,7 @@ const parseTranslation = (translation, keyStrings) => {
 };
 module.exports.parseTranslation = parseTranslation;
 
-module.exports.translationVariableParser = (translation) => {
+const translationVariableParser = (translation) => {
   if (typeof translation !== "string") {
     return;
   }
@@ -200,8 +204,9 @@ module.exports.translationVariableParser = (translation) => {
   let found = [...translation.matchAll(/\{\{(\w+)\}\}/g)];
   return found;
 };
+module.exports.translationVariableParser = translationVariableParser;
 
-module.exports.templateUpdater = (base, baseKeys, template) => {
+const templateUpdater = (base, baseKeys, template) => {
   let templateKeys = parseObjKeys(template);
   let tempTemplate = { ...template };
 
@@ -291,7 +296,7 @@ module.exports.templateUpdater = (base, baseKeys, template) => {
             break;
           case "updateDate":
             let today = new Date();
-            val = today.toLocaleDateString();
+            val = today.toISOString();
             break;
           case "value":
             keyParts.pop();
@@ -331,3 +336,47 @@ module.exports.templateUpdater = (base, baseKeys, template) => {
 
   return { ...tempTemplate };
 };
+module.exports.templateUpdater = templateUpdater;
+
+/**
+ * Given a sorted array and a testing value returns the index of the first element found in the array that satisfies the provided testing value
+ * @requires - array is sorted
+ * @param {Array} array - A sorted array to search in
+ * @param {*} testingValue - A function which will take and item and return a boolean value if it matches a necessary requirement
+ * @returns The index of the first element found matching the testing value
+ */
+const binarySearch = (array, testingValue) => {
+  let isFinished = false;
+  let startPointer = 0;
+  let endPointer = array.length - 1;
+
+  // Set these values to make sure that the loop doesn't run forever
+  let safetyCount = 0;
+  let maxCount = array.length;
+
+  while (!isFinished && safetyCount < maxCount) {
+    safetyCount++;
+
+    if (endPointer - startPointer <= 0) isFinished = true;
+
+    // Pick an index in the middle of the array
+    let pointerSpanMiddle = Math.floor((endPointer - startPointer) / 2);
+    let checkIndex = startPointer + pointerSpanMiddle;
+
+    let checkValue = array[checkIndex];
+
+    if (checkValue === testingValue) return checkIndex;
+
+    // Check if value is less than or greater than the testing value and adjust pointers accordingly
+    if (checkValue < testingValue) {
+      startPointer = checkIndex + 1;
+      continue;
+    }
+
+    endPointer = checkIndex - 1;
+  }
+
+  // We exited because of the safety counter
+  return;
+};
+module.exports.binarySearch = binarySearch;

@@ -1,4 +1,5 @@
-import { binarySearch } from "../src/logic/logic";
+require("regenerator-runtime/runtime");
+const { binarySearch } = require("../api/logic/logic");
 
 describe("binarySearch", () => {
   let array = [];

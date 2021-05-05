@@ -1,5 +1,5 @@
 import Axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Page from "../Page/Page";
 import "./TemplateEditPage.css";
 
@@ -59,8 +59,8 @@ async function getData() {
     });
   });
 
-  await Axios.get("/api/template/variables").then((res) => {
-    variables = res.data;
+  await Axios.get("/api/template/variables").then(({ data }) => {
+    variables = data;
   });
 
   return { template, variables };
@@ -121,6 +121,7 @@ const VariableSelector = (props) => {
 
 const TemplateSeciton = (props) => {
   const {
+    completedHidden,
     desc,
     index,
     keyStr,
@@ -135,7 +136,20 @@ const TemplateSeciton = (props) => {
     variables,
   } = props;
 
-  const [isHidden, setIsHidden] = useState(false);
+  const [isHidden, setIsHidden] = useState(completedHidden);
+
+  useEffect(() => {
+    let shouldBeHidden = completedHidden;
+    let thisWeek = new Date();
+    thisWeek.setDate(thisWeek.getDate() - 7);
+    let updateDateValue = new Date(updateDate);
+
+    if (shouldBeHidden && updateDateValue.getTime() > thisWeek.getTime()) {
+      shouldBeHidden = false;
+    }
+
+    setIsHidden(shouldBeHidden);
+  }, [completedHidden, updateDate]);
 
   return (
     <div
@@ -186,6 +200,11 @@ const TemplateSeciton = (props) => {
 export default function TemplateEditPage() {
   const [template, setTemplate] = useState([]);
   const [variables, setVariables] = useState();
+  const [completedHidden, setCompletedHidden] = useState(true);
+
+  const toggleHidden = useCallback(() => {
+    setCompletedHidden(!completedHidden);
+  }, [completedHidden]);
 
   useEffect(() => {
     getData().then(({ template, variables }) => {
@@ -245,7 +264,16 @@ export default function TemplateEditPage() {
         <input type="file" name="filetoupload" />
         <input type="submit" />
       </form>
-      <button onClick={sendTemplate}>Update Template</button>
+      <button onClick={sendTemplate}>Save Template</button>
+      <div>
+        Hide Completed:
+        <input
+          type="checkbox"
+          checked={completedHidden}
+          value={completedHidden}
+          onChange={toggleHidden}
+        />
+      </div>
 
       {template.map((item, index) => {
         let obj = item;
@@ -261,6 +289,7 @@ export default function TemplateEditPage() {
         return (
           <TemplateSeciton
             key={item.key + index}
+            completedHidden={completedHidden}
             desc={desc}
             index={index}
             keyStr={item.key}

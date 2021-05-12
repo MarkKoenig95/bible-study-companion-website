@@ -39,6 +39,10 @@ export default function TranslationList(props) {
         continue;
       }
 
+      if (checkItemKey(item.key, "updateDate")) {
+        continue;
+      }
+
       if (ordinals.length > 0) {
         //Get a count of the number of special ordinals
         let newCount = ordinals.length - 12;
@@ -53,6 +57,7 @@ export default function TranslationList(props) {
         items.push(
           <OrdinalForm
             key={JSON.stringify(item) + (i - 1)}
+            completedHidden={completedHidden}
             ordinals={ordinals}
             onChange={onChange}
           />

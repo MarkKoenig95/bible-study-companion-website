@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from "react";
+import {
+  getBorderColorForTranslationForm,
+  getDisplayForTranslationForm,
+} from "../logic/general";
 import "./OrdinalForm.css";
 
 const SPECIAL_CASE_DESC =
@@ -53,8 +57,10 @@ function OrdinalInput(props) {
 }
 
 function SpecialCaseInput(props) {
-  const { number, isAfter, isEdited, onChange, ordinal } = props;
+  const { number, isAfter, isEdited, isSameAsOriginal, onChange, ordinal } =
+    props;
   const [isEditable, setIsEditable] = useState(isEdited);
+  const [borderColor, setBorderColor] = useState("white");
   const newSpecialIndex = lastSpecialIndex + 1;
   const toggleVisibility = () => {
     if (isEditable) {
@@ -71,11 +77,19 @@ function SpecialCaseInput(props) {
     setIsEditable(!isEditable);
   };
 
+  useEffect(() => {
+    let tempBorderColor = getBorderColorForTranslationForm(
+      isSameAsOriginal,
+      isEdited
+    );
+    if (tempBorderColor === "red") {
+      tempBorderColor = "white";
+    }
+    setBorderColor(tempBorderColor);
+  }, [isEdited, isSameAsOriginal]);
+
   return (
-    <div
-      style={{ borderColor: !isEditable ? "gray" : "orange" }}
-      className="special-case"
-    >
+    <div style={{ borderColor: borderColor }} className="special-case">
       {!isEditable ? (
         <DisplayNumber
           number={number}
@@ -105,19 +119,29 @@ function SpecialCaseInput(props) {
 }
 
 function OrdinalBaseInput(props) {
-  const { isAfter, number, onChange, ordinal } = props;
-  const [isEdited, setIsEdited] = useState(false);
+  const { isAfter, isEdited, isSameAsOriginal, number, onChange, ordinal } =
+    props;
+  const [edited, setEdited] = useState(isEdited);
+  const [borderColor, setBorderColor] = useState("white");
 
   const _onChange = (...args) => {
-    if (!isEdited) {
-      setIsEdited(true);
+    if (!edited) {
+      setEdited(true);
     }
     onChange(...args);
   };
 
+  useEffect(() => {
+    let tempBorderColor = getBorderColorForTranslationForm(
+      isSameAsOriginal,
+      isEdited
+    );
+    setBorderColor(tempBorderColor);
+  }, [isEdited, isSameAsOriginal]);
+
   return (
     <div
-      style={{ borderColor: !isEdited ? "gray" : "orange" }}
+      style={{ borderColor: borderColor }}
       className="ordinal-section special-case"
     >
       <OrdinalInput
@@ -134,7 +158,16 @@ function OrdinalBaseInput(props) {
 }
 
 function OrdinalSection(props) {
-  const { description, isAfter, number, onChange, ordinal, specials } = props;
+  const {
+    description,
+    isAfter,
+    isEdited,
+    isSameAsOriginal,
+    number,
+    onChange,
+    ordinal,
+    specials,
+  } = props;
   const [otherNumbers, setOtherNumbers] = useState([]);
 
   useEffect(() => {
@@ -155,6 +188,8 @@ function OrdinalSection(props) {
 
       <OrdinalBaseInput
         isAfter={isAfter}
+        isEdited={isEdited}
+        isSameAsOriginal={isSameAsOriginal}
         number={number}
         onChange={({ target }) => {
           onChange(ordinal.index, target.value);
@@ -173,16 +208,17 @@ function OrdinalSection(props) {
         <h3>Other Numbers:</h3>
         <p>{SPECIAL_CASE_DESC}</p>
         {otherNumbers.map((num) => {
-          let isEdited = typeof specials[num] !== "undefined";
+          let exsits = typeof specials[num] !== "undefined";
           let ord = ordinal;
-          if (isEdited) {
+          if (exsits) {
             ord = specials[num];
             lastSpecialIndex = ord.index;
           }
           return (
             <SpecialCaseInput
               key={num + ord}
-              isEdited={isEdited}
+              isEdited={exsits && ord.isEdited}
+              isSameAsOriginal={!exsits}
               number={num}
               isAfter={isAfter}
               ordinal={ord}
@@ -196,29 +232,39 @@ function OrdinalSection(props) {
 }
 
 export default function OrdinalForm(props) {
-  const { onChange, ordinals } = props;
+  const { completedHidden, onChange, ordinals } = props;
 
   const [typicals, setTypicals] = useState([]);
   const isAfter = ordinals[10].translation;
+  const [borderColor, setBorderColor] = useState("white");
+  const [display, setDisplay] = useState("flex");
 
   useEffect(() => {
     let typs = [];
     let temp = ordinals.slice(11);
+    let isEdited = false;
+    let isSameAsOriginal = false;
     specials = {};
 
     lastSpecialIndex = ordinals[11].index;
 
     temp.forEach((special) => {
+      // Special is something like "ordinal.special.13"
       let key = special.key.split(".");
+      // So key[2] would be "13"
       specials[key[2]] = special;
     });
 
     for (let i = 0; i < 10; i++) {
+      isEdited = isEdited || ordinals[i].isEdited;
+      isSameAsOriginal = isSameAsOriginal || ordinals[i].isSameAsOriginal;
       typs.push(
         <OrdinalSection
           key={ordinals[i].toString() + i}
           description={ordinals[i].description}
           isAfter={isAfter}
+          isEdited={ordinals[i].isEdited}
+          isSameAsOriginal={ordinals[i].isSameAsOriginal}
           number={i}
           onChange={onChange}
           ordinal={ordinals[i]}
@@ -226,11 +272,28 @@ export default function OrdinalForm(props) {
         />
       );
     }
+
+    let tempDisplay = getDisplayForTranslationForm(
+      isSameAsOriginal,
+      completedHidden,
+      display
+    );
+    setDisplay(tempDisplay);
+
+    let tempBorderColor = getBorderColorForTranslationForm(
+      isSameAsOriginal,
+      isEdited
+    );
+    setBorderColor(tempBorderColor);
+
     setTypicals(typs);
-  }, [isAfter, onChange, ordinals]);
+  }, [completedHidden, isAfter, onChange, ordinals]);
 
   return (
-    <div className="translation-form">
+    <div
+      className="translation-form"
+      style={{ borderColor: borderColor, display: display }}
+    >
       <h2>Ordinals</h2>
       <div className="form-sections">
         <Frag>Ordinal is after number</Frag>

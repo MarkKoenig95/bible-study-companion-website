@@ -1,5 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { translationVariableParser } from "../../../logic/logic";
+import {
+  getBorderColorForTranslationForm,
+  getDisplayForTranslationForm,
+} from "../logic/general";
 import Link from "./Link";
 import "./TranslationForm.css";
 
@@ -394,21 +398,18 @@ export default function TranslationForm(props) {
   const [originalDisplayText, setOriginalDisplayText] = useState("");
 
   useEffect(() => {
-    if (completedHidden) {
-      if (isEdited || !isSameAsOriginal) {
-        setDisplay("none");
-      }
-    } else if (display === "none") {
-      setDisplay("flex");
-    }
+    let tempDisplay = getDisplayForTranslationForm(
+      isSameAsOriginal,
+      completedHidden,
+      display
+    );
+    setDisplay(tempDisplay);
 
-    if (edited) {
-      setBorderColor("orange");
-    } else if (sameAsOriginal) {
-      setBorderColor("red");
-    } else {
-      setBorderColor("green");
-    }
+    let tempBorderColor = getBorderColorForTranslationForm(
+      sameAsOriginal,
+      edited
+    );
+    setBorderColor(tempBorderColor);
 
     setOriginalDisplayText(makeOriginalDisplayText(original));
   }, [

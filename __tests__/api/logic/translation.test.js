@@ -1,42 +1,63 @@
 require("regenerator-runtime/runtime");
-const { parseTranslation } = require("../../../api/logic/logic");
+const { binarySearch } = require("../../../api/logic/logic");
+const { getTranslationInfo } = require("../../../api/logic/translation");
 const {
-  createTranslationInfo,
-} = require("../../../src/pages/TranslationPage/logic/useTranslationPage");
-const {
-  handleVariablesChange,
-} = require("../../../src/pages/TranslationPage/logic/useVariables");
-const english = require("../../../__temp__/__base__/en.json");
-const template = require("../../../__temp__/__base__/template.json");
+  clearTempDir,
+  setTempDir,
+} = require("../../../__fixtures__/testLogic/helpers");
 
-var baseVariables = {};
 let testVariables = {
   key: ["[key]"],
   portionDesc: ["[portionDesc]", "Article", "Chapter", "Page", "Paragraph"],
   about: ["[about]", "About"],
   after: ["[after]", "After"],
-  before: ["[before]", "Before"],
-  date: ["[date]", "{{year}} {{bceOrCe}}"],
-  year: ["[year]"],
   bceOrCe: ["[bceOrCe]", "B.C.E.", "C.E."],
-  startDate: ["[startDate]", "{{about}}{{after}}{{before}} {{date}}"],
-  endDate: ["[endDate]"],
-  endYear: ["[endYear]"],
-  startYear: ["[startYear]"],
-  notificationName: ["[notificationName]", "Daily Reading"],
-  desc: ["[desc]", "Daily", "Weekly", "Monthly", "Never"],
-  scheduleName: ["[scheduleName]", "Schedule Name"],
+  before: ["[before]", "Before"],
+  date: ["[date]", "{{year}} {{bceOrCe}}", "100 B.C.E.", "100 C.E."],
+  desc: ["[desc]", "Daily", "Monthly", "Never", "Weekly"],
+  endDate: [
+    "[endDate]",
+    "After 100 B.C.E.",
+    "Before 100 C.E.",
+    "About 100 B.C.E.",
+    "100 C.E.",
+  ],
+  endYear: [
+    "[endYear]",
+    "After 100 B.C.E.",
+    "Before 100 C.E.",
+    "About 100 B.C.E.",
+    "100 C.E.",
+  ],
   initialBibleBook: [
     "[initialBibleBook]",
     "Genesis",
     "Leviticus",
     "Deuteronomy",
   ],
-  initialChapter: ["[initialChapter]"],
-  initialVerse: ["[initialVerse]"],
+  initialChapter: ["[initialChapter]", 1],
+  initialVerse: ["[initialVerse]", 231],
+  notificationName: ["[notificationName]", "Daily Reading"],
+  scheduleName: ["[scheduleName]", "Schedule Name"],
   startBibleBook: ["[startBibleBook]", "Exodus", "Numbers", "Joshua"],
-  startChapter: ["[startChapter]"],
-  startVerse: ["[startVerse]"],
+  startChapter: ["[startChapter]", 2],
+  startDate: [
+    "[startDate]",
+    "{{about}}{{after}}{{before}} {{date}}",
+    "After 100 B.C.E.",
+    "Before 100 C.E.",
+    "About 100 B.C.E.",
+    "100 C.E.",
+  ],
+  startVerse: ["[startVerse]", 1],
+  startYear: [
+    "[startYear]",
+    "After 100 B.C.E.",
+    "Before 100 C.E.",
+    "About 100 B.C.E.",
+    "100 C.E.",
+  ],
+  year: ["[year]", 100, 4026, 607, 1040],
 };
 let testTranslation = [
   {
@@ -1795,13 +1816,13 @@ let testTranslation = [
   },
   {
     key: "createSchedulePopup.scheduleDurPhld",
-    original: "How many years?",
+    original: "How many years the schedule should last from start to finish?",
     description:
       "DESCRIPTION for an input where the user will decide how many years their reading schedule will last for. If they choose 1, then they will finish reading the whole bible 1 year from the creation of the schedule.",
     link: "",
     order: 152,
     isEdited: false,
-    isSameAsOriginal: false,
+    isSameAsOriginal: true,
     translation:
       "How many years the schedule should last from start to finish?",
     variable: "",
@@ -2264,12 +2285,24 @@ let testTranslation = [
     variable: "",
   },
   {
+    key: "old",
+    original: "Old",
+    description:
+      'A value to be used to tell the user that an item (reading schedule, reminder, etc.) is not the most recent version. Perhaps because it was recreated.\n\nExample: A user has a schedule named "Daily Reading" they recreate the schedule, now that original schedule will be renamed "Daily Reading (Old)" so that they can refer back to it if there were any mistakes in schedule recreation.',
+    link: "",
+    order: 193,
+    isEdited: false,
+    isSameAsOriginal: true,
+    translation: "Old",
+    variable: "",
+  },
+  {
     key: "openJWLibrary",
     original: "Open JW Library",
     description:
       "Text that will appear on a button. When the user presses this button it will open the JW Library application.",
     link: "",
-    order: 193,
+    order: 194,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Open JW Library",
@@ -2281,7 +2314,7 @@ let testTranslation = [
     description:
       'The typical ordinal value for numbers ending with "0" (Ex. 10th, 20th, 30th, etc.). This does not include special cases. See below for special cases.',
     link: "",
-    order: 194,
+    order: 195,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "th",
@@ -2293,7 +2326,7 @@ let testTranslation = [
     description:
       'The typical ordinal value for numbers ending with "1" (Ex. 1st, 21st, 31st, etc.). This does not include special cases. See below for special cases.',
     link: "",
-    order: 195,
+    order: 196,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "st",
@@ -2305,7 +2338,7 @@ let testTranslation = [
     description:
       'The typical ordinal value for numbers ending with "2" (Ex. 2nd, 22nd, 32nd, etc.). This does not include special cases. See below for special cases.',
     link: "",
-    order: 196,
+    order: 197,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "nd",
@@ -2317,7 +2350,7 @@ let testTranslation = [
     description:
       'The typical ordinal value for numbers ending with "3" (Ex. 3rd, 23rd, 33rd, etc.). This does not include special cases. See below for special cases.',
     link: "",
-    order: 197,
+    order: 198,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "rd",
@@ -2329,7 +2362,7 @@ let testTranslation = [
     description:
       'The typical ordinal value for numbers ending with "4" (Ex. 4th, 14th, 24th, etc.). This does not include special cases. See below for special cases.',
     link: "",
-    order: 198,
+    order: 199,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "th",
@@ -2341,7 +2374,7 @@ let testTranslation = [
     description:
       'The typical ordinal value for numbers ending with "5" (Ex. 5th, 15th, 25th, etc.). This does not include special cases. See below for special cases.',
     link: "",
-    order: 199,
+    order: 200,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "th",
@@ -2353,7 +2386,7 @@ let testTranslation = [
     description:
       'The typical ordinal value for numbers ending with "6" (Ex. 6th, 16th, 26th, etc.). This does not include special cases. See below for special cases.',
     link: "",
-    order: 200,
+    order: 201,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "th",
@@ -2365,7 +2398,7 @@ let testTranslation = [
     description:
       'The typical ordinal value for numbers ending with "7" (Ex. 7th, 17th, 27th, etc.). This does not include special cases. See below for special cases.',
     link: "",
-    order: 201,
+    order: 202,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "th",
@@ -2377,7 +2410,7 @@ let testTranslation = [
     description:
       'The typical ordinal value for numbers ending with "8" (Ex. 8th, 18th, 28th, etc.). This does not include special cases. See below for special cases.',
     link: "",
-    order: 202,
+    order: 203,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "th",
@@ -2389,7 +2422,7 @@ let testTranslation = [
     description:
       'The typical ordinal value for numbers ending with "9" (Ex. 9th, 19th, 29th, etc.). This does not include special cases. See below for special cases.',
     link: "",
-    order: 203,
+    order: 204,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "th",
@@ -2400,7 +2433,7 @@ let testTranslation = [
     original: true,
     description: "",
     link: "",
-    order: 204,
+    order: 205,
     isEdited: false,
     isSameAsOriginal: true,
     translation: true,
@@ -2408,45 +2441,45 @@ let testTranslation = [
   },
   {
     key: "ordinal.special.11",
-    original: "th",
+    original: 0,
     description: "",
     link: "",
-    order: 205,
+    order: 206,
     isEdited: false,
-    isSameAsOriginal: true,
+    isSameAsOriginal: false,
     translation: "th",
     variable: "",
   },
   {
     key: "ordinal.special.12",
-    original: "th",
+    original: 0,
     description: "",
     link: "",
-    order: 206,
+    order: 207,
     isEdited: false,
-    isSameAsOriginal: true,
+    isSameAsOriginal: false,
     translation: "th",
     variable: "",
   },
   {
     key: "ordinal.special.13",
-    original: "th",
+    original: 0,
     description: "",
     link: "",
-    order: 207,
+    order: 208,
     isEdited: false,
-    isSameAsOriginal: true,
+    isSameAsOriginal: false,
     translation: "th",
     variable: "",
   },
   {
     key: "ordinal.special.count",
-    original: 3,
+    original: 0,
     description: "",
     link: "",
-    order: 208,
+    order: 209,
     isEdited: false,
-    isSameAsOriginal: true,
+    isSameAsOriginal: false,
     translation: 3,
     variable: "",
   },
@@ -2456,7 +2489,7 @@ let testTranslation = [
     description:
       "A LABEL for an input field where the user will decide what time of day they would like their notification to reset at.",
     link: "",
-    order: 209,
+    order: 210,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Set notification for: ",
@@ -2468,7 +2501,7 @@ let testTranslation = [
     description:
       "A warning which will pop up if the user picks a name for a schedule, reminder, notification, etc which they have already used.",
     link: "",
-    order: 210,
+    order: 211,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Please select a name you haven't used",
@@ -2480,7 +2513,7 @@ let testTranslation = [
     description:
       "A TITLE for a popup which contains reminders for a user before they start reading.",
     link: "",
-    order: 211,
+    order: 212,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Reading Reminders",
@@ -2492,7 +2525,7 @@ let testTranslation = [
     description:
       "A heading for the reading reminders popup. (See link below for source material)",
     link: "https://wol.jw.org/en/wol/d/r1/lp-e/2017006#h=4",
-    order: 212,
+    order: 213,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Create the right surroundings",
@@ -2504,7 +2537,7 @@ let testTranslation = [
     description:
       "A paragraph for the reading reminders popup. (See link below for source material)",
     link: "https://wol.jw.org/en/wol/d/r1/lp-e/2017006#h=4",
-    order: 213,
+    order: 214,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Find a location that is quiet and free from distractions",
@@ -2515,7 +2548,7 @@ let testTranslation = [
     original: "(Perhaps put your phone into silent mode)",
     description: "A paragraph for the reading reminders popup.",
     link: "",
-    order: 214,
+    order: 215,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "(Perhaps put your phone into silent mode)",
@@ -2527,7 +2560,7 @@ let testTranslation = [
     description:
       "A heading for the reading reminders popup. (See link below for source material)",
     link: "https://wol.jw.org/en/wol/d/r1/lp-e/2017006#h=6",
-    order: 215,
+    order: 216,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Pray before you read",
@@ -2540,7 +2573,7 @@ let testTranslation = [
     description:
       "A paragraph for the reading reminders popup. (See link below for source material)",
     link: "https://wol.jw.org/en/wol/d/r1/lp-e/2012049#h=3",
-    order: 216,
+    order: 217,
     isEdited: false,
     isSameAsOriginal: true,
     translation:
@@ -2553,7 +2586,7 @@ let testTranslation = [
     description:
       "A heading for the reading reminders popup. (See link below for source material)",
     link: "https://wol.jw.org/en/wol/d/r1/lp-e/2012049#h=4",
-    order: 217,
+    order: 218,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Meditate on what you read",
@@ -2565,7 +2598,7 @@ let testTranslation = [
     description:
       "A paragraph for the reading reminders popup. (See link below for source material)",
     link: "https://wol.jw.org/en/wol/d/r1/lp-e/2017006#h=7",
-    order: 218,
+    order: 219,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Don’t rush, read to understand.",
@@ -2577,7 +2610,7 @@ let testTranslation = [
     description:
       "A sub-heading for the reading reminders popup. (See link below for source material)",
     link: "https://wol.jw.org/en/wol/d/r1/lp-e/2016364#h=16",
-    order: 219,
+    order: 220,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "You could ask these questions:",
@@ -2588,9 +2621,8 @@ let testTranslation = [
     original: "What does this tell me about Jehovah God?",
     description:
       "A paragraph for the reading reminders popup. (See link below for source material)",
-    link:
-      "https://www.jw.org/en/library/bible/study-bible/introduction/how-to-read-the-bible",
-    order: 220,
+    link: "https://www.jw.org/en/library/bible/study-bible/introduction/how-to-read-the-bible",
+    order: 221,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "What does this tell me about Jehovah God?",
@@ -2602,9 +2634,8 @@ let testTranslation = [
       "How does this section of the Scriptures contribute to the Bible’s message?",
     description:
       "A paragraph for the reading reminders popup. (See link below for source material)",
-    link:
-      "https://www.jw.org/en/library/bible/study-bible/introduction/how-to-read-the-bible",
-    order: 221,
+    link: "https://www.jw.org/en/library/bible/study-bible/introduction/how-to-read-the-bible",
+    order: 222,
     isEdited: false,
     isSameAsOriginal: true,
     translation:
@@ -2616,9 +2647,8 @@ let testTranslation = [
     original: "How can I apply this in my life?",
     description:
       "A paragraph for the reading reminders popup. (See link below for source material)",
-    link:
-      "https://www.jw.org/en/library/bible/study-bible/introduction/how-to-read-the-bible",
-    order: 222,
+    link: "https://www.jw.org/en/library/bible/study-bible/introduction/how-to-read-the-bible",
+    order: 223,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "How can I apply this in my life?",
@@ -2629,9 +2659,8 @@ let testTranslation = [
     original: "How can I use these verses to help others?",
     description:
       "A paragraph for the reading reminders popup. (See link below for source material)",
-    link:
-      "https://www.jw.org/en/library/bible/study-bible/introduction/how-to-read-the-bible",
-    order: 223,
+    link: "https://www.jw.org/en/library/bible/study-bible/introduction/how-to-read-the-bible",
+    order: 224,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "How can I use these verses to help others?",
@@ -2643,7 +2672,7 @@ let testTranslation = [
     description:
       "A sub-heading for the reading reminders popup. (See link below for source material)",
     link: "https://wol.jw.org/en/wol/d/r1/lp-e/202018087#h=4",
-    order: 224,
+    order: 225,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Imagine yourself in the scene:",
@@ -2655,7 +2684,7 @@ let testTranslation = [
     description:
       "A paragraph for the reading reminders popup. (See link below for source material)",
     link: "https://wol.jw.org/en/wol/d/r1/lp-e/202018087#h=4",
-    order: 225,
+    order: 226,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "What would you see, hear, and smell?",
@@ -2667,7 +2696,7 @@ let testTranslation = [
     description:
       "A paragraph for the reading reminders popup. (See link below for source material)",
     link: "https://wol.jw.org/en/wol/d/r1/lp-e/202018087#h=4",
-    order: 226,
+    order: 227,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "What may be the feelings of those involved?",
@@ -2679,7 +2708,7 @@ let testTranslation = [
     description:
       "A sub-heading for the reading reminders popup. (See link below for source material)",
     link: "https://wol.jw.org/en/wol/d/r1/lp-e/2016364#h=20",
-    order: 227,
+    order: 228,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Do research in order to:",
@@ -2691,7 +2720,7 @@ let testTranslation = [
     description:
       "A paragraph for the reading reminders popup. (See link below for source material)",
     link: "https://wol.jw.org/en/wol/d/r1/lp-e/2016364#h=20",
-    order: 228,
+    order: 229,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Understand the reading portion’s context.",
@@ -2703,7 +2732,7 @@ let testTranslation = [
     description:
       "A paragraph for the reading reminders popup. (See link below for source material)",
     link: "https://wol.jw.org/en/wol/d/r1/lp-e/2016364#h=20",
-    order: 229,
+    order: 230,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Understand difficult concepts clearly.",
@@ -2715,7 +2744,7 @@ let testTranslation = [
     description:
       "A heading for the reading reminders popup. (See link below for source material)",
     link: "https://wol.jw.org/en/wol/d/r1/lp-e/2012049#h=5",
-    order: 230,
+    order: 231,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Apply what you read",
@@ -2728,7 +2757,7 @@ let testTranslation = [
     description:
       "A paragraph for the reading reminders popup. (See link below for source material)",
     link: "https://wol.jw.org/en/wol/d/r1/lp-e/2012049#h=5",
-    order: 231,
+    order: 232,
     isEdited: false,
     isSameAsOriginal: true,
     translation:
@@ -2742,7 +2771,7 @@ let testTranslation = [
     description:
       "A paragraph for the reading reminders popup. (See link below for source material)",
     link: "https://wol.jw.org/en/wol/d/r1/lp-e/2012049#h=5",
-    order: 232,
+    order: 233,
     isEdited: false,
     isSameAsOriginal: true,
     translation:
@@ -2754,7 +2783,7 @@ let testTranslation = [
     original: "Reminders derived from:",
     description: "A sub-heading for the reading reminders popup.",
     link: "",
-    order: 233,
+    order: 234,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Reminders derived from:",
@@ -2766,7 +2795,7 @@ let testTranslation = [
       "Please go to those links to get a deeper understanding of the thoughts expressed",
     description: "A paragraph for the reading reminders popup.",
     link: "",
-    order: 234,
+    order: 235,
     isEdited: false,
     isSameAsOriginal: true,
     translation:
@@ -2779,7 +2808,7 @@ let testTranslation = [
     description:
       "TITLE for a popup which will show information about the currently selected reading portion. It will display the year and where the bible book, who wrote it, etc.",
     link: "",
-    order: 235,
+    order: 236,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Reading Info",
@@ -2791,7 +2820,7 @@ let testTranslation = [
     description:
       "LABEL for a string of text that describes the reading portion. (Ex. Genesis 1-3)",
     link: "",
-    order: 236,
+    order: 237,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Reading Portion",
@@ -2803,7 +2832,7 @@ let testTranslation = [
     description:
       "LABEL for a string of text which will say the time covered for the reading portion or bible book",
     link: "",
-    order: 237,
+    order: 238,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Time Covered",
@@ -2815,7 +2844,7 @@ let testTranslation = [
     description:
       "LABEL for a string of text which will say where the bible book for the current reading portion was written.",
     link: "",
-    order: 238,
+    order: 239,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Where Written",
@@ -2827,7 +2856,7 @@ let testTranslation = [
     description:
       "LABEL for a string of text which will say when the bible book for the current reading portion was written.",
     link: "",
-    order: 239,
+    order: 240,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "When Written",
@@ -2839,7 +2868,7 @@ let testTranslation = [
     description:
       "LABEL for a string of text which will say who wrote the current portion of the Bible related to the user's reading.",
     link: "",
-    order: 240,
+    order: 241,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Writer(s)",
@@ -2850,7 +2879,7 @@ let testTranslation = [
     original: "Reading Schedules",
     description: "Text to be a title for a page of reading schedules",
     link: "",
-    order: 241,
+    order: 242,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Reading Schedules",
@@ -2858,13 +2887,14 @@ let testTranslation = [
   },
   {
     key: "reminders.completeReminderMessage",
-    original: "",
+    original:
+      'Are you sure you want to mark reminder "{{reminderName}}" complete?',
     description:
       "A message that will appear when a user clicks on a reminder on the home page asking them to confirm that they wish to mark it completed",
     link: "",
-    order: 242,
+    order: 243,
     isEdited: false,
-    isSameAsOriginal: false,
+    isSameAsOriginal: true,
     translation:
       'Are you sure you want to mark reminder "{{reminderName}}" complete?',
     variable: "",
@@ -2874,7 +2904,7 @@ let testTranslation = [
     original: "Daily Reading",
     description: "Will be a title for a reminder",
     link: "",
-    order: 243,
+    order: 244,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Daily Reading",
@@ -2886,7 +2916,7 @@ let testTranslation = [
     description:
       "A preset reminder that will be created automatically for the user which they can turn on to remind them daily to read their daily text from examining the scriptures daily.",
     link: "",
-    order: 244,
+    order: 245,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Daily Text",
@@ -2898,7 +2928,7 @@ let testTranslation = [
     description:
       "A preset reminder that will be created automatically for the user which they can turn on to remind them weekly on a certain day to complete their midweek meeting study.",
     link: "",
-    order: 245,
+    order: 246,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Midweek Meeting Study",
@@ -2910,7 +2940,7 @@ let testTranslation = [
     description:
       "Description of what a reminder is. Could be used as a title for reminders so that users know where to go to adjust them",
     link: "",
-    order: 246,
+    order: 247,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Reminder",
@@ -2922,7 +2952,7 @@ let testTranslation = [
     description:
       "A preset reminder that will be created automatically for the user which they can turn on to remind them weekly on a certain day to complete their weekend meeting study.",
     link: "",
-    order: 247,
+    order: 248,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Weekend Meeting Study",
@@ -2934,7 +2964,7 @@ let testTranslation = [
     description:
       "A title to describe what the schedule is. A weekly reading schedule. It is based off of the reading schedule for the current week according to the life and ministry meeting workbook.",
     link: "",
-    order: 248,
+    order: 249,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Weekly Reading",
@@ -2946,7 +2976,7 @@ let testTranslation = [
     description:
       "LABEL for a toggle/checkbox where a user can decide whether they want each individual day of the weekly reading to show on their home page or just the weekly reading button.",
     link: "",
-    order: 249,
+    order: 250,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Show daily portion of weekly reading",
@@ -2958,7 +2988,7 @@ let testTranslation = [
     description:
       "A selection value to be used for items that the user wants to repeat every DAY",
     link: "",
-    order: 250,
+    order: 251,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Daily",
@@ -2970,7 +3000,7 @@ let testTranslation = [
     description:
       "A selection value to be used for items that the user wants to repeat every WEEK",
     link: "",
-    order: 251,
+    order: 252,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Weekly",
@@ -2982,7 +3012,7 @@ let testTranslation = [
     description:
       "A selection value to be used for items that the user wants to repeat every MONTH",
     link: "",
-    order: 252,
+    order: 253,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Monthly",
@@ -2994,7 +3024,7 @@ let testTranslation = [
     description:
       "A selection value to be used for items that the user wants to NEVER repeat",
     link: "",
-    order: 253,
+    order: 254,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Never",
@@ -3006,7 +3036,7 @@ let testTranslation = [
     description:
       'A label for a checkbox which describes whether a certain reminder was completed according to when it is set to reset "Completed (this month, this week, today)"',
     link: "",
-    order: 254,
+    order: 255,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Completed {{desc}}",
@@ -3014,13 +3044,13 @@ let testTranslation = [
   },
   {
     key: "remindersPage.deleteReminderMessage",
-    original: "",
+    original: 'Are you sure you want to delete "{{reminderName}}" reminder?',
     description:
       "A message which will show up in a popup asking the user to confirm deleting the selected reminder on the reminders page",
     link: "",
-    order: 255,
+    order: 256,
     isEdited: false,
-    isSameAsOriginal: false,
+    isSameAsOriginal: true,
     translation: 'Are you sure you want to delete "{{reminderName}}" reminder?',
     variable: "",
   },
@@ -3030,7 +3060,7 @@ let testTranslation = [
     description:
       "A LABEL for an input where the user can decide when they would like their reminder to reset. (Ex. Every: 1 st of the month for a monthly schedule, Every Tuesday for a weekly schedule, etc.)",
     link: "",
-    order: 256,
+    order: 257,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Every: ",
@@ -3042,7 +3072,7 @@ let testTranslation = [
     description:
       "LABEL for an input field where the user can input the name they would like to have displayed for the reminder they are creating or have already created.",
     link: "",
-    order: 257,
+    order: 258,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Name: ",
@@ -3054,7 +3084,7 @@ let testTranslation = [
     description:
       "TITLE for a popup in which the user can create a new reminder that will show up like a reading portion on their home screen.",
     link: "",
-    order: 258,
+    order: 259,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Create New Reminder",
@@ -3066,7 +3096,7 @@ let testTranslation = [
     description:
       "LABEL for a selection input where the user can select how frequently they would like their reminder to repeat. Daily, Weekly, Monthly, Never.",
     link: "",
-    order: 259,
+    order: 260,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Repeats: ",
@@ -3078,7 +3108,7 @@ let testTranslation = [
     description:
       "TITLE for the page where a user can manage and create reminders.",
     link: "",
-    order: 260,
+    order: 261,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Reminders",
@@ -3090,7 +3120,7 @@ let testTranslation = [
     description:
       "Title for the Schedules page which lists all of the reading schedules a user has created",
     link: "",
-    order: 261,
+    order: 262,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Schedules",
@@ -3102,7 +3132,7 @@ let testTranslation = [
     description:
       "A warning message that will appear when a user tries to delete a reading schedule they have created to make sure they really want to delete it.",
     link: "",
-    order: 262,
+    order: 263,
     isEdited: false,
     isSameAsOriginal: true,
     translation: 'Are you sure you want to delete "{{scheduleName}}" schedule?',
@@ -3114,7 +3144,7 @@ let testTranslation = [
     description:
       "LABEL for a checkbox the user can click which will hide all reading portions which are already completed",
     link: "",
-    order: 263,
+    order: 264,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Hide Completed",
@@ -3127,7 +3157,7 @@ let testTranslation = [
     description:
       "A warning message to let the user know that the start verse they tried to use in schedule creation is not a real verse, therefore their schedule was adjusted to start from the nearest verse.",
     link: "",
-    order: 264,
+    order: 265,
     isEdited: false,
     isSameAsOriginal: true,
     translation:
@@ -3140,7 +3170,7 @@ let testTranslation = [
     description:
       "LABEL to explain what the buttons below are referring to, different reading orders or types they can use to create their schedule.",
     link: "",
-    order: 265,
+    order: 266,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Schedule Type",
@@ -3152,7 +3182,7 @@ let testTranslation = [
     description:
       "TITLE on a button the user can press to proceed with creating a sequential schedule.",
     link: "",
-    order: 266,
+    order: 267,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Sequential",
@@ -3163,7 +3193,7 @@ let testTranslation = [
     original: "Read the bible from Genesis to Revelation",
     description: "DESCRIPTION of what a sequential schedule is.",
     link: "",
-    order: 267,
+    order: 268,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Read the bible from Genesis to Revelation",
@@ -3175,7 +3205,7 @@ let testTranslation = [
     description:
       "TITLE on a button the user can press to proceed with creating a chronological schedule.",
     link: "",
-    order: 268,
+    order: 269,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Chronological",
@@ -3187,7 +3217,7 @@ let testTranslation = [
       "Read the bible in the order in which events occurred. (EXPERIMENTAL: If you find a discrepency please contact me)",
     description: "DESCRIPTION of what a chronological schedule is.",
     link: "",
-    order: 269,
+    order: 270,
     isEdited: false,
     isSameAsOriginal: true,
     translation:
@@ -3200,7 +3230,7 @@ let testTranslation = [
     description:
       "TITLE on a button the user can press to proceed with creating a thematic schedule.",
     link: "",
-    order: 270,
+    order: 271,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Thematic",
@@ -3212,7 +3242,7 @@ let testTranslation = [
       "Each day, read from a different section of the Bible in a weekly cycle: Day 1 - The Law, 2 - History, 3 - Psalms, 4 - Poetry, 5 - Prophecy, 6 - Gospels, 7 - Letters",
     description: "DESCRIPTION of what a thematic schedule is.",
     link: "",
-    order: 271,
+    order: 272,
     isEdited: false,
     isSameAsOriginal: true,
     translation:
@@ -3225,7 +3255,7 @@ let testTranslation = [
     description:
       "TITLE on a button the user can press to proceed with creating a custom schedule.",
     link: "",
-    order: 272,
+    order: 273,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Custom",
@@ -3237,7 +3267,7 @@ let testTranslation = [
     description:
       "DESCRIPTION of what a custom schedule is and what will proceed if the user presses this button.",
     link: "",
-    order: 273,
+    order: 274,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Create a custom schedule for a publication",
@@ -3249,7 +3279,7 @@ let testTranslation = [
     description:
       "LABEL for an input where the user can set which day of the week they would like their weekly reading from the midweek meeting to reset. Usually the day after the midweek meeting.",
     link: "",
-    order: 274,
+    order: 275,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Day to reset weekly reading:",
@@ -3257,25 +3287,25 @@ let testTranslation = [
   },
   {
     key: "settingsPage.about",
-    original: "",
+    original: "About",
     description:
       "The title for a button on the settings page which will link to this website",
     link: "",
-    order: 275,
+    order: 276,
     isEdited: false,
-    isSameAsOriginal: false,
+    isSameAsOriginal: true,
     translation: "About",
     variable: "",
   },
   {
     key: "settingsPage.contact",
-    original: "",
+    original: "Contact",
     description:
       "The title for a button on the settings page which will link to sending an email to the developer",
     link: "",
-    order: 276,
+    order: 277,
     isEdited: false,
-    isSameAsOriginal: false,
+    isSameAsOriginal: true,
     translation: "Contact",
     variable: "",
   },
@@ -3284,7 +3314,7 @@ let testTranslation = [
     original: "Settings",
     description: "TITLE for the Settings page",
     link: "",
-    order: 277,
+    order: 278,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Settings",
@@ -3292,13 +3322,13 @@ let testTranslation = [
   },
   {
     key: "settingsPage.version",
-    original: "",
+    original: "Version",
     description:
       "The title for a section on the settings page which will display the current version of the app they have installed (Ex. 1.7.3)",
     link: "",
-    order: 278,
+    order: 279,
     isEdited: false,
-    isSameAsOriginal: false,
+    isSameAsOriginal: true,
     translation: "Version",
     variable: "",
   },
@@ -3308,7 +3338,7 @@ let testTranslation = [
     description:
       "A LABEL for the home page for reading items that are to be read during the current day. (Today, This Week, This Month, Other)",
     link: "",
-    order: 279,
+    order: 280,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Today",
@@ -3320,7 +3350,7 @@ let testTranslation = [
     description:
       "A LABEL for the home page for reading items that are to be read during the current week. (Today, This Week, This Month, Other)",
     link: "",
-    order: 280,
+    order: 281,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "This Week",
@@ -3332,7 +3362,7 @@ let testTranslation = [
     description:
       "A LABEL for the home page for reading items that are to be read during the current month. (Today, This Week, This Month, Other)",
     link: "",
-    order: 281,
+    order: 282,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "This Month",
@@ -3344,10 +3374,21 @@ let testTranslation = [
     description:
       "A LABEL for the home page for reading items that do not track their completion date. (Today, This Week, This Month, Other)",
     link: "",
-    order: 282,
+    order: 283,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Other",
+    variable: "",
+  },
+  {
+    key: "updateDate",
+    original: "2021-05-05T11:41:37.377Z",
+    description: "",
+    isEdited: false,
+    isSameAsOriginal: true,
+    link: "",
+    order: 284,
+    translation: "2021-05-05T11:41:37.377Z",
     variable: "",
   },
   {
@@ -3356,7 +3397,7 @@ let testTranslation = [
     description:
       "An abbreviated form of the word chapter. Something one or 2 characters long.",
     link: "",
-    order: 283,
+    order: 285,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "ch",
@@ -3368,7 +3409,7 @@ let testTranslation = [
     description:
       "An abbreviated form of the word verse. Something one or 2 characters long.",
     link: "",
-    order: 284,
+    order: 286,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "v",
@@ -3379,7 +3420,7 @@ let testTranslation = [
     original: "Warning",
     description: "Usually will be a title of a popup with a warning message",
     link: "",
-    order: 285,
+    order: 287,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Warning",
@@ -3390,7 +3431,7 @@ let testTranslation = [
     original: "Su",
     description: "The short form for Sunday.",
     link: "",
-    order: 286,
+    order: 288,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Su",
@@ -3401,7 +3442,7 @@ let testTranslation = [
     original: "Sunday",
     description: "The long form for Sunday.",
     link: "",
-    order: 287,
+    order: 289,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Sunday",
@@ -3412,7 +3453,7 @@ let testTranslation = [
     original: "Mo",
     description: "The short form for Monday.",
     link: "",
-    order: 288,
+    order: 290,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Mo",
@@ -3423,7 +3464,7 @@ let testTranslation = [
     original: "Monday",
     description: "The long form for Monday.",
     link: "",
-    order: 289,
+    order: 291,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Monday",
@@ -3434,7 +3475,7 @@ let testTranslation = [
     original: "Tu",
     description: "The short form for Tuesday.",
     link: "",
-    order: 290,
+    order: 292,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Tu",
@@ -3445,7 +3486,7 @@ let testTranslation = [
     original: "Tuesday",
     description: "The long form for Tuesday.",
     link: "",
-    order: 291,
+    order: 293,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Tuesday",
@@ -3456,7 +3497,7 @@ let testTranslation = [
     original: "We",
     description: "The short form for Wednesday.",
     link: "",
-    order: 292,
+    order: 294,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "We",
@@ -3467,7 +3508,7 @@ let testTranslation = [
     original: "Wednesday",
     description: "The long form for Wednesday.",
     link: "",
-    order: 293,
+    order: 295,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Wednesday",
@@ -3478,7 +3519,7 @@ let testTranslation = [
     original: "Th",
     description: "The short form for Thursday.",
     link: "",
-    order: 294,
+    order: 296,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Th",
@@ -3489,7 +3530,7 @@ let testTranslation = [
     original: "Thursday",
     description: "The long form for Thursday.",
     link: "",
-    order: 295,
+    order: 297,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Thursday",
@@ -3500,7 +3541,7 @@ let testTranslation = [
     original: "Fr",
     description: "The short form for Friday.",
     link: "",
-    order: 296,
+    order: 298,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Fr",
@@ -3511,7 +3552,7 @@ let testTranslation = [
     original: "Friday",
     description: "The long form for Friday.",
     link: "",
-    order: 297,
+    order: 299,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Friday",
@@ -3522,7 +3563,7 @@ let testTranslation = [
     original: "Sa",
     description: "The short form for Saturday.",
     link: "",
-    order: 298,
+    order: 300,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Sa",
@@ -3533,7 +3574,7 @@ let testTranslation = [
     original: "Saturday",
     description: "The long form for Saturday.",
     link: "",
-    order: 299,
+    order: 301,
     isEdited: false,
     isSameAsOriginal: true,
     translation: "Saturday",
@@ -3541,28 +3582,204 @@ let testTranslation = [
   },
 ];
 
-beforeAll(() => {
-  var baseVars = { ...template._variables };
-  let keys = Object.keys(baseVars);
-  keys.forEach((v) => {
-    if (v !== "_keys") {
-      baseVariables[v] = [];
-      baseVariables[v].push(`[${v}]`);
-    }
-  });
+beforeEach(() => {
+  clearTempDir("bucket");
+  clearTempDir("local");
+  setTempDir();
 });
 
-test("createTranslationInfo", () => {
-  let { keys, values } = parseTranslation(english);
-  let parsedTemplate = parseTranslation(template, keys);
-  let { transItems, transVars } = createTranslationInfo(
-    handleVariablesChange,
-    keys,
-    parsedTemplate.values,
-    baseVariables,
-    values
-  );
+afterAll(() => {
+  clearTempDir("bucket");
+  clearTempDir("local");
+});
+
+test("run getTranslationInfo with basic inputs", async () => {
+  let { transItems, transVars } = await getTranslationInfo("en");
 
   expect(transItems).toStrictEqual(testTranslation);
+  expect(transVars).toStrictEqual(testVariables);
+});
+
+test("run getTranslationInfo with updated translation", async () => {
+  let { transItems, transVars } = await getTranslationInfo("en-old");
+  //If this modified set of translation items matches the original, then we know that the items that need to be edited were edited.
+  //To simplify the test setup I have just reset all items to being unedited.
+  let newSpecialOrdinals = [
+    {
+      description: "",
+      isEdited: false,
+      isSameAsOriginal: false,
+      key: "ordinal.special.11",
+      link: "",
+      order: 206,
+      original: 0,
+      translation: "a",
+      variable: "",
+    },
+    {
+      description: "",
+      isEdited: false,
+      isSameAsOriginal: false,
+      key: "ordinal.special.12",
+      link: "",
+      order: 207,
+      original: 0,
+      translation: "b",
+      variable: "",
+    },
+    {
+      description: "",
+      isEdited: false,
+      isSameAsOriginal: false,
+      key: "ordinal.special.13",
+      link: "",
+      order: 208,
+      original: 0,
+      translation: "c",
+      variable: "",
+    },
+    {
+      description: "",
+      isEdited: false,
+      isSameAsOriginal: false,
+      key: "ordinal.special.14",
+      link: "",
+      order: 209,
+      original: 0,
+      translation: "d",
+      variable: "",
+    },
+    {
+      description: "",
+      isEdited: false,
+      isSameAsOriginal: false,
+      key: "ordinal.special.15",
+      link: "",
+      order: 210,
+      original: 0,
+      translation: "e",
+      variable: "",
+    },
+    {
+      description: "",
+      isEdited: false,
+      isSameAsOriginal: false,
+      key: "ordinal.special.16",
+      link: "",
+      order: 211,
+      original: 0,
+      translation: "f",
+      variable: "",
+    },
+    {
+      description: "",
+      isEdited: false,
+      isSameAsOriginal: false,
+      key: "ordinal.special.17",
+      link: "",
+      order: 212,
+      original: 0,
+      translation: "g",
+      variable: "",
+    },
+    {
+      description: "",
+      isEdited: false,
+      isSameAsOriginal: false,
+      key: "ordinal.special.18",
+      link: "",
+      order: 213,
+      original: 0,
+      translation: "h",
+      variable: "",
+    },
+    {
+      description: "",
+      isEdited: false,
+      isSameAsOriginal: false,
+      key: "ordinal.special.19",
+      link: "",
+      order: 214,
+      original: 0,
+      translation: "i",
+      variable: "",
+    },
+    {
+      description: "",
+      isEdited: false,
+      isSameAsOriginal: false,
+      key: "ordinal.special.20",
+      link: "",
+      order: 215,
+      original: 0,
+      translation: "j",
+      variable: "",
+    },
+    {
+      description: "",
+      isEdited: false,
+      isSameAsOriginal: false,
+      key: "ordinal.special.count",
+      link: "",
+      order: 216,
+      original: 0,
+      translation: 10,
+      variable: "",
+    },
+  ];
+  let specialOrdinalStartIndex;
+  let newTestTranslation = testTranslation.map((oldItem, index) => {
+    let item = { ...oldItem };
+    let keyParts = item.key.split(".");
+    if (
+      keyParts[0] === "ordinal" &&
+      keyParts[1] === "special" &&
+      !specialOrdinalStartIndex
+    ) {
+      specialOrdinalStartIndex = index;
+    }
+    if (specialOrdinalStartIndex) {
+      item.order = item.order + 7;
+    }
+    return item;
+  });
+  newTestTranslation = [
+    ...newTestTranslation.slice(0, specialOrdinalStartIndex),
+    ...newSpecialOrdinals,
+    ...newTestTranslation.slice(specialOrdinalStartIndex + 4),
+  ];
+  let modifiedTransItems = transItems.map((item, index) => {
+    item.isEdited = false;
+    return { ...item };
+  });
+
+  expect(modifiedTransItems).toStrictEqual(newTestTranslation);
+  expect(transVars).toStrictEqual(testVariables);
+});
+
+test("run getTranslationInfo for a new translation", async () => {
+  let { transItems, transVars } = await getTranslationInfo("an");
+  let specialOrdinalStartIndex;
+  let newTestTranslation = testTranslation.map((oldItem, index) => {
+    let item = { ...oldItem };
+    let keyParts = item.key.split(".");
+    if (
+      keyParts[0] === "ordinal" &&
+      keyParts[1] === "special" &&
+      !specialOrdinalStartIndex
+    ) {
+      specialOrdinalStartIndex = index;
+    }
+    if (specialOrdinalStartIndex) {
+      item.order = item.order - 3;
+    }
+    item.isEdited = true;
+    return item;
+  });
+  newTestTranslation.splice(specialOrdinalStartIndex, 3);
+  newTestTranslation[specialOrdinalStartIndex].translation = 0;
+  newTestTranslation[specialOrdinalStartIndex].isSameAsOriginal = true;
+
+  expect(transItems).toStrictEqual(newTestTranslation);
   expect(transVars).toStrictEqual(testVariables);
 });

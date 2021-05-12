@@ -80,26 +80,17 @@ export const useTranslationPage = () => {
   const [language, setLanguage] = useState();
   const [translationItems, setTranslationItems] = useState([]);
 
-  const { languageList, template } = useTranslationPageData();
+  const { languageList } = useTranslationPageData();
   const { completedHidden, toggleHidden } = useHideCompleted();
   const { toggleVariablesPaused, variablesPaused } = useVariablePause();
   const { isLoading, showLoadingPopup } = useLoadingPopup();
-  const {
-    _handleVariablesChange,
-    baseVariables,
-    setVariables,
-    variables,
-  } = useVariables();
+  const { _handleVariablesChange, setVariables, variables } = useVariables();
 
   const { _handleSelectLanguage } = useSelectLanguage({
-    _handleVariablesChange,
-    baseVariables,
-    language,
     setLanguage,
     showLoadingPopup,
     setTranslationItems,
     setVariables,
-    template,
   });
 
   const _handleSave = useCallback(() => {

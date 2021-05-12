@@ -1,24 +1,33 @@
 require("regenerator-runtime/runtime");
 const supertest = require("supertest");
-const fs = require("fs");
 const path = require("path");
 
 const app = require("../../../api/server");
 const { server } = require("../../../api/server");
 
-const { clearTempDir, setTempDir } = require("../helpers");
+const {
+  clearTempDir,
+  setTempDir,
+} = require("../../../__fixtures__/testLogic/helpers");
 const { getFile, saveFile } = require("../../../api/logic/logic");
 
-beforeEach(() => {
+beforeAll(() => {
   clearTempDir("bucket");
   clearTempDir("local");
   setTempDir();
 });
 
+beforeEach(() => {
+  clearTempDir("local");
+});
+
+afterEach(() => {
+  server.close();
+});
+
 afterAll(() => {
   clearTempDir("bucket");
   clearTempDir("local");
-  server.close();
 });
 
 test("GET /api/template", async () => {
@@ -34,7 +43,16 @@ test("POST /api/template/keys", async () => {
     .post("/api/template/keys")
     .attach(
       "filetoupload",
-      path.join(__dirname, "..", "..", "..", "__temp__", "bucket", "en.json")
+      path.join(
+        __dirname,
+        "..",
+        "..",
+        "..",
+        "__fixtures__",
+        "files",
+        "bucket",
+        "en.json"
+      )
     )
     .expect(200);
 

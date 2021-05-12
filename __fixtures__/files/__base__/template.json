@@ -1,0 +1,3265 @@
+{
+  "appName": {
+    "description": "The name of the app. Describing the fact that it is a tool for bible study.",
+    "key": "appName",
+    "link": "",
+    "status": "",
+    "value": "Bible Study Companion",
+    "order": 0,
+    "updateDate": "2021-01-01T00:00:00.000Z",
+    "variable": ""
+  },
+  "actions": {
+    "cancel": {
+      "description": "Cancel an action",
+      "key": "actions.cancel",
+      "link": "",
+      "status": "",
+      "value": "Cancel",
+      "order": 1,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "done": {
+      "description": "Indicate completion of an action",
+      "key": "actions.done",
+      "link": "",
+      "status": "",
+      "value": "Done",
+      "order": 2,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    }
+  },
+  "bibleBook": {
+    "description": "Genesis, Exodus, Leviticus, etc...",
+    "key": "bibleBook",
+    "link": "",
+    "status": "",
+    "value": "Bible Book",
+    "order": 3,
+    "updateDate": "2021-01-01T00:00:00.000Z",
+    "variable": ""
+  },
+  "bibleBooks": {
+    "1": {
+      "name": {
+        "description": "The name of the Bible book of Genesis",
+        "key": "bibleBooks.1.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Genesis",
+        "order": 4,
+        "variable": "initialBibleBook",
+        "updateDate": "2021-01-01T00:00:00.000Z"
+      },
+      "whereWritten": {
+        "description": "Where the book of Genesis was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.1.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Wilderness",
+        "order": 5,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "2": {
+      "name": {
+        "description": "The name of the Bible book of Exodus",
+        "key": "bibleBooks.2.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Exodus",
+        "order": 6,
+        "variable": "startBibleBook",
+        "updateDate": "2021-01-01T00:00:00.000Z"
+      },
+      "whereWritten": {
+        "description": "Where the book of Exodus was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.2.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Wilderness",
+        "order": 7,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "3": {
+      "name": {
+        "description": "The name of the Bible book of Leviticus",
+        "key": "bibleBooks.3.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Leviticus",
+        "order": 8,
+        "variable": "initialBibleBook",
+        "updateDate": "2021-01-01T00:00:00.000Z"
+      },
+      "whereWritten": {
+        "description": "Where the book of Leviticus was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.3.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Wilderness",
+        "order": 9,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "4": {
+      "name": {
+        "description": "The name of the Bible book of Numbers",
+        "key": "bibleBooks.4.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Numbers",
+        "order": 10,
+        "variable": "startBibleBook",
+        "updateDate": "2021-01-01T00:00:00.000Z"
+      },
+      "whereWritten": {
+        "description": "Where the book of Numbers was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.4.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Wilderness and Plains of Moab",
+        "order": 11,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "5": {
+      "name": {
+        "description": "The name of the Bible book of Deuteronomy",
+        "key": "bibleBooks.5.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Deuteronomy",
+        "order": 12,
+        "variable": "initialBibleBook",
+        "updateDate": "2021-01-01T00:00:00.000Z"
+      },
+      "whereWritten": {
+        "description": "Where the book of Deuteronomy was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.5.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Plains of Moab",
+        "order": 13,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "6": {
+      "name": {
+        "description": "The name of the Bible book of Joshua",
+        "key": "bibleBooks.6.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Joshua",
+        "order": 14,
+        "variable": "startBibleBook",
+        "updateDate": "2021-01-01T00:00:00.000Z"
+      },
+      "whereWritten": {
+        "description": "Where the book of Joshua was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.6.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Canaan",
+        "order": 15,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "7": {
+      "name": {
+        "description": "The name of the Bible book of Judges",
+        "key": "bibleBooks.7.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Judges",
+        "order": 16,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Judges was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.7.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Israel",
+        "order": 17,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "8": {
+      "name": {
+        "description": "The name of the Bible book of Ruth",
+        "key": "bibleBooks.8.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Ruth",
+        "order": 18,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Ruth was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.8.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Israel",
+        "order": 19,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "9": {
+      "name": {
+        "description": "The name of the Bible book of 1 Samuel",
+        "key": "bibleBooks.9.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "1 Samuel",
+        "order": 20,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of 1 Samuel was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.9.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Israel",
+        "order": 21,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "10": {
+      "name": {
+        "description": "The name of the Bible book of 2 Samuel",
+        "key": "bibleBooks.10.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "2 Samuel",
+        "order": 22,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of 2 Samuel was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.10.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Israel",
+        "order": 23,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "11": {
+      "name": {
+        "description": "The name of the Bible book of 1 Kings",
+        "key": "bibleBooks.11.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "1 Kings",
+        "order": 24,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of 1 Kings was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.11.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Judah",
+        "order": 25,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "12": {
+      "name": {
+        "description": "The name of the Bible book of 2 Kings",
+        "key": "bibleBooks.12.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "2 Kings",
+        "order": 26,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of 2 Kings was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.12.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Judah and Egypt",
+        "order": 27,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "13": {
+      "name": {
+        "description": "The name of the Bible book of 1 Chronicles",
+        "key": "bibleBooks.13.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "1 Chronicles",
+        "order": 28,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of 1 Chronicles was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.13.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Jerusalem (?)",
+        "order": 29,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "14": {
+      "name": {
+        "description": "The name of the Bible book of 2 Chronicles",
+        "key": "bibleBooks.14.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "2 Chronicles",
+        "order": 30,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of 2 Chronicles was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.14.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Jerusalem (?)",
+        "order": 31,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "15": {
+      "name": {
+        "description": "The name of the Bible book of Ezra",
+        "key": "bibleBooks.15.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Ezra",
+        "order": 32,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Ezra was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.15.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Jerusalem",
+        "order": 33,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "16": {
+      "name": {
+        "description": "The name of the Bible book of Nehemiah",
+        "key": "bibleBooks.16.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Nehemiah",
+        "order": 34,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Nehemiah was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.16.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Jerusalem",
+        "order": 35,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "17": {
+      "name": {
+        "description": "The name of the Bible book of Esther",
+        "key": "bibleBooks.17.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Esther",
+        "order": 36,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Esther was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.17.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Shushan, Elam",
+        "order": 37,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "18": {
+      "name": {
+        "description": "The name of the Bible book of Job",
+        "key": "bibleBooks.18.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Job",
+        "order": 38,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Job was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.18.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Wilderness",
+        "order": 39,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "19": {
+      "name": {
+        "description": "The name of the Bible book of Psalms",
+        "key": "bibleBooks.19.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Psalms",
+        "order": 40,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Psalms was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.19.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "",
+        "order": 41,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "20": {
+      "name": {
+        "description": "The name of the Bible book of Proverbs",
+        "key": "bibleBooks.20.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Proverbs",
+        "order": 42,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Proverbs was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.20.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Jerusalem",
+        "order": 43,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "21": {
+      "name": {
+        "description": "The name of the Bible book of Ecclesiastes",
+        "key": "bibleBooks.21.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Ecclesiastes",
+        "order": 44,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Ecclesiastes was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.21.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Jerusalem",
+        "order": 45,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "22": {
+      "name": {
+        "description": "The name of the Bible book of Song of Solomon",
+        "key": "bibleBooks.22.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Song of Solomon",
+        "order": 46,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Song of Solomon was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.22.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Jerusalem",
+        "order": 47,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "23": {
+      "name": {
+        "description": "The name of the Bible book of Isaiah",
+        "key": "bibleBooks.23.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Isaiah",
+        "order": 48,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Isaiah was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.23.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Jerusalem",
+        "order": 49,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "24": {
+      "name": {
+        "description": "The name of the Bible book of Jeremiah",
+        "key": "bibleBooks.24.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Jeremiah",
+        "order": 50,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Jeremiah was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.24.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Judah; Egypt",
+        "order": 51,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "25": {
+      "name": {
+        "description": "The name of the Bible book of Lamentations",
+        "key": "bibleBooks.25.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Lamentations",
+        "order": 52,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Lamentations was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.25.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Near Jerusalem",
+        "order": 53,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "26": {
+      "name": {
+        "description": "The name of the Bible book of Ezekiel",
+        "key": "bibleBooks.26.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Ezekiel",
+        "order": 54,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Ezekiel was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.26.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Babylon",
+        "order": 55,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "27": {
+      "name": {
+        "description": "The name of the Bible book of Daniel",
+        "key": "bibleBooks.27.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Daniel",
+        "order": 56,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Daniel was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.27.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Babylon",
+        "order": 57,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "28": {
+      "name": {
+        "description": "The name of the Bible book of Hosea",
+        "key": "bibleBooks.28.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Hosea",
+        "order": 58,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Hosea was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.28.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Samaria (District)",
+        "order": 59,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "29": {
+      "name": {
+        "description": "The name of the Bible book of Joel",
+        "key": "bibleBooks.29.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Joel",
+        "order": 60,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Joel was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.29.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Judah",
+        "order": 61,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "30": {
+      "name": {
+        "description": "The name of the Bible book of Amos",
+        "key": "bibleBooks.30.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Amos",
+        "order": 62,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Amos was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.30.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Judah",
+        "order": 63,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "31": {
+      "name": {
+        "description": "The name of the Bible book of Obadiah",
+        "key": "bibleBooks.31.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Obadiah",
+        "order": 64,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Obadiah was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.31.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "",
+        "order": 65,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "32": {
+      "name": {
+        "description": "The name of the Bible book of Jonah",
+        "key": "bibleBooks.32.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Jonah",
+        "order": 66,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Jonah was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.32.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "",
+        "order": 67,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "33": {
+      "name": {
+        "description": "The name of the Bible book of Micah",
+        "key": "bibleBooks.33.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Micah",
+        "order": 68,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Micah was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.33.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Judah",
+        "order": 69,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "34": {
+      "name": {
+        "description": "The name of the Bible book of Nahum",
+        "key": "bibleBooks.34.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Nahum",
+        "order": 70,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Nahum was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.34.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Judah",
+        "order": 71,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "35": {
+      "name": {
+        "description": "The name of the Bible book of Habakkuk",
+        "key": "bibleBooks.35.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Habakkuk",
+        "order": 72,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Habakkuk was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.35.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Judah",
+        "order": 73,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "36": {
+      "name": {
+        "description": "The name of the Bible book of Zephaniah",
+        "key": "bibleBooks.36.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Zephaniah",
+        "order": 74,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Zephaniah was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.36.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Judah",
+        "order": 75,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "37": {
+      "name": {
+        "description": "The name of the Bible book of Haggai",
+        "key": "bibleBooks.37.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Haggai",
+        "order": 76,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Haggai was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.37.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Jerusalem rebuilt",
+        "order": 77,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "38": {
+      "name": {
+        "description": "The name of the Bible book of Zechariah",
+        "key": "bibleBooks.38.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Zechariah",
+        "order": 78,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Zechariah was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.38.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Jerusalem rebuilt",
+        "order": 79,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "39": {
+      "name": {
+        "description": "The name of the Bible book of Malachi",
+        "key": "bibleBooks.39.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Malachi",
+        "order": 80,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Malachi was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.39.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Jerusalem rebuilt",
+        "order": 81,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "40": {
+      "name": {
+        "description": "The name of the Bible book of Matthew",
+        "key": "bibleBooks.40.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Matthew",
+        "order": 82,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Matthew was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.40.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Israel",
+        "order": 83,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "41": {
+      "name": {
+        "description": "The name of the Bible book of Mark",
+        "key": "bibleBooks.41.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Mark",
+        "order": 84,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Mark was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.41.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Rome",
+        "order": 85,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "42": {
+      "name": {
+        "description": "The name of the Bible book of Luke",
+        "key": "bibleBooks.42.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Luke",
+        "order": 86,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Luke was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.42.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Caesarea",
+        "order": 87,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "43": {
+      "name": {
+        "description": "The name of the Bible book of John",
+        "key": "bibleBooks.43.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "John",
+        "order": 88,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of John was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.43.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Ephesus, or near",
+        "order": 89,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "44": {
+      "name": {
+        "description": "The name of the Bible book of Acts",
+        "key": "bibleBooks.44.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Acts",
+        "order": 90,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Acts was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.44.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Rome",
+        "order": 91,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "45": {
+      "name": {
+        "description": "The name of the Bible book of Romans",
+        "key": "bibleBooks.45.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Romans",
+        "order": 92,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Romans was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.45.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Corinth",
+        "order": 93,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "46": {
+      "name": {
+        "description": "The name of the Bible book of 1 Corinthians",
+        "key": "bibleBooks.46.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "1 Corinthians",
+        "order": 94,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of 1 Corinthians was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.46.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Ephesus",
+        "order": 95,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "47": {
+      "name": {
+        "description": "The name of the Bible book of 2 Corinthians",
+        "key": "bibleBooks.47.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "2 Corinthians",
+        "order": 96,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of 2 Corinthians was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.47.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Macedonia",
+        "order": 97,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "48": {
+      "name": {
+        "description": "The name of the Bible book of Galatians",
+        "key": "bibleBooks.48.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Galatians",
+        "order": 98,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Galatians was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.48.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Corinth or Syrian Antioch",
+        "order": 99,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "49": {
+      "name": {
+        "description": "The name of the Bible book of Ephesians",
+        "key": "bibleBooks.49.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Ephesians",
+        "order": 100,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Ephesians was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.49.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Rome",
+        "order": 101,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "50": {
+      "name": {
+        "description": "The name of the Bible book of Philipians",
+        "key": "bibleBooks.50.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Philipians",
+        "order": 102,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Philipians was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.50.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Rome",
+        "order": 103,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "51": {
+      "name": {
+        "description": "The name of the Bible book of Colossians",
+        "key": "bibleBooks.51.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Colossians",
+        "order": 104,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Colossians was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.51.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Rome",
+        "order": 105,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "52": {
+      "name": {
+        "description": "The name of the Bible book of 1 Thessalonians",
+        "key": "bibleBooks.52.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "1 Thessalonians",
+        "order": 106,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of 1 Thessalonians was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.52.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Corinth",
+        "order": 107,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "53": {
+      "name": {
+        "description": "The name of the Bible book of 2 Thessalonians",
+        "key": "bibleBooks.53.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "2 Thessalonians",
+        "order": 108,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of 2 Thessalonians was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.53.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Corinth",
+        "order": 109,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "54": {
+      "name": {
+        "description": "The name of the Bible book of 1 Timothy",
+        "key": "bibleBooks.54.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "1 Timothy",
+        "order": 110,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of 1 Timothy was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.54.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Macedonia",
+        "order": 111,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "55": {
+      "name": {
+        "description": "The name of the Bible book of 2 Timothy",
+        "key": "bibleBooks.55.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "2 Timothy",
+        "order": 112,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of 2 Timothy was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.55.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Rome",
+        "order": 113,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "56": {
+      "name": {
+        "description": "The name of the Bible book of Titus",
+        "key": "bibleBooks.56.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Titus",
+        "order": 114,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Titus was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.56.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Macedonia (?)",
+        "order": 115,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "57": {
+      "name": {
+        "description": "The name of the Bible book of Philemon",
+        "key": "bibleBooks.57.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Philemon",
+        "order": 116,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Philemon was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.57.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Rome",
+        "order": 117,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "58": {
+      "name": {
+        "description": "The name of the Bible book of Hebrews",
+        "key": "bibleBooks.58.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Hebrews",
+        "order": 118,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Hebrews was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.58.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Rome",
+        "order": 119,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "59": {
+      "name": {
+        "description": "The name of the Bible book of James",
+        "key": "bibleBooks.59.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "James",
+        "order": 120,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of James was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.59.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Jerusalem",
+        "order": 121,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "60": {
+      "name": {
+        "description": "The name of the Bible book of 1 Peter",
+        "key": "bibleBooks.60.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "1 Peter",
+        "order": 122,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of 1 Peter was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.60.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Babylon",
+        "order": 123,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "61": {
+      "name": {
+        "description": "The name of the Bible book of 2 Peter",
+        "key": "bibleBooks.61.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "2 Peter",
+        "order": 124,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of 2 Peter was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.61.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Babylon (?)",
+        "order": 125,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "62": {
+      "name": {
+        "description": "The name of the Bible book of 1 John",
+        "key": "bibleBooks.62.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "1 John",
+        "order": 126,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of 1 John was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.62.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Ephesus, or near",
+        "order": 127,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "63": {
+      "name": {
+        "description": "The name of the Bible book of 2 John",
+        "key": "bibleBooks.63.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "2 John",
+        "order": 128,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of 2 John was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.63.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Ephesus, or near",
+        "order": 129,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "64": {
+      "name": {
+        "description": "The name of the Bible book of 3 John",
+        "key": "bibleBooks.64.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "3 John",
+        "order": 130,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of 3 John was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.64.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Ephesus, or near",
+        "order": 131,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "65": {
+      "name": {
+        "description": "The name of the Bible book of Jude",
+        "key": "bibleBooks.65.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Jude",
+        "order": 132,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Jude was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.65.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Israel (?)",
+        "order": 133,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "66": {
+      "name": {
+        "description": "The name of the Bible book of Revelation",
+        "key": "bibleBooks.66.name",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Revelation",
+        "order": 134,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "whereWritten": {
+        "description": "Where the book of Revelation was written (See table of books of the bible, link below)",
+        "key": "bibleBooks.66.whereWritten",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Patamos",
+        "order": 135,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    }
+  },
+  "buttonsPopup": {
+    "title": {
+      "description": "The title for a popup with buttons for different reading portions. Ex. Genesis 1-3, 1 Chronicles 1:1-3",
+      "key": "buttonsPopup.title",
+      "link": "",
+      "status": "",
+      "value": "Reading Portions",
+      "order": 136,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    }
+  },
+  "createSchedulePopup": {
+    "createSchedule": {
+      "description": "Title for a popup for reading schedule creation.",
+      "key": "createSchedulePopup.createSchedule",
+      "link": "",
+      "status": "",
+      "value": "Create Schedule",
+      "order": 137,
+      "updateDate": "2021-01-02T00:00:00.000Z",
+      "variable": ""
+    },
+    "readingPortionDescPhld": {
+      "description": "Title of the selection input for reading portions description. Below this title they have the input for selecting Article, Chapter, Page, or typing their own description. ",
+      "key": "createSchedulePopup.readingPortionDescPhld",
+      "link": "",
+      "status": "",
+      "value": "Description of reading portion",
+      "order": 138,
+      "updateDate": "2021-01-02T00:00:00.000Z",
+      "variable": ""
+    },
+    "readingPortionDesc": {
+      "article": {
+        "description": "A preset reading portion description for creating a custom schedule based on a publication. If chosen, the user will read a certain amount of ARTICLEs in a publication each day.",
+        "key": "createSchedulePopup.readingPortionDesc.article",
+        "link": "",
+        "status": "",
+        "value": "Article",
+        "order": 139,
+        "variable": "portionDesc",
+        "updateDate": "2021-01-02T00:00:00.000Z"
+      },
+      "chapter": {
+        "description": "A preset reading portion description for creating a custom schedule based on a publication. If chosen, the user will read a certain amount of CHAPTERs in a publication each day.",
+        "key": "createSchedulePopup.readingPortionDesc.chapter",
+        "link": "",
+        "status": "",
+        "value": "Chapter",
+        "order": 140,
+        "variable": "portionDesc",
+        "updateDate": "2021-01-02T00:00:00.000Z"
+      },
+      "page": {
+        "description": "A preset reading portion description for creating a custom schedule based on a publication. If chosen, the user will read a certain amount of PAGEs in a publication each day.",
+        "key": "createSchedulePopup.readingPortionDesc.page",
+        "link": "",
+        "status": "",
+        "value": "Page",
+        "order": 141,
+        "variable": "portionDesc",
+        "updateDate": "2021-01-02T00:00:00.000Z"
+      },
+      "paragraph": {
+        "description": "A preset reading portion description for creating a custom schedule based on a publication. If chosen, the user will read a certain amount of PARAGRAPHs in a publication each day.",
+        "key": "createSchedulePopup.readingPortionDesc.paragraph",
+        "link": "",
+        "status": "",
+        "value": "Paragraph",
+        "order": 142,
+        "variable": "portionDesc",
+        "updateDate": "2021-01-02T00:00:00.000Z"
+      },
+      "title": {
+        "description": "TITLE of an input field for selecting the type of reading portion they would like to use in their custom schedule for a publication. (Article, Page, Chapter, etc.)",
+        "key": "createSchedulePopup.readingPortionDesc.title",
+        "link": "",
+        "status": "",
+        "value": "Reading Portion Description",
+        "order": 145,
+        "updateDate": "2021-01-02T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "numberOfPortions": {
+      "description": "TITLE for a custom schedule creation popup input field. The user will input how many portions (Articles, Chapters, Pages, etc.) are in the publication they are making the schedule for.",
+      "key": "createSchedulePopup.numberOfPortions",
+      "link": "",
+      "status": "",
+      "value": "Number of {{portionDesc}}s",
+      "order": 143,
+      "updateDate": "2021-01-02T00:00:00.000Z",
+      "variable": ""
+    },
+    "numberOfPortionsPhld": {
+      "description": "DESCRIPTION for a custom schedule creation popup input field where the user will input how many portions (Articles, Chapters, Pages, etc.) are in the publication they are making the schedule for.",
+      "key": "createSchedulePopup.numberOfPortionsPhld",
+      "link": "",
+      "status": "",
+      "value": "Total number of {{portionDesc}}s in publication",
+      "order": 144,
+      "updateDate": "2021-01-02T00:00:00.000Z",
+      "variable": ""
+    },
+    "portionsPerDay": {
+      "description": "TITLE for an input where the user will decide how many Articles, Chapters, Pages, etc. they would like to read each day for their schedule.",
+      "key": "createSchedulePopup.portionsPerDay",
+      "link": "",
+      "status": "",
+      "value": "{{portionDesc}}s Per Day",
+      "order": 146,
+      "updateDate": "2021-01-02T00:00:00.000Z",
+      "variable": ""
+    },
+    "portionsPerDayPhld": {
+      "description": "DESCRIPTION for an input where the user will decide how many Articles, Chapters, Pages, etc. they would like to read each day for their schedule.",
+      "key": "createSchedulePopup.portionsPerDayPhld",
+      "link": "",
+      "status": "",
+      "value": "How many {{portionDesc}}s to read each day",
+      "order": 147,
+      "updateDate": "2021-01-02T00:00:00.000Z",
+      "variable": ""
+    },
+    "startingPortion": {
+      "description": "TITLE for an input field where the user will decide which Article, Page, etc. that they will start their schedule from.",
+      "key": "createSchedulePopup.startingPortion",
+      "link": "",
+      "status": "",
+      "value": "Starting {{portionDesc}}",
+      "order": 148,
+      "updateDate": "2021-01-02T00:00:00.000Z",
+      "variable": ""
+    },
+    "startingPortionPhld": {
+      "description": "DESCRIPTION for an input field where the user will decide which Article, Page, etc. that they will start their schedule from.",
+      "key": "createSchedulePopup.startingPortionPhld",
+      "link": "",
+      "status": "",
+      "value": "{{portionDesc}} you would like to start from",
+      "order": 149,
+      "updateDate": "2021-01-02T00:00:00.000Z",
+      "variable": ""
+    },
+    "scheduleName": {
+      "description": "TITLE for an input where the user will decide the name they would like to have as the display for their reading schedule.",
+      "key": "createSchedulePopup.scheduleName",
+      "link": "",
+      "status": "",
+      "value": "Schedule Name",
+      "order": 150,
+      "variable": "scheduleName",
+      "updateDate": "2021-01-02T00:00:00.000Z"
+    },
+    "scheduleDuration": {
+      "description": "TITLE for an input where the user will decide how many years their reading schedule will last for. If they choose 1, then they will finish reading the whole bible 1 year from the creation of the schedule.",
+      "key": "createSchedulePopup.scheduleDuration",
+      "link": "",
+      "status": "",
+      "value": "Schedule Duration",
+      "order": 151,
+      "updateDate": "2021-01-02T00:00:00.000Z",
+      "variable": ""
+    },
+    "scheduleDurPhld": {
+      "description": "DESCRIPTION for an input where the user will decide how many years their reading schedule will last for. If they choose 1, then they will finish reading the whole bible 1 year from the creation of the schedule.",
+      "key": "createSchedulePopup.scheduleDurPhld",
+      "link": "",
+      "status": "",
+      "value": "How many years the schedule should last from start to finish?",
+      "order": 152,
+      "updateDate": "2021-01-02T00:00:00.000Z",
+      "variable": ""
+    },
+    "shouldTrack": {
+      "description": "TITLE for a check box. If checked, the schedule will keep track of the date that each reading portion should be completed. If unchecked it will not display any dates or go out of date.",
+      "key": "createSchedulePopup.shouldTrack",
+      "link": "",
+      "status": "",
+      "value": "Track reading dates?",
+      "order": 153,
+      "updateDate": "2021-01-02T00:00:00.000Z",
+      "variable": ""
+    },
+    "startingVerse": {
+      "description": "TITLE for a set of inputs where the user can decide which verse of the bible to start their reading schedule from.",
+      "key": "createSchedulePopup.startingVerse",
+      "link": "",
+      "status": "",
+      "value": "Starting Verse",
+      "order": 154,
+      "updateDate": "2021-01-02T00:00:00.000Z",
+      "variable": ""
+    },
+    "unfinished": {
+      "description": "A warning that will be displayed to the user if they do not fill out all of the required values in the create schedule popup, or they have used incorrect values",
+      "key": "createSchedulePopup.unfinished",
+      "link": "",
+      "status": "",
+      "value": "Please fill in all of the required fields with valid values to make a schedule",
+      "order": 155,
+      "updateDate": "2021-01-02T00:00:00.000Z",
+      "variable": ""
+    }
+  },
+  "date": {
+    "approxDesc": {
+      "about": {
+        "description": "DESCRIPTION for an approximate date. This one indicates that the event most likely took place sometime near a certain year(Ex. About 539 B.C.E.) See link below for examples. See explanation of 'a.' 'c.' and 'b.' at bottom of page.",
+        "key": "date.approxDesc.about",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "About",
+        "order": 156,
+        "variable": "about",
+        "updateDate": "2021-01-01T00:00:00.000Z"
+      },
+      "after": {
+        "description": "DESCRIPTION for an approximate date. This one indicates that the event definitely took place after a certain year (Ex. After 539 B.C.E.) See link below for examples. See explanation of 'a.' 'c.' and 'b.' at bottom of page.",
+        "key": "date.approxDesc.after",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "After",
+        "order": 157,
+        "variable": "after",
+        "updateDate": "2021-01-01T00:00:00.000Z"
+      },
+      "before": {
+        "description": "DESCRIPTION for an approximate date. This one indicates that the event definitely took place before a certain year (Ex. Before 539 B.C.E.) See link below for examples. See explanation of 'a.' 'c.' and 'b.' at bottom of page.",
+        "key": "date.approxDesc.before",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Before",
+        "order": 158,
+        "variable": "before",
+        "updateDate": "2021-01-01T00:00:00.000Z"
+      },
+      "approxDate": {
+        "description": "Ordering for a description of a date. For instance with use in dates of events in the bible, or when bible books were written. You can go to the link below and change the language to your translation language to see examples. (Ex. After 607 B.C.E, Before 30 C.E.)",
+        "key": "date.approxDesc.approxDate",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "{{about}}{{after}}{{before}} {{date}}",
+        "order": 162,
+        "variable": "startDate",
+        "updateDate": "2021-01-01T00:00:00.000Z"
+      }
+    },
+    "bce": {
+      "description": "Indicator for an ancient date. (Ex. 539 B.C.E)",
+      "key": "date.bce",
+      "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+      "status": "",
+      "value": "B.C.E.",
+      "order": 159,
+      "variable": "bceOrCe",
+      "updateDate": "2021-01-01T00:00:00.000Z"
+    },
+    "ce": {
+      "description": "Indicator for an ancient date. (Ex. 98 C.E)",
+      "key": "date.ce",
+      "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+      "status": "",
+      "value": "C.E.",
+      "order": 160,
+      "variable": "bceOrCe",
+      "updateDate": "2021-01-01T00:00:00.000Z"
+    },
+    "ancientDate": {
+      "description": "The ordering of an ancient date's format. (Ex. 539 B.C.E. or 98 C.E.)",
+      "key": "date.ancientDate",
+      "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+      "status": "",
+      "value": "{{year}} {{bceOrCe}}",
+      "order": 161,
+      "variable": "date",
+      "updateDate": "2021-01-01T00:00:00.000Z"
+    },
+    "dateSpan": {
+      "description": "Format for a span of dates. (Ex. 607 B.C.E - 537 B.C.E.)",
+      "key": "date.dateSpan",
+      "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+      "status": "",
+      "value": "{{startDate}} - {{endDate}}",
+      "order": 163,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "specialCases": {
+      "1": {
+        "description": "Time covered description for Genesis",
+        "key": "date.specialCases.1",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "\"In the begining\" to {{endYear}}",
+        "order": 164,
+        "updateDate": "2021-01-02T00:00:00.000Z",
+        "variable": ""
+      },
+      "3": {
+        "description": "Time covered description for Leviticus",
+        "key": "date.specialCases.3",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "1 Month in {{endYear}}",
+        "order": 165,
+        "updateDate": "2021-01-02T00:00:00.000Z",
+        "variable": ""
+      },
+      "5": {
+        "description": "Time covered description for Deuteronomy",
+        "key": "date.specialCases.5",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "2 Months in {{endYear}}",
+        "order": 166,
+        "updateDate": "2021-01-02T00:00:00.000Z",
+        "variable": ""
+      },
+      "8": {
+        "description": "Time covered description for Judges",
+        "key": "date.specialCases.8",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "11 Years of Judges rule from about {{startYear}} to {{endYear}}",
+        "order": 167,
+        "updateDate": "2021-01-02T00:00:00.000Z",
+        "variable": ""
+      },
+      "13": {
+        "description": "Time covered description for 1 Chronicles",
+        "key": "date.specialCases.13",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "After 1 Chronicles 9:44: about {{startYear}} to {{endYear}}",
+        "order": 168,
+        "updateDate": "2021-01-02T00:00:00.000Z",
+        "variable": ""
+      },
+      "18": {
+        "description": "Time covered description for Job",
+        "key": "date.specialCases.18",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "Over 140 years between {{startYear}} and {{endYear}}",
+        "order": 169,
+        "updateDate": "2021-01-02T00:00:00.000Z",
+        "variable": ""
+      },
+      "37": {
+        "description": "Time covered description for Haggai",
+        "key": "date.specialCases.37",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "112 days in {{endYear}}",
+        "order": 170,
+        "updateDate": "2021-01-02T00:00:00.000Z",
+        "variable": ""
+      },
+      "43": {
+        "description": "Time covered description for John",
+        "key": "date.specialCases.43",
+        "link": "https://www.jw.org/en/library/bible/nwt/books-of-the-bible-list/",
+        "status": "",
+        "value": "After prologue, {{startYear}} to {{endYear}}",
+        "order": 171,
+        "updateDate": "2021-01-02T00:00:00.000Z",
+        "variable": ""
+      }
+    }
+  },
+  "homePage": {
+    "emptyList": {
+      "description": "Text that will be displayed if there are no more reading items on the home page",
+      "key": "homePage.emptyList",
+      "link": "",
+      "status": "",
+      "value": "You have no more readings for the day",
+      "order": 172,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "title": {
+      "description": "Title for the home page",
+      "key": "homePage.title",
+      "link": "",
+      "status": "",
+      "value": "Home",
+      "order": 173,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    }
+  },
+  "links": {
+    "languageTag": {
+      "description": "",
+      "key": "links.languageTag",
+      "link": "",
+      "status": "",
+      "value": "en",
+      "order": 174,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "hasStudyBible": {
+      "description": "",
+      "key": "links.hasStudyBible",
+      "link": "",
+      "status": "",
+      "value": true,
+      "order": 175,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "finderLocale": {
+      "description": "",
+      "key": "links.finderLocale",
+      "link": "",
+      "status": "",
+      "value": "E",
+      "order": 176,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "www": {
+      "bible": {
+        "description": "",
+        "key": "links.www.bible",
+        "link": "",
+        "status": "",
+        "value": "bible",
+        "order": 177,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "books": {
+        "description": "",
+        "key": "links.www.books",
+        "link": "",
+        "status": "",
+        "value": "books",
+        "order": 178,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "how-to-read-the-bible": {
+        "description": "",
+        "key": "links.www.how-to-read-the-bible",
+        "link": "",
+        "status": "",
+        "value": "how-to-read-the-bible",
+        "order": 179,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "introduction": {
+        "description": "",
+        "key": "links.www.introduction",
+        "link": "",
+        "status": "",
+        "value": "introduction",
+        "order": 180,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "library": {
+        "description": "",
+        "key": "links.www.library",
+        "link": "",
+        "status": "",
+        "value": "library",
+        "order": 181,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "wol": {
+      "lp-e": {
+        "description": "",
+        "key": "links.wol.lp-e",
+        "link": "",
+        "status": "",
+        "value": "lp-e",
+        "order": 182,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "r1": {
+        "description": "",
+        "key": "links.wol.r1",
+        "link": "",
+        "status": "",
+        "value": "r1",
+        "order": 183,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    }
+  },
+  "missingTranslation": {
+    "description": "",
+    "key": "missingTranslation",
+    "link": "",
+    "status": "",
+    "value": "Translation doesn't exist",
+    "order": 184,
+    "updateDate": "2021-01-01T00:00:00.000Z",
+    "variable": ""
+  },
+  "morePage": {
+    "title": {
+      "description": "TITLE for the More page",
+      "key": "morePage.title",
+      "link": "",
+      "status": "",
+      "value": "More",
+      "order": 185,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    }
+  },
+  "notification": {
+    "baseTitle": {
+      "description": "A title for a notification reminding the user to do their reading today",
+      "key": "notification.baseTitle",
+      "link": "",
+      "status": "",
+      "value": "Daily Reading",
+      "order": 186,
+      "variable": "notificationName",
+      "updateDate": "2021-01-01T00:00:00.000Z"
+    },
+    "bigText": {
+      "description": "Text that will show up on a notification",
+      "key": "notification.bigText",
+      "link": "",
+      "status": "",
+      "value": "Let's see what you have left to do today",
+      "order": 187,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "message": {
+      "description": "Small text that will show up on a notification",
+      "key": "notification.message",
+      "link": "",
+      "status": "",
+      "value": "Let's do it",
+      "order": 188,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    }
+  },
+  "notificationsPage": {
+    "title": {
+      "description": "TITLE for the Notifications page",
+      "key": "notificationsPage.title",
+      "link": "",
+      "status": "",
+      "value": "Notifications",
+      "order": 189,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "notificationName": {
+      "description": "LABEL for an input field where the user will input the name to be displayed for a notification they are creating",
+      "key": "notificationsPage.notificationName",
+      "link": "",
+      "status": "",
+      "value": "Notification Name",
+      "order": 190,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "notificationPopupTitle": {
+      "description": "TITLE for the popup used to create a new notification",
+      "key": "notificationsPage.notificationPopupTitle",
+      "link": "",
+      "status": "",
+      "value": "Create New Notification",
+      "order": 191,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    }
+  },
+  "notificationPage": {
+    "deleteNotificationMessage": {
+      "description": "A warning that will show up so that the user can confirm whether or not they truly want to delete the notification they selected to delete.",
+      "key": "notificationPage.deleteNotificationMessage",
+      "link": "",
+      "status": "",
+      "value": "Are you sure you want to delete \"{{notificationName}}\" notification?",
+      "order": 192,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    }
+  },
+  "old": {
+    "description": "A value to be used to tell the user that an item (reading schedule, reminder, etc.) is not the most recent version. Perhaps because it was recreated.\n\nExample: A user has a schedule named \"Daily Reading\" they recreate the schedule, now that original schedule will be renamed \"Daily Reading (Old)\" so that they can refer back to it if there were any mistakes in schedule recreation.",
+    "key": "old",
+    "link": "",
+    "order": 193,
+    "status": "",
+    "updateDate": "2021-05-04T16:00:00.000Z",
+    "value": "Old",
+    "variable": ""
+  },
+  "openJWLibrary": {
+    "description": "Text that will appear on a button. When the user presses this button it will open the JW Library application.",
+    "key": "openJWLibrary",
+    "link": "",
+    "status": "",
+    "value": "Open JW Library",
+    "order": 194,
+    "updateDate": "2021-01-01T00:00:00.000Z",
+    "variable": ""
+  },
+  "ordinal": {
+    "0": {
+      "description": "The typical ordinal value for numbers ending with \"0\" (Ex. 10th, 20th, 30th, etc.). This does not include special cases. See below for special cases.",
+      "key": "ordinal.0",
+      "link": "",
+      "status": "",
+      "value": "th",
+      "order": 195,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "1": {
+      "description": "The typical ordinal value for numbers ending with \"1\" (Ex. 1st, 21st, 31st, etc.). This does not include special cases. See below for special cases.",
+      "key": "ordinal.1",
+      "link": "",
+      "status": "",
+      "value": "st",
+      "order": 196,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "2": {
+      "description": "The typical ordinal value for numbers ending with \"2\" (Ex. 2nd, 22nd, 32nd, etc.). This does not include special cases. See below for special cases.",
+      "key": "ordinal.2",
+      "link": "",
+      "status": "",
+      "value": "nd",
+      "order": 197,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "3": {
+      "description": "The typical ordinal value for numbers ending with \"3\" (Ex. 3rd, 23rd, 33rd, etc.). This does not include special cases. See below for special cases.",
+      "key": "ordinal.3",
+      "link": "",
+      "status": "",
+      "value": "rd",
+      "order": 198,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "4": {
+      "description": "The typical ordinal value for numbers ending with \"4\" (Ex. 4th, 14th, 24th, etc.). This does not include special cases. See below for special cases.",
+      "key": "ordinal.4",
+      "link": "",
+      "status": "",
+      "value": "th",
+      "order": 199,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "5": {
+      "description": "The typical ordinal value for numbers ending with \"5\" (Ex. 5th, 15th, 25th, etc.). This does not include special cases. See below for special cases.",
+      "key": "ordinal.5",
+      "link": "",
+      "status": "",
+      "value": "th",
+      "order": 200,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "6": {
+      "description": "The typical ordinal value for numbers ending with \"6\" (Ex. 6th, 16th, 26th, etc.). This does not include special cases. See below for special cases.",
+      "key": "ordinal.6",
+      "link": "",
+      "status": "",
+      "value": "th",
+      "order": 201,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "7": {
+      "description": "The typical ordinal value for numbers ending with \"7\" (Ex. 7th, 17th, 27th, etc.). This does not include special cases. See below for special cases.",
+      "key": "ordinal.7",
+      "link": "",
+      "status": "",
+      "value": "th",
+      "order": 202,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "8": {
+      "description": "The typical ordinal value for numbers ending with \"8\" (Ex. 8th, 18th, 28th, etc.). This does not include special cases. See below for special cases.",
+      "key": "ordinal.8",
+      "link": "",
+      "status": "",
+      "value": "th",
+      "order": 203,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "9": {
+      "description": "The typical ordinal value for numbers ending with \"9\" (Ex. 9th, 19th, 29th, etc.). This does not include special cases. See below for special cases.",
+      "key": "ordinal.9",
+      "link": "",
+      "status": "",
+      "value": "th",
+      "order": 204,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "after": {
+      "description": "",
+      "key": "ordinal.after",
+      "link": "",
+      "status": "",
+      "value": true,
+      "order": 205,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "special": {
+      "count": {
+        "description": "",
+        "key": "ordinal.special.count",
+        "link": "",
+        "status": "",
+        "value": 0,
+        "order": 206,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    }
+  },
+  "prompts": {
+    "setNotification": {
+      "description": "A LABEL for an input field where the user will decide what time of day they would like their notification to reset at.",
+      "key": "prompts.setNotification",
+      "link": "",
+      "status": "",
+      "value": "Set notification for: ",
+      "order": 207,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "nameTaken": {
+      "description": "A warning which will pop up if the user picks a name for a schedule, reminder, notification, etc which they have already used.",
+      "key": "prompts.nameTaken",
+      "link": "",
+      "status": "",
+      "value": "Please select a name you haven't used",
+      "order": 208,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    }
+  },
+  "readingRemindersPopup": {
+    "readingReminders": {
+      "description": "A TITLE for a popup which contains reminders for a user before they start reading.",
+      "key": "readingRemindersPopup.readingReminders",
+      "link": "",
+      "status": "",
+      "value": "Reading Reminders",
+      "order": 209,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "heading0": {
+      "description": "A heading for the reading reminders popup. (See link below for source material)",
+      "key": "readingRemindersPopup.heading0",
+      "link": "https://wol.jw.org/en/wol/d/r1/lp-e/2017006#h=4",
+      "status": "",
+      "value": "Create the right surroundings",
+      "order": 210,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "body0-1": {
+      "description": "A paragraph for the reading reminders popup. (See link below for source material)",
+      "key": "readingRemindersPopup.body0-1",
+      "link": "https://wol.jw.org/en/wol/d/r1/lp-e/2017006#h=4",
+      "status": "",
+      "value": "Find a location that is quiet and free from distractions",
+      "order": 211,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "body0-2": {
+      "description": "A paragraph for the reading reminders popup.",
+      "key": "readingRemindersPopup.body0-2",
+      "link": "",
+      "status": "",
+      "value": "(Perhaps put your phone into silent mode)",
+      "order": 212,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "heading1": {
+      "description": "A heading for the reading reminders popup. (See link below for source material)",
+      "key": "readingRemindersPopup.heading1",
+      "link": "https://wol.jw.org/en/wol/d/r1/lp-e/2017006#h=6",
+      "status": "",
+      "value": "Pray before you read",
+      "order": 213,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "body1-1": {
+      "description": "A paragraph for the reading reminders popup. (See link below for source material)",
+      "key": "readingRemindersPopup.body1-1",
+      "link": "https://wol.jw.org/en/wol/d/r1/lp-e/2012049#h=3",
+      "status": "",
+      "value": "Ask Jehovah to put you in the proper frame of mind and to give you his Holy Spirit to help you understand and apply what you read.",
+      "order": 214,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "heading2": {
+      "description": "A heading for the reading reminders popup. (See link below for source material)",
+      "key": "readingRemindersPopup.heading2",
+      "link": "https://wol.jw.org/en/wol/d/r1/lp-e/2012049#h=4",
+      "status": "",
+      "value": "Meditate on what you read",
+      "order": 215,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "body2-1": {
+      "description": "A paragraph for the reading reminders popup. (See link below for source material)",
+      "key": "readingRemindersPopup.body2-1",
+      "link": "https://wol.jw.org/en/wol/d/r1/lp-e/2017006#h=7",
+      "status": "",
+      "value": "Don’t rush, read to understand.",
+      "order": 216,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "subheading2-1": {
+      "description": "A sub-heading for the reading reminders popup. (See link below for source material)",
+      "key": "readingRemindersPopup.subheading2-1",
+      "link": "https://wol.jw.org/en/wol/d/r1/lp-e/2016364#h=16",
+      "status": "",
+      "value": "You could ask these questions:",
+      "order": 217,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "body2-2": {
+      "description": "A paragraph for the reading reminders popup. (See link below for source material)",
+      "key": "readingRemindersPopup.body2-2",
+      "link": "https://www.jw.org/en/library/bible/study-bible/introduction/how-to-read-the-bible",
+      "status": "",
+      "value": "What does this tell me about Jehovah God?",
+      "order": 218,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "body2-3": {
+      "description": "A paragraph for the reading reminders popup. (See link below for source material)",
+      "key": "readingRemindersPopup.body2-3",
+      "link": "https://www.jw.org/en/library/bible/study-bible/introduction/how-to-read-the-bible",
+      "status": "",
+      "value": "How does this section of the Scriptures contribute to the Bible’s message?",
+      "order": 219,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "body2-4": {
+      "description": "A paragraph for the reading reminders popup. (See link below for source material)",
+      "key": "readingRemindersPopup.body2-4",
+      "link": "https://www.jw.org/en/library/bible/study-bible/introduction/how-to-read-the-bible",
+      "status": "",
+      "value": "How can I apply this in my life?",
+      "order": 220,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "body2-5": {
+      "description": "A paragraph for the reading reminders popup. (See link below for source material)",
+      "key": "readingRemindersPopup.body2-5",
+      "link": "https://www.jw.org/en/library/bible/study-bible/introduction/how-to-read-the-bible",
+      "status": "",
+      "value": "How can I use these verses to help others?",
+      "order": 221,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "subheading2-2": {
+      "description": "A sub-heading for the reading reminders popup. (See link below for source material)",
+      "key": "readingRemindersPopup.subheading2-2",
+      "link": "https://wol.jw.org/en/wol/d/r1/lp-e/202018087#h=4",
+      "status": "",
+      "value": "Imagine yourself in the scene:",
+      "order": 222,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "body2-6": {
+      "description": "A paragraph for the reading reminders popup. (See link below for source material)",
+      "key": "readingRemindersPopup.body2-6",
+      "link": "https://wol.jw.org/en/wol/d/r1/lp-e/202018087#h=4",
+      "status": "",
+      "value": "What would you see, hear, and smell?",
+      "order": 223,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "body2-7": {
+      "description": "A paragraph for the reading reminders popup. (See link below for source material)",
+      "key": "readingRemindersPopup.body2-7",
+      "link": "https://wol.jw.org/en/wol/d/r1/lp-e/202018087#h=4",
+      "status": "",
+      "value": "What may be the feelings of those involved?",
+      "order": 224,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "subheading2-3": {
+      "description": "A sub-heading for the reading reminders popup. (See link below for source material)",
+      "key": "readingRemindersPopup.subheading2-3",
+      "link": "https://wol.jw.org/en/wol/d/r1/lp-e/2016364#h=20",
+      "status": "",
+      "value": "Do research in order to:",
+      "order": 225,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "body2-8": {
+      "description": "A paragraph for the reading reminders popup. (See link below for source material)",
+      "key": "readingRemindersPopup.body2-8",
+      "link": "https://wol.jw.org/en/wol/d/r1/lp-e/2016364#h=20",
+      "status": "",
+      "value": "Understand the reading portion’s context.",
+      "order": 226,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "body2-9": {
+      "description": "A paragraph for the reading reminders popup. (See link below for source material)",
+      "key": "readingRemindersPopup.body2-9",
+      "link": "https://wol.jw.org/en/wol/d/r1/lp-e/2016364#h=20",
+      "status": "",
+      "value": "Understand difficult concepts clearly.",
+      "order": 227,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "heading3": {
+      "description": "A heading for the reading reminders popup. (See link below for source material)",
+      "key": "readingRemindersPopup.heading3",
+      "link": "https://wol.jw.org/en/wol/d/r1/lp-e/2012049#h=5",
+      "status": "",
+      "value": "Apply what you read",
+      "order": 228,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "body3-1": {
+      "description": "A paragraph for the reading reminders popup. (See link below for source material)",
+      "key": "readingRemindersPopup.body3-1",
+      "link": "https://wol.jw.org/en/wol/d/r1/lp-e/2012049#h=5",
+      "status": "",
+      "value": "If we see the practical value of an activity, we benefit more from it.",
+      "order": 229,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "body3-2": {
+      "description": "A paragraph for the reading reminders popup. (See link below for source material)",
+      "key": "readingRemindersPopup.body3-2",
+      "link": "https://wol.jw.org/en/wol/d/r1/lp-e/2012049#h=5",
+      "status": "",
+      "value": "We need to take action to apply what we learned in our life and understand how we can use what we learned to help others.",
+      "order": 230,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "subheading3-1": {
+      "description": "A sub-heading for the reading reminders popup.",
+      "key": "readingRemindersPopup.subheading3-1",
+      "link": "",
+      "status": "",
+      "value": "Reminders derived from:",
+      "order": 231,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "body3-3": {
+      "description": "A paragraph for the reading reminders popup.",
+      "key": "readingRemindersPopup.body3-3",
+      "link": "",
+      "status": "",
+      "value": "Please go to those links to get a deeper understanding of the thoughts expressed",
+      "order": 232,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    }
+  },
+  "readingInfoPopup": {
+    "readingInfo": {
+      "description": "TITLE for a popup which will show information about the currently selected reading portion. It will display the year and where the bible book, who wrote it, etc.",
+      "key": "readingInfoPopup.readingInfo",
+      "link": "",
+      "status": "",
+      "value": "Reading Info",
+      "order": 233,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "readingPortion": {
+      "description": "LABEL for a string of text that describes the reading portion. (Ex. Genesis 1-3)",
+      "key": "readingInfoPopup.readingPortion",
+      "link": "",
+      "status": "",
+      "value": "Reading Portion",
+      "order": 234,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "timeCovered": {
+      "description": "LABEL for a string of text which will say the time covered for the reading portion or bible book",
+      "key": "readingInfoPopup.timeCovered",
+      "link": "",
+      "status": "",
+      "value": "Time Covered",
+      "order": 235,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "whereWritten": {
+      "description": "LABEL for a string of text which will say where the bible book for the current reading portion was written.",
+      "key": "readingInfoPopup.whereWritten",
+      "link": "",
+      "status": "",
+      "value": "Where Written",
+      "order": 236,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "whenWritten": {
+      "description": "LABEL for a string of text which will say when the bible book for the current reading portion was written.",
+      "key": "readingInfoPopup.whenWritten",
+      "link": "",
+      "status": "",
+      "value": "When Written",
+      "order": 237,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "writers": {
+      "description": "LABEL for a string of text which will say who wrote the current portion of the Bible related to the user's reading.",
+      "key": "readingInfoPopup.writers",
+      "link": "",
+      "status": "",
+      "value": "Writer(s)",
+      "order": 238,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    }
+  },
+  "readingSchedules": {
+    "description": "Text to be a title for a page of reading schedules",
+    "key": "readingSchedules",
+    "link": "",
+    "status": "",
+    "value": "Reading Schedules",
+    "order": 239,
+    "updateDate": "2021-01-01T00:00:00.000Z",
+    "variable": ""
+  },
+  "reminders": {
+    "completeReminderMessage": {
+      "description": "A message that will appear when a user clicks on a reminder on the home page asking them to confirm that they wish to mark it completed",
+      "key": "reminders.completeReminderMessage",
+      "link": "",
+      "order": 240,
+      "status": "",
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "value": "Are you sure you want to mark reminder \"{{reminderName}}\" complete?",
+      "variable": ""
+    },
+    "dailyReading": {
+      "description": "Will be a title for a reminder",
+      "key": "reminders.dailyReading",
+      "link": "",
+      "status": "",
+      "value": "Daily Reading",
+      "order": 241,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "dailyText": {
+      "description": "A preset reminder that will be created automatically for the user which they can turn on to remind them daily to read their daily text from examining the scriptures daily.",
+      "key": "reminders.dailyText",
+      "link": "",
+      "status": "",
+      "value": "Daily Text",
+      "order": 242,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "midweekMeetingStudy": {
+      "description": "A preset reminder that will be created automatically for the user which they can turn on to remind them weekly on a certain day to complete their midweek meeting study.",
+      "key": "reminders.midweekMeetingStudy",
+      "link": "",
+      "status": "",
+      "value": "Midweek Meeting Study",
+      "order": 243,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "reminder": {
+      "description": "Description of what a reminder is. Could be used as a title for reminders so that users know where to go to adjust them",
+      "key": "reminders.reminder",
+      "link": "",
+      "status": "",
+      "value": "Reminder",
+      "order": 244,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "weekendMeetingStudy": {
+      "description": "A preset reminder that will be created automatically for the user which they can turn on to remind them weekly on a certain day to complete their weekend meeting study.",
+      "key": "reminders.weekendMeetingStudy",
+      "link": "",
+      "status": "",
+      "value": "Weekend Meeting Study",
+      "order": 245,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "weeklyReading": {
+      "title": {
+        "description": "A title to describe what the schedule is. A weekly reading schedule. It is based off of the reading schedule for the current week according to the life and ministry meeting workbook.",
+        "key": "reminders.weeklyReading.title",
+        "link": "",
+        "status": "",
+        "value": "Weekly Reading",
+        "order": 246,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "showDaily": {
+        "description": "LABEL for a toggle/checkbox where a user can decide whether they want each individual day of the weekly reading to show on their home page or just the weekly reading button.",
+        "key": "reminders.weeklyReading.showDaily",
+        "link": "",
+        "status": "",
+        "value": "Show daily portion of weekly reading",
+        "order": 247,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    }
+  },
+  "frequencies": {
+    "daily": {
+      "description": "A selection value to be used for items that the user wants to repeat every DAY",
+      "key": "frequencies.daily",
+      "link": "",
+      "status": "",
+      "value": "Daily",
+      "order": 248,
+      "variable": "desc",
+      "updateDate": "2021-01-01T00:00:00.000Z"
+    },
+    "weekly": {
+      "description": "A selection value to be used for items that the user wants to repeat every WEEK",
+      "key": "frequencies.weekly",
+      "link": "",
+      "status": "",
+      "value": "Weekly",
+      "order": 249,
+      "variable": "desc",
+      "updateDate": "2021-01-01T00:00:00.000Z"
+    },
+    "monthly": {
+      "description": "A selection value to be used for items that the user wants to repeat every MONTH",
+      "key": "frequencies.monthly",
+      "link": "",
+      "status": "",
+      "value": "Monthly",
+      "order": 250,
+      "variable": "desc",
+      "updateDate": "2021-01-01T00:00:00.000Z"
+    },
+    "never": {
+      "description": "A selection value to be used for items that the user wants to NEVER repeat",
+      "key": "frequencies.never",
+      "link": "",
+      "status": "",
+      "value": "Never",
+      "order": 251,
+      "variable": "desc",
+      "updateDate": "2021-01-01T00:00:00.000Z"
+    }
+  },
+  "remindersPage": {
+    "completed": {
+      "description": "A label for a checkbox which describes whether a certain reminder was completed according to when it is set to reset \"Completed (this month, this week, today)\"",
+      "key": "remindersPage.completed",
+      "link": "",
+      "status": "",
+      "value": "Completed {{desc}}",
+      "order": 252,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "deleteReminderMessage": {
+      "description": "A message which will show up in a popup asking the user to confirm deleting the selected reminder on the reminders page",
+      "key": "remindersPage.deleteReminderMessage",
+      "link": "",
+      "order": 253,
+      "status": "",
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "value": "Are you sure you want to delete \"{{reminderName}}\" reminder?",
+      "variable": ""
+    },
+    "every": {
+      "description": "A LABEL for an input where the user can decide when they would like their reminder to reset. (Ex. Every: 1 st of the month for a monthly schedule, Every Tuesday for a weekly schedule, etc.)",
+      "key": "remindersPage.every",
+      "link": "",
+      "status": "",
+      "value": "Every: ",
+      "order": 254,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "name": {
+      "description": "LABEL for an input field where the user can input the name they would like to have displayed for the reminder they are creating or have already created.",
+      "key": "remindersPage.name",
+      "link": "",
+      "status": "",
+      "value": "Name: ",
+      "order": 255,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "reminderPopupTitle": {
+      "description": "TITLE for a popup in which the user can create a new reminder that will show up like a reading portion on their home screen.",
+      "key": "remindersPage.reminderPopupTitle",
+      "link": "",
+      "status": "",
+      "value": "Create New Reminder",
+      "order": 256,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "repeats": {
+      "description": "LABEL for a selection input where the user can select how frequently they would like their reminder to repeat. Daily, Weekly, Monthly, Never.",
+      "key": "remindersPage.repeats",
+      "link": "",
+      "status": "",
+      "value": "Repeats: ",
+      "order": 257,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "title": {
+      "description": "TITLE for the page where a user can manage and create reminders.",
+      "key": "remindersPage.title",
+      "link": "",
+      "status": "",
+      "value": "Reminders",
+      "order": 258,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    }
+  },
+  "schedules": {
+    "description": "Title for the Schedules page which lists all of the reading schedules a user has created",
+    "key": "schedules",
+    "link": "",
+    "status": "",
+    "value": "Schedules",
+    "order": 259,
+    "updateDate": "2021-01-01T00:00:00.000Z",
+    "variable": ""
+  },
+  "schedulePage": {
+    "deleteScheduleMessage": {
+      "description": "A warning message that will appear when a user tries to delete a reading schedule they have created to make sure they really want to delete it.",
+      "key": "schedulePage.deleteScheduleMessage",
+      "link": "",
+      "status": "",
+      "value": "Are you sure you want to delete \"{{scheduleName}}\" schedule?",
+      "order": 260,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "hideCompleted": {
+      "description": "LABEL for a checkbox the user can click which will hide all reading portions which are already completed",
+      "key": "schedulePage.hideCompleted",
+      "link": "",
+      "status": "",
+      "value": "Hide Completed",
+      "order": 261,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    }
+  },
+  "scheduleTransactions": {
+    "adjustedVersePrompt": {
+      "description": "A warning message to let the user know that the start verse they tried to use in schedule creation is not a real verse, therefore their schedule was adjusted to start from the nearest verse.",
+      "key": "scheduleTransactions.adjustedVersePrompt",
+      "link": "",
+      "status": "",
+      "value": "Adjusted start verse from \"{{initialBibleBook}} {{initialChapter}}:{{initialVerse}}\" to \"{{startBibleBook}} {{startChapter}}:{{startVerse}}\" because initial request was out of bounds.",
+      "order": 262,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    }
+  },
+  "scheduleTypePopup": {
+    "scheduleType": {
+      "description": "LABEL to explain what the buttons below are referring to, different reading orders or types they can use to create their schedule.",
+      "key": "scheduleTypePopup.scheduleType",
+      "link": "",
+      "status": "",
+      "value": "Schedule Type",
+      "order": 263,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "sequential": {
+      "description": "TITLE on a button the user can press to proceed with creating a sequential schedule.",
+      "key": "scheduleTypePopup.sequential",
+      "link": "",
+      "status": "",
+      "value": "Sequential",
+      "order": 264,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "sequentialDescription": {
+      "description": "DESCRIPTION of what a sequential schedule is.",
+      "key": "scheduleTypePopup.sequentialDescription",
+      "link": "",
+      "status": "",
+      "value": "Read the bible from Genesis to Revelation",
+      "order": 265,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "chronological": {
+      "description": "TITLE on a button the user can press to proceed with creating a chronological schedule.",
+      "key": "scheduleTypePopup.chronological",
+      "link": "",
+      "status": "",
+      "value": "Chronological",
+      "order": 266,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "chronologicalDescription": {
+      "description": "DESCRIPTION of what a chronological schedule is.",
+      "key": "scheduleTypePopup.chronologicalDescription",
+      "link": "",
+      "status": "",
+      "value": "Read the bible in the order in which events occurred. (EXPERIMENTAL: If you find a discrepency please contact me)",
+      "order": 267,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "thematic": {
+      "description": "TITLE on a button the user can press to proceed with creating a thematic schedule.",
+      "key": "scheduleTypePopup.thematic",
+      "link": "",
+      "status": "",
+      "value": "Thematic",
+      "order": 268,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "thematicDescription": {
+      "description": "DESCRIPTION of what a thematic schedule is.",
+      "key": "scheduleTypePopup.thematicDescription",
+      "link": "",
+      "status": "",
+      "value": "Each day, read from a different section of the Bible in a weekly cycle: Day 1 - The Law, 2 - History, 3 - Psalms, 4 - Poetry, 5 - Prophecy, 6 - Gospels, 7 - Letters",
+      "order": 269,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "custom": {
+      "description": "TITLE on a button the user can press to proceed with creating a custom schedule.",
+      "key": "scheduleTypePopup.custom",
+      "link": "",
+      "status": "",
+      "value": "Custom",
+      "order": 270,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "customDescription": {
+      "description": "DESCRIPTION of what a custom schedule is and what will proceed if the user presses this button.",
+      "key": "scheduleTypePopup.customDescription",
+      "link": "",
+      "status": "",
+      "value": "Create a custom schedule for a publication",
+      "order": 271,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    }
+  },
+  "settingsPage": {
+    "weeklyReadingResetDay": {
+      "description": "LABEL for an input where the user can set which day of the week they would like their weekly reading from the midweek meeting to reset. Usually the day after the midweek meeting.",
+      "key": "settingsPage.weeklyReadingResetDay",
+      "link": "",
+      "status": "",
+      "value": "Day to reset weekly reading:",
+      "order": 272,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "about": {
+      "description": "The title for a button on the settings page which will link to this website",
+      "key": "settingsPage.about",
+      "link": "",
+      "order": 273,
+      "status": "",
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "value": "About",
+      "variable": ""
+    },
+    "contact": {
+      "description": "The title for a button on the settings page which will link to sending an email to the developer",
+      "key": "settingsPage.contact",
+      "link": "",
+      "order": 274,
+      "status": "",
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "value": "Contact",
+      "variable": ""
+    },
+    "title": {
+      "description": "TITLE for the Settings page",
+      "key": "settingsPage.title",
+      "link": "",
+      "status": "",
+      "value": "Settings",
+      "order": 275,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "version": {
+      "description": "The title for a section on the settings page which will display the current version of the app they have installed (Ex. 1.7.3)",
+      "key": "settingsPage.version",
+      "link": "",
+      "order": 276,
+      "status": "",
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "value": "Version",
+      "variable": ""
+    }
+  },
+  "today": {
+    "description": "A LABEL for the home page for reading items that are to be read during the current day. (Today, This Week, This Month, Other)",
+    "key": "today",
+    "link": "",
+    "status": "",
+    "value": "Today",
+    "order": 277,
+    "updateDate": "2021-01-01T00:00:00.000Z",
+    "variable": ""
+  },
+  "thisWeek": {
+    "description": "A LABEL for the home page for reading items that are to be read during the current week. (Today, This Week, This Month, Other)",
+    "key": "thisWeek",
+    "link": "",
+    "status": "",
+    "value": "This Week",
+    "order": 278,
+    "updateDate": "2021-01-02T00:00:00.000Z",
+    "variable": ""
+  },
+  "thisMonth": {
+    "description": "A LABEL for the home page for reading items that are to be read during the current month. (Today, This Week, This Month, Other)",
+    "key": "thisMonth",
+    "link": "",
+    "status": "",
+    "value": "This Month",
+    "order": 279,
+    "updateDate": "2021-01-01T00:00:00.000Z",
+    "variable": ""
+  },
+  "other": {
+    "description": "A LABEL for the home page for reading items that do not track their completion date. (Today, This Week, This Month, Other)",
+    "key": "other",
+    "link": "",
+    "status": "",
+    "value": "Other",
+    "order": 280,
+    "updateDate": "2021-01-01T00:00:00.000Z",
+    "variable": ""
+  },
+  "updateDate": {
+    "description": "",
+    "key": "updateDate",
+    "link": "",
+    "order": 281,
+    "status": "",
+    "updateDate": "2021-05-05T11:41:37.377Z",
+    "value": "2021-05-05T11:41:37.377Z",
+    "variable": ""
+  },
+  "versePicker": {
+    "chapterAbrev": {
+      "description": "An abbreviated form of the word chapter. Something one or 2 characters long.",
+      "key": "versePicker.chapterAbrev",
+      "link": "",
+      "status": "",
+      "value": "ch",
+      "order": 282,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    },
+    "verseAbrev": {
+      "description": "An abbreviated form of the word verse. Something one or 2 characters long.",
+      "key": "versePicker.verseAbrev",
+      "link": "",
+      "status": "",
+      "value": "v",
+      "order": 283,
+      "updateDate": "2021-01-01T00:00:00.000Z",
+      "variable": ""
+    }
+  },
+  "warning": {
+    "description": "Usually will be a title of a popup with a warning message",
+    "key": "warning",
+    "link": "",
+    "status": "",
+    "value": "Warning",
+    "order": 284,
+    "updateDate": "2021-01-01T00:00:00.000Z",
+    "variable": ""
+  },
+  "weekdays": {
+    "0": {
+      "abrev": {
+        "description": "The short form for Sunday.",
+        "key": "weekdays.0.abrev",
+        "link": "",
+        "status": "",
+        "value": "Su",
+        "order": 285,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "name": {
+        "description": "The long form for Sunday.",
+        "key": "weekdays.0.name",
+        "link": "",
+        "status": "",
+        "value": "Sunday",
+        "order": 286,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "1": {
+      "abrev": {
+        "description": "The short form for Monday.",
+        "key": "weekdays.1.abrev",
+        "link": "",
+        "status": "",
+        "value": "Mo",
+        "order": 287,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "name": {
+        "description": "The long form for Monday.",
+        "key": "weekdays.1.name",
+        "link": "",
+        "status": "",
+        "value": "Monday",
+        "order": 288,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "2": {
+      "abrev": {
+        "description": "The short form for Tuesday.",
+        "key": "weekdays.2.abrev",
+        "link": "",
+        "status": "",
+        "value": "Tu",
+        "order": 289,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "name": {
+        "description": "The long form for Tuesday.",
+        "key": "weekdays.2.name",
+        "link": "",
+        "status": "",
+        "value": "Tuesday",
+        "order": 290,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "3": {
+      "abrev": {
+        "description": "The short form for Wednesday.",
+        "key": "weekdays.3.abrev",
+        "link": "",
+        "status": "",
+        "value": "We",
+        "order": 291,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "name": {
+        "description": "The long form for Wednesday.",
+        "key": "weekdays.3.name",
+        "link": "",
+        "status": "",
+        "value": "Wednesday",
+        "order": 292,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "4": {
+      "abrev": {
+        "description": "The short form for Thursday.",
+        "key": "weekdays.4.abrev",
+        "link": "",
+        "status": "",
+        "value": "Th",
+        "order": 293,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "name": {
+        "description": "The long form for Thursday.",
+        "key": "weekdays.4.name",
+        "link": "",
+        "status": "",
+        "value": "Thursday",
+        "order": 294,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "5": {
+      "abrev": {
+        "description": "The short form for Friday.",
+        "key": "weekdays.5.abrev",
+        "link": "",
+        "status": "",
+        "value": "Fr",
+        "order": 295,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "name": {
+        "description": "The long form for Friday.",
+        "key": "weekdays.5.name",
+        "link": "",
+        "status": "",
+        "value": "Friday",
+        "order": 296,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    },
+    "6": {
+      "abrev": {
+        "description": "The short form for Saturday.",
+        "key": "weekdays.6.abrev",
+        "link": "",
+        "status": "",
+        "value": "Sa",
+        "order": 297,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      },
+      "name": {
+        "description": "The long form for Saturday.",
+        "key": "weekdays.6.name",
+        "link": "",
+        "status": "",
+        "value": "Saturday",
+        "order": 298,
+        "updateDate": "2021-01-01T00:00:00.000Z",
+        "variable": ""
+      }
+    }
+  },
+  "_variables": {
+    "key": "_variables",
+    "_keys": [
+      "",
+      "portionDesc",
+      "about",
+      "after",
+      "before",
+      "date",
+      "year",
+      "bceOrCe",
+      "startDate",
+      "endDate",
+      "endYear",
+      "startYear",
+      "notificationName",
+      "desc",
+      "scheduleName",
+      "initialBibleBook",
+      "initialChapter",
+      "initialVerse",
+      "startBibleBook",
+      "startChapter",
+      "startVerse"
+    ],
+    "portionDesc": [
+      "createSchedulePopup.readingPortionDesc.article",
+      "createSchedulePopup.readingPortionDesc.chapter",
+      "createSchedulePopup.readingPortionDesc.paragraph",
+      "createSchedulePopup.readingPortionDesc.page",
+      "createSchedulePopup.readingPortionDesc.chapter"
+    ],
+    "about": ["date.approxDesc.about"],
+    "after": ["date.approxDesc.after"],
+    "before": ["date.approxDesc.before"],
+    "date": ["date.ancientDate"],
+    "year": [],
+    "bceOrCe": ["date.bce", "date.ce"],
+    "startDate": ["date.approxDesc.approxDate"],
+    "endDate": [],
+    "endYear": [],
+    "startYear": [],
+    "notificationName": ["notification.baseTitle"],
+    "desc": [
+      "frequencies.daily",
+      "frequencies.weekly",
+      "frequencies.monthly",
+      "frequencies.never"
+    ],
+    "scheduleName": ["createSchedulePopup.scheduleName"],
+    "initialBibleBook": [
+      "bibleBooks.1.name",
+      "bibleBooks.3.name",
+      "bibleBooks.5.name"
+    ],
+    "initialChapter": [],
+    "initialVerse": [],
+    "startBibleBook": [
+      "bibleBooks.2.whereWritten",
+      "bibleBooks.4.whereWritten",
+      "bibleBooks.6.whereWritten"
+    ],
+    "startChapter": [],
+    "startVerse": []
+  }
+}

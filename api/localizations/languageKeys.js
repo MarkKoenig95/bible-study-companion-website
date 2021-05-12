@@ -47,7 +47,6 @@ const languageList = [
   { key: "da", name: "Danish" },
   { key: "nl", name: "Dutch (Standard)" },
   { key: "nl-be", name: "Dutch (Belgian)" },
-  { key: "en", name: "English" },
   { key: "en-au", name: "English (Australia)" },
   { key: "en-bz", name: "English (Belize)" },
   { key: "en-ca", name: "English (Canada)" },

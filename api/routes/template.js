@@ -6,11 +6,10 @@ const formidable = require("formidable");
 const {
   keyStringParser,
   parseObjKeys,
-  parseTranslation,
   saveFile,
-  templateUpdater,
   getFile,
 } = require("../logic/logic");
+const { templateUpdater, parseTemplate } = require("../logic/template");
 
 var template;
 var base;
@@ -34,7 +33,7 @@ router
   .get(async (req, res) => {
     let { baseKeys, template } = await getData(true);
 
-    let parsedTemplate = parseTranslation(template, baseKeys);
+    let parsedTemplate = parseTemplate(baseKeys, template);
 
     res.send(parsedTemplate);
   })

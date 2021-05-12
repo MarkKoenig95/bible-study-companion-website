@@ -8,18 +8,28 @@ const { server } = require("../../../api/server");
 
 const languageKeys = require("../../../api/localizations/languageKeys");
 const { keyStringParser } = require("../../../api/logic/logic");
-const { clearTempDir, setTempDir } = require("../helpers");
+const {
+  clearTempDir,
+  setTempDir,
+} = require("../../../__fixtures__/testLogic/helpers");
 
-beforeEach(() => {
+beforeAll(() => {
   clearTempDir("bucket");
   clearTempDir("local");
   setTempDir();
 });
 
+beforeEach(() => {
+  clearTempDir("local");
+});
+
+afterEach(() => {
+  server.close();
+});
+
 afterAll(() => {
   clearTempDir("bucket");
   clearTempDir("local");
-  server.close();
 });
 
 test("GET /api/translation/language-list", async () => {
@@ -28,26 +38,6 @@ test("GET /api/translation/language-list", async () => {
     .expect(200);
 
   expect(body).toStrictEqual(languageKeys);
-});
-
-test("GET /api/translation/:languageId", async () => {
-  let { body } = await supertest(app).get("/api/translation/test").expect(200);
-  let { keys, values } = body;
-
-  let expectedKeys = [
-    "ordinal.special.count",
-    "this",
-    "that",
-    "those.a",
-    "those.b",
-    "those.c",
-    "these.1",
-    "these.2",
-  ];
-  let expectedValues = [0, "This", 0, true, false, null, [0, 1, 2, 3], 999];
-
-  expect(keys).toStrictEqual(expectedKeys);
-  expect(values).toStrictEqual(expectedValues);
 });
 
 test("PUT /api/translation/:languageId", async () => {
@@ -64,7 +54,16 @@ test("PUT /api/translation/:languageId", async () => {
   await supertest(app).put("/api/translation/test").send(newValues).expect(200);
 
   let file = fs.readFileSync(
-    path.join(__dirname, "..", "..", "..", "__temp__", "bucket", "test.json")
+    path.join(
+      __dirname,
+      "..",
+      "..",
+      "..",
+      "__fixtures__",
+      "files",
+      "bucket",
+      "test.json"
+    )
   );
 
   file = JSON.parse(file);

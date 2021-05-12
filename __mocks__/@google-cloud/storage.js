@@ -7,11 +7,27 @@ class Storage {
       upload: (filePath) => {
         let fileName = filePath.split("/").pop();
         let file = fs.readFileSync(
-          path.join(__dirname, "..", "..", "__temp__", "local", fileName)
+          path.join(
+            __dirname,
+            "..",
+            "..",
+            "__fixtures__",
+            "files",
+            "local",
+            fileName
+          )
         );
 
         fs.writeFileSync(
-          path.join(__dirname, "..", "..", "__temp__", "bucket", fileName),
+          path.join(
+            __dirname,
+            "..",
+            "..",
+            "__fixtures__",
+            "files",
+            "bucket",
+            fileName
+          ),
           file,
           "utf8"
         );
@@ -25,7 +41,8 @@ class Storage {
                 __dirname,
                 "..",
                 "..",
-                "__temp__",
+                "__fixtures__",
+                "files",
                 "bucket",
                 srcFileName
               )
@@ -36,7 +53,8 @@ class Storage {
                 __dirname,
                 "..",
                 "..",
-                "__temp__",
+                "__fixtures__",
+                "files",
                 "local",
                 srcFileName
               ),

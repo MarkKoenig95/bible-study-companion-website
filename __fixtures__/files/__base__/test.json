@@ -1,0 +1,7 @@
+{
+  "ordinal": { "special": { "count": 0 } },
+  "this": "This",
+  "that": 0,
+  "those": { "a": true, "b": false, "c": null },
+  "these": { "1": [0, 1, 2, 3], "2": 999 }
+}

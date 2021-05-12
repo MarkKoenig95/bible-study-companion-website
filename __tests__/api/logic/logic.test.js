@@ -4,10 +4,8 @@ const {
   parseObjKeys,
   keyStringParser,
   parseTranslation,
-  templateUpdater,
+  binarySearch,
 } = require("../../../api/logic/logic");
-const english = require("../../../__temp__/__base__/en.json");
-const template = require("../../../__temp__/__base__/template.json");
 
 test("parseObjKeys", () => {
   const obj = {
@@ -89,33 +87,51 @@ test("parseTranslation", () => {
   expect(values).toStrictEqual([{}, null, false, 0, [0, 1, 2, 3]]);
 });
 
-describe("templateUpdater tests", () => {
-  test("nothing to change", () => {
-    let baseKeys = parseObjKeys(english);
-    let newTemplate = templateUpdater(english, baseKeys, template);
+describe("binarySearch", () => {
+  let array = [];
+  let randomMiddleItem = Math.floor(Math.random() * 10000000);
+  beforeAll(() => {
+    // Set up a randomized array
+    let randomLength = Math.random() * 10000;
+    for (let i = 0; i < randomLength; i++) {
+      let randomItem = Math.floor(Math.random() * 10000000);
+      array.push(randomItem);
+    }
 
-    expect(newTemplate).toStrictEqual(template);
+    // Add a random item for use in a comparison in a later test before we sort
+    array.push(randomMiddleItem);
+
+    // Sort the array to conform with binary search requirements
+    array.sort((a, b) => a - b);
   });
 
-  test("item added", () => {
-    let today = new Date();
-    let newEnglish = { ...english };
-    newEnglish.newItem = "NEW ITEM";
-    newEnglish.bibleBooks[67] = "New Scrolls";
-    let baseKeys = parseObjKeys(newEnglish);
-    let newTemplate = templateUpdater(newEnglish, baseKeys, template);
+  test("given a sorted array finds an object with a matching value at the far end", () => {
+    // Add the item we are looking for to it (an item larger than any other)
+    let ourItem = 100000000;
+    array.push(ourItem);
 
-    let updateDate = new Date(newTemplate.newItem.updateDate);
-    updateDate.setSeconds(0, 0);
-    today.setSeconds(0, 0);
+    let resultIndex = binarySearch(array, ourItem);
+    let result = array[resultIndex];
 
-    //Check a basic item
-    expect(newTemplate.newItem.key).toBe("newItem");
-    expect(newTemplate.newItem.order).toBeGreaterThan(0);
-    expect(updateDate.getTime()).toBe(today.getTime());
-    //Check a nested item
-    expect(newTemplate.bibleBooks[67].value).toBe("New Scrolls");
-    //Check that it maintained all other values that were it's neighbors
-    expect(newTemplate.bibleBooks[1].name.value).toBe("Genesis");
+    expect(result).toBe(ourItem);
+  });
+
+  test("given a sorted array finds an object with a matching value at the far begining", () => {
+    // Add the item we are looking for to it (an item smaller than any other)
+    let ourItem = -1;
+    array.unshift(ourItem);
+
+    let resultIndex = binarySearch(array, ourItem);
+    let result = array[resultIndex];
+
+    expect(result).toBe(ourItem);
+  });
+
+  test("given a sorted array finds an object with a matching value in the middle", () => {
+    // The item was already added in the "beforeAll" setup
+    let resultIndex = binarySearch(array, randomMiddleItem);
+    let result = array[resultIndex];
+
+    expect(result).toBe(randomMiddleItem);
   });
 });

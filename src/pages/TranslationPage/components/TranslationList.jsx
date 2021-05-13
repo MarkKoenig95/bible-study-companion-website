@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TranslationForm from "./TranslationForm";
 import OrdinalForm from "./OrdinalForm";
-import LinksForm from "./LinksForm";
+import LinksForm from "./LinksForm/LinksForm";
 import { checkItemKey } from "../../../logic/logic";
 
 export default function TranslationList(props) {

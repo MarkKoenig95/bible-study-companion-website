@@ -1,0 +1,20 @@
+.link-parsing-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.link-parsing-form button {
+  margin: 10px auto;
+  width: fit-content;
+}
+
+.link-parsing-form input {
+  color: silver;
+  width: "100%";
+}
+
+.link-parsing-form-row {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}

@@ -70,6 +70,7 @@ export default function TranslationList(props) {
         items.push(
           <LinksForm
             key={JSON.stringify(item) + (i - 1)}
+            completedHidden={completedHidden}
             links={links}
             onChange={onChange}
             showLoadingPopup={showLoadingPopup}

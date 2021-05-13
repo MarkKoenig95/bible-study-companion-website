@@ -1,5 +1,17 @@
 // Imports the Google Cloud client library
-const { Storage } = require("@google-cloud/storage");
+var { Storage } = require("@google-cloud/storage");
+
+if (!process.env.PRODUCTION) {
+  let fakeStorage = require("../../__mocks__/@google-cloud/storage");
+  Storage = fakeStorage.Storage;
+  const {
+    clearTempDir,
+    setTempDir,
+  } = require("../../__fixtures__/testLogic/helpers");
+  clearTempDir("bucket");
+  clearTempDir("local");
+  setTempDir();
+}
 
 // Creates a client
 const storage = new Storage();

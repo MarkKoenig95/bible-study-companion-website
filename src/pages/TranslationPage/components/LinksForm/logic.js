@@ -42,7 +42,7 @@ export const linkParser = (link, original) => {
   return { origSecs: origSecs, sections: sections, shouldBreak: shouldBreak };
 };
 
-const linkFormatter = (links, wwwOrwol, original) => {
+export const linkFormatter = (links, wwwOrwol, original) => {
   let origSecs = original.split("/");
 
   let link = "";
@@ -98,4 +98,28 @@ export const getTestLinks = (finderLocale, hasStudyBible, linksObj) => {
     hasStudyBible ? "70" : "61"
   }103&prefer=content&Book=40&Chapter=1`;
   return testLinks;
+};
+
+export const getDisplayValuesForLinksForm = (
+  order,
+  baseOrder,
+  maxOrder,
+  completedHidden
+) => {
+  let borderColor = "red";
+  let display = "flex";
+  let isHidden = false;
+
+  if (order > baseOrder) {
+    borderColor = "orange";
+  }
+
+  if (order === maxOrder) {
+    borderColor = "green";
+    isHidden = completedHidden;
+  }
+
+  display = isHidden ? "none" : "flex";
+
+  return { borderColor, display };
 };

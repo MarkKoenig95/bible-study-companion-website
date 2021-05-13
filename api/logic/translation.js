@@ -40,6 +40,9 @@ module.exports.getLanguageFile = getLanguageFile;
  */
 const setLanguageFile = async (languageKey, translationItems) => {
   let { fileName, file } = await getLanguageFile(languageKey);
+  if (!file) {
+    file = { ordinal: { special: {} } };
+  }
 
   if (translationItems && typeof translationItems === "object") {
     file.ordinal.special = {};

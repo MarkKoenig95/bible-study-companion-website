@@ -1,16 +1,55 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Frag } from "../OrdinalForm";
 import { LinkParsingForm, TestLinkSection } from "./components";
-import { getTestLinks, linksArrayToObject } from "./logic";
+import {
+  getDisplayValuesForLinksForm,
+  getTestLinks,
+  linksArrayToObject,
+} from "./logic";
 import "./LinksForm.css";
 
 export default function LinksForm(props) {
-  const { onChange, links, showLoadingPopup } = props;
+  const { completedHidden, links, onChange, showLoadingPopup } = props;
+  const baseOrder = 1;
+
   const [linksObj, setLinksObj] = useState({});
   const [testLinks, setTestLinks] = useState({});
   const [hasStudyBible, setHasStudyBible] = useState(false);
   const [finderLocale, setFinderLocale] = useState(false);
-  const [currentOrder, setCurrentOrder] = useState(1);
+  const [currentOrder, setCurrentOrder] = useState(baseOrder);
+  const [display, setDisplay] = useState("flex");
+  const [borderColor, setBorderColor] = useState("gray");
+  const [isRestarted, setIsRestarted] = useState(true);
+
+  const maxOrder = 4;
+
+  const updateOrder = useCallback(
+    (order) => {
+      let newOrder = order || currentOrder;
+      newOrder = newOrder + 1;
+      if (newOrder === maxOrder) {
+        setIsRestarted(false);
+      }
+      setCurrentOrder(newOrder);
+    },
+    [currentOrder]
+  );
+
+  const restartSetup = useCallback(() => {
+    setIsRestarted(true);
+    setCurrentOrder(baseOrder);
+  }, []);
+
+  useEffect(() => {
+    let displayValues = getDisplayValuesForLinksForm(
+      currentOrder,
+      baseOrder,
+      maxOrder,
+      completedHidden
+    );
+    setDisplay(displayValues.display);
+    setBorderColor(displayValues.borderColor);
+  }, [completedHidden, currentOrder]);
 
   useEffect(() => {
     let newFinderLocale = linksObj.finderLocale
@@ -40,7 +79,10 @@ export default function LinksForm(props) {
   };
 
   return (
-    <div className="translation-form">
+    <div
+      className="translation-form"
+      style={{ display: display, borderColor: borderColor }}
+    >
       <h2>Links</h2>
       <div className="form-sections">
         <div className="checkbox-input">
@@ -53,35 +95,42 @@ export default function LinksForm(props) {
         </div>
         <LinkParsingForm
           currentOrder={currentOrder}
+          isRestarted={isRestarted}
           links={linksObj}
           mainLink="https://www.jw.org/en/library/bible/nwt/introduction/how-to-read-the-bible/"
           onChange={onChange}
-          order={1}
+          order={baseOrder}
           showLoadingPopup={showLoadingPopup}
+          updateOrder={updateOrder}
           wwwOrwol="www"
         />
         <LinkParsingForm
           currentOrder={currentOrder}
+          isRestarted={isRestarted}
           links={linksObj}
           mainLink="https://www.jw.org/en/library/bible/nwt/books/genesis/1/"
           onChange={onChange}
-          order={2}
+          order={baseOrder + 1}
           showLoadingPopup={showLoadingPopup}
+          updateOrder={updateOrder}
           wwwOrwol="www"
         />
         <LinkParsingForm
           currentOrder={currentOrder}
+          isRestarted={isRestarted}
           links={linksObj}
           mainLink="https://wol.jw.org/en/wol/b/r1/lp-e/nwt/1/1#study=discover"
           onChange={onChange}
-          order={3}
+          order={baseOrder + 2}
           showLoadingPopup={showLoadingPopup}
+          updateOrder={updateOrder}
           wwwOrwol="wol"
         />
         <TestLinkSection
           currentOrder={currentOrder}
           finderLocale={finderLocale}
-          order={4}
+          order={maxOrder}
+          restartSetup={restartSetup}
           testLinks={testLinks}
         />
       </div>

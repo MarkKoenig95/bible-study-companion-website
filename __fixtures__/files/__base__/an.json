@@ -1,0 +1,42 @@
+{
+  "ordinal": {
+    "0": "th",
+    "1": "st",
+    "2": "nd",
+    "3": "rd",
+    "4": "th",
+    "5": "th",
+    "6": "th",
+    "7": "th",
+    "8": "th",
+    "9": "th",
+    "special": { "count": 0 },
+    "after": true
+  },
+  "date": {
+    "approxDesc": {
+      "about": "Abou",
+      "after": "Afte",
+      "before": "Befor",
+      "approxDate": "{{about}}{{after}}{{before}} - {{date}}"
+    },
+    "bce": "B.C.E",
+    "ce": "C.E",
+    "ancientDate": "{{year}} - {{bceOrCe}}",
+    "dateSpan": "{{startDate}} {{endDate}}"
+  },
+  "links": {
+    "languageTag": "en",
+    "hasStudyBible": true,
+    "finderLocale": "E",
+    "www": {
+      "bible": "bible",
+      "books": "books",
+      "how-to-read-the-bible": "how-to-read-the-bible",
+      "introduction": "introduction",
+      "library": "library"
+    },
+    "wol": { "lp-e": "lp-e", "r1": "r1" }
+  },
+  "updateDate": "2021-05-05T11:41:37.377Z"
+}

@@ -12,12 +12,20 @@ import { useVariables } from "./useVariables";
 const handleSave = (languageKey, showLoadingPopup, translationItems) => {
   //Update the translation file to the appropriate values
   showLoadingPopup(true);
-  Axios.put(`api/translation/${languageKey}`, translationItems).then(() => {
-    showLoadingPopup(false);
-    alert(
-      "Language file has been saved. \nThank you for your contribution. \nIf you are finished please check the \"hide completed\" checkbox at the bottom of the page to make sure you haven't missed any items\nAlso, if you haven't yet please sign up to receive email notifications when there are changes to the translation so that your target language can stay up to date with future updates"
-    );
-  });
+  Axios.put(`api/translation/${languageKey}`, translationItems)
+    .then(() => {
+      showLoadingPopup(false);
+      alert(
+        "Language file has been saved. \nThank you for your contribution. \nIf you are finished please check the \"hide completed\" checkbox at the bottom of the page to make sure you haven't missed any items\nAlso, if you haven't yet please sign up to receive email notifications when there are changes to the translation so that your target language can stay up to date with future updates"
+      );
+    })
+    .catch((e) => {
+      console.error(e);
+      showLoadingPopup(false);
+      alert(
+        "There was a problem saving your language file. Our apologies for the inconvenience"
+      );
+    });
 
   //Set all translation items to not have been edited and update the isSameAsOriginal flag
   let tempTransItems = translationItems.map((item) => {

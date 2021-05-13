@@ -2,7 +2,7 @@ import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import decode from "urldecode";
 import Link from "../Link";
-import { linkParser } from "./logic";
+import { linkFormatter, linkParser } from "./logic";
 
 const instance = Axios.create({
   headers: {
@@ -20,13 +20,41 @@ export const LinkParsingForm = (props) => {
     links,
     mainLink,
     onChange,
+    isRestarted,
     showLoadingPopup,
+    updateOrder,
     wwwOrwol,
   } = props;
   const [link, setLink] = useState("");
   const [display, setDisplay] = useState("none");
-  const [isFinished, setisFinished] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
   const [inputID, setInputID] = useState(Math.random() * 100000);
+
+  useEffect(() => {
+    if (isRestarted && currentOrder <= order) {
+      setIsFinished(false);
+      return;
+    }
+
+    let thisLink = linkFormatter(links, wwwOrwol, mainLink);
+    if (thisLink) {
+      let newIsFinished = thisLink !== mainLink + "/";
+
+      if (newIsFinished) {
+        updateOrder(order);
+      }
+
+      setIsFinished(newIsFinished);
+    }
+  }, [
+    currentOrder,
+    isRestarted,
+    links,
+    mainLink,
+    order,
+    updateOrder,
+    wwwOrwol,
+  ]);
 
   useEffect(() => {
     setInputID("link-parsing-form-input-" + order);
@@ -54,18 +82,22 @@ export const LinkParsingForm = (props) => {
         //Then it hasn't changed yet and we need to scrape a webpage to get the value
         showLoadingPopup(true);
         await instance
-          .get("https://cors-anywhere.herokuapp.com/" + newLink)
+          .get("https://corsanywhere.herokuapp.com/" + newLink)
           .then(({ data }) => {
             let found = data.match(/wtlocale=(?<locale>[A-Z]*)./);
             updatedValues.push({
               index: links.finderLocale.index,
               value: found.groups.locale,
             });
-            showLoadingPopup(false);
           })
           .catch((e) => {
             console.error(e);
+            alert(
+              "There was a problem getting some information for the links, please contact the developer to inform them of this. Thank you for your patience and support!"
+            );
           });
+
+        showLoadingPopup(false);
       }
 
       updatedValues.push({
@@ -84,6 +116,8 @@ export const LinkParsingForm = (props) => {
 
       onChange(updatedValues);
       setLink(newLink);
+      setIsFinished(true);
+      updateOrder(order);
     }
   };
 
@@ -100,26 +134,31 @@ export const LinkParsingForm = (props) => {
           style={{ color: "green", display: isFinished ? "flex" : "none" }}
         />
       </div>
-      <Link href={mainLink}>Click this link</Link>
-      <p>Once clicked, go to the newly opened tab.</p>
-      <p>Change the language of the page to your target language.</p>
-      <p>Copy the website's URL (Ex. https://www.jw.org/blah/blah/blah)</p>
-      <button onClick={_handlePasteClick}>
-        Click here to paste the copied URL
-        <i className="fas fa-paste"></i>
-      </button>
-      <input
-        id={inputID}
-        style={{ borderColor: link ? "orange" : "gray" }}
-        value={link}
-        readOnly
-      />
+      <div
+        className="link-parsing-form"
+        style={{ display: isFinished ? "none" : "flex" }}
+      >
+        <Link href={mainLink}>Click this link</Link>
+        <p>Once clicked, go to the newly opened tab.</p>
+        <p>Change the language of the page to your target language.</p>
+        <p>Copy the website's URL (Ex. https://www.jw.org/blah/blah/blah)</p>
+        <button onClick={_handlePasteClick}>
+          Click here to paste the copied URL
+          <i className="fas fa-paste"></i>
+        </button>
+        <input
+          id={inputID}
+          style={{ borderColor: link ? "orange" : "gray" }}
+          value={link}
+          readOnly
+        />
+      </div>
     </div>
   );
 };
 
 export const TestLinkSection = (props) => {
-  const { currentOrder, order, testLinks } = props;
+  const { currentOrder, order, restartSetup, testLinks } = props;
   const [display, setDisplay] = useState("none");
 
   useEffect(() => {
@@ -131,19 +170,21 @@ export const TestLinkSection = (props) => {
   }, [currentOrder, order]);
 
   return (
-    <div style={{ display: display }}>
+    <div className="test-links" style={{ display: display }}>
       <p>
         Please check that everything was added correctly by going to these links
         and making sure that they display the right information in your target
         language
       </p>
-      <br />
-      <Link href={testLinks.l1}>Test Link 1</Link>
-      <Link href={testLinks.l2}>Test Link 2</Link>
-      <Link href={testLinks.l3}>Test Link 3</Link>
-      <Link href={testLinks.l4}>Test Link 4</Link>
-      <Link href={testLinks.l5}>Test Link 5</Link>
-      <Link href={testLinks.l6}>Test Link 6</Link>
+      <div className="test-links-row">
+        <Link href={testLinks.l1}>Test Link 1</Link>
+        <Link href={testLinks.l2}>Test Link 2</Link>
+        <Link href={testLinks.l3}>Test Link 3</Link>
+        <Link href={testLinks.l4}>Test Link 4</Link>
+        <Link href={testLinks.l5}>Test Link 5</Link>
+        <Link href={testLinks.l6}>Test Link 6</Link>
+      </div>
+      <button onClick={restartSetup}>Restart Link Setup</button>
     </div>
   );
 };

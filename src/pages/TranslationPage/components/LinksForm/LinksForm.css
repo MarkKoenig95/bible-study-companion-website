@@ -9,12 +9,28 @@
 }
 
 .link-parsing-form input {
-  color: silver;
-  width: "100%";
+  display: none;
 }
 
 .link-parsing-form-row {
   align-items: center;
   display: flex;
   flex-direction: row;
+}
+
+.test-links {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.test-links-row a {
+  min-width: 5rem;
+}
+
+.test-links-row {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }

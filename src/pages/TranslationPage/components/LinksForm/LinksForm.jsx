@@ -19,7 +19,7 @@ export default function LinksForm(props) {
   const [currentOrder, setCurrentOrder] = useState(baseOrder);
   const [display, setDisplay] = useState("flex");
   const [borderColor, setBorderColor] = useState("gray");
-  const [isRestarted, setIsRestarted] = useState(true);
+  const [isRestarted, setIsRestarted] = useState(false);
 
   const maxOrder = 4;
 

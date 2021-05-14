@@ -15,3 +15,12 @@
 
 # Node.js dependencies:
 node_modules/
+
+# React Source
+src/
+public/
+
+# Testing
+__fixtures__/
+__mocks__/
+__tests__/

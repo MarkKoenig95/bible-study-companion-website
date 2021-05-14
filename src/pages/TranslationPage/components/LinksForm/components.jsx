@@ -2,7 +2,7 @@ import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import decode from "urldecode";
 import Link from "../Link";
-import { linkFormatter, linkParser } from "./logic";
+import { getIsSameAsOriginalFromLink, linkParser } from "./logic";
 
 const instance = Axios.create({
   headers: {
@@ -36,16 +36,17 @@ export const LinkParsingForm = (props) => {
       return;
     }
 
-    let thisLink = linkFormatter(links, wwwOrwol, mainLink);
-    if (thisLink) {
-      let newIsFinished = thisLink !== mainLink + "/";
+    let isSameAsOriginal = getIsSameAsOriginalFromLink(
+      links,
+      wwwOrwol,
+      mainLink
+    );
 
-      if (newIsFinished) {
-        updateOrder(order);
-      }
-
-      setIsFinished(newIsFinished);
+    if (!isSameAsOriginal) {
+      updateOrder(order);
     }
+
+    setIsFinished(!isSameAsOriginal);
   }, [
     currentOrder,
     isRestarted,

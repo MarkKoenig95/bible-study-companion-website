@@ -51,20 +51,32 @@ export const linkFormatter = (links, wwwOrwol, original) => {
     return "";
   }
 
-  origSecs.forEach((sec, index) => {
-    if (sec === "en") {
-      link += links.languageTag.value + "/";
-    } else if (links[wwwOrwol][sec]) {
-      link += links[wwwOrwol][sec].value + "/";
-    } else if (sec === "nwtsty" || sec === "study-bible") {
-      link += links.hasStudyBible.value ? sec : "nwt";
-      link += "/";
+  origSecs.forEach((sec) => {
+    let checkResult = checkLink(links, wwwOrwol, sec);
+    if (checkResult) {
+      link += checkResult + "/";
     } else {
       link += sec + "/";
     }
   });
 
   return link;
+};
+
+export const checkLink = (links, wwwOrwol, section) => {
+  if (!links[wwwOrwol]) return;
+
+  if (section === "en") {
+    return links.languageTag.value;
+  }
+
+  if (links[wwwOrwol][section]) {
+    return links[wwwOrwol][section].value;
+  }
+
+  if (section === "nwtsty" || section === "study-bible") {
+    return links.hasStudyBible.value ? section : "nwt";
+  }
 };
 
 export const getTestLinks = (finderLocale, hasStudyBible, linksObj) => {
@@ -122,4 +134,18 @@ export const getDisplayValuesForLinksForm = (
   display = isHidden ? "none" : "flex";
 
   return { borderColor, display };
+};
+
+export const getIsSameAsOriginalFromLink = (links, wwwOrwol, originalLink) => {
+  let isSameAsOriginal = false;
+  let sections = originalLink.split("/");
+
+  sections.forEach((section) => {
+    let checkResult = checkLink(links, wwwOrwol, section);
+    if (checkResult && checkResult === section) {
+      isSameAsOriginal = true;
+    }
+  });
+
+  return isSameAsOriginal;
 };

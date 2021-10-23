@@ -2,12 +2,8 @@ import Axios from "axios";
 import { useCallback } from "react";
 
 export function useSelectLanguage(props) {
-  const {
-    setLanguage,
-    showLoadingPopup,
-    setTranslationItems,
-    setVariables,
-  } = props;
+  const { setLanguage, showLoadingPopup, setTranslationItems, setVariables } =
+    props;
 
   const _handleSelectLanguage = useCallback(
     (language) => {

@@ -253,7 +253,8 @@ const createTranslationInfo = (
 
   const transUpdateDate = getUpdateDate(transKeys, transValues);
 
-  //Loop through the array of translation values and create translation info items for each, also adding in new items that are not included in the original file
+  // Loop through the array of translation values and create translation info items for each
+  // also adding in new items that are not included in the original file
   for (let index = 0; index < translationLength; index++) {
     //Just to prevent endless loops in the case of bugs
     if (

@@ -65,6 +65,7 @@ export const linkFormatter = (links, wwwOrwol, original) => {
 
 export const checkLink = (links, wwwOrwol, section) => {
   if (!links[wwwOrwol]) return;
+  if (!links.languageTag) return;
 
   if (section === "en") {
     return links.languageTag.value;

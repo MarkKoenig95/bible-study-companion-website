@@ -277,14 +277,8 @@ export default function TemplateEditPage() {
 
       {template.map((item, index) => {
         let obj = item;
-        const {
-          value,
-          desc,
-          link,
-          order,
-          updateDate,
-          variable,
-        } = setTemplateItemValues(obj, index);
+        const { value, desc, link, order, updateDate, variable } =
+          setTemplateItemValues(obj, index);
 
         return (
           <TemplateSeciton
